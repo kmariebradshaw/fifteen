@@ -67,6 +67,34 @@
     </div>
   </div>
 
+
+  {% if section.settings.show_story %}
+    <section class="fifteen-home__story page-width" aria-labelledby="FifteenStory-{{ section.id }}">
+      <div class="fifteen-home__story-media">
+        {% if section.settings.story_image != blank %}
+          {% assign story_image_alt = section.settings.story_image.alt | default: section.settings.story_founders %}
+          {{ section.settings.story_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__story-image', loading: 'lazy', widths: '400, 600, 900, 1200', sizes: '(min-width: 750px) 42vw, 100vw', alt: story_image_alt }}
+        {% else %}
+          <div class="fifteen-home__story-note">
+            <span class="fifteen-home__story-heart" aria-hidden="true">♡</span>
+            <p>For the lows.<br>For real life.<br>For families like ours.</p>
+            <span>{{ section.settings.story_signature | escape }}</span>
+          </div>
+        {% endif %}
+      </div>
+      <div class="fifteen-home__story-copy">
+        <p class="fifteen-home__story-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
+        <h2 id="FifteenStory-{{ section.id }}">{{ section.settings.story_heading | escape }}<span>{{ section.settings.story_heading_accent | escape }}</span></h2>
+        <div class="fifteen-home__underline" aria-hidden="true"></div>
+        <div class="fifteen-home__story-text rte">{{ section.settings.story_text }}</div>
+        <div class="fifteen-home__story-signoff">
+          <span class="fifteen-home__story-signature">{{ section.settings.story_signature | escape }}</span>
+          <p><strong>{{ section.settings.story_founders | escape }}</strong><span>{{ section.settings.story_role | escape }}</span></p>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
   <div class="fifteen-home__life page-width">
     <div class="fifteen-home__life-image">
       {% if section.settings.lifestyle_image != blank %}
@@ -140,46 +168,280 @@
   .fifteen-home__subscribe .rte { font-size: .92rem; line-height: 1.5; }
   @media screen and (max-width: 989px) { .fifteen-home__hero { grid-template-columns: 1fr 1fr; } .fifteen-home__products { grid-template-columns: repeat(3, 1fr); row-gap: 2.2rem; } .fifteen-home__life { grid-template-columns: 1fr 1fr; } .fifteen-home__subscribe { grid-column: span 2; } }
   @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 10ch; } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(2, 1fr); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
+
+  .fifteen-home__story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: clamp(2rem, 4vw, 4rem); padding-bottom: clamp(3rem, 6vw, 6rem); }
+  .fifteen-home__story-media { overflow: hidden; border-radius: 1rem; background: #f9ddd3; }
+  .fifteen-home__story-image { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+  .fifteen-home__story-note { min-height: 24rem; padding: clamp(2rem, 4vw, 4rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .fifteen-home__story-heart { color: var(--fifteen-pink); font-size: 4rem; line-height: 1; }
+  .fifteen-home__story-note p { margin: 1.25rem 0; font-family: var(--font-heading--family); font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -.055em; }
+  .fifteen-home__story-note > span:last-child { font-weight: 700; font-size: .9rem; }
+  .fifteen-home__story-eyebrow { margin: 0 0 .85rem; color: var(--fifteen-navy); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .fifteen-home__story-copy h2 { margin: 0; font-size: clamp(2rem, 3.3vw, 3.3rem); line-height: 1.05; text-transform: uppercase; }
+  .fifteen-home__story-copy h2 > span { display: block; color: var(--fifteen-pink); }
+  .fifteen-home__story-text { max-width: 38rem; font-size: 1rem; line-height: 1.65; }
+  .fifteen-home__story-text p { margin: 0 0 1rem; }
+  .fifteen-home__story-signoff { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.75rem; }
+  .fifteen-home__story-signature { color: var(--fifteen-pink); font-family: var(--font-heading--family); font-weight: 800; font-style: italic; font-size: clamp(1.6rem, 2.5vw, 2.5rem); letter-spacing: -.04em; }
+  .fifteen-home__story-signoff p { margin: 0; padding-left: 1rem; border-left: 2px solid #e6e1d9; font-size: .8rem; line-height: 1.5; }
+  .fifteen-home__story-signoff p > span { display: block; }
+  @media screen and (max-width: 749px) {
+    .fifteen-home__story { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .fifteen-home__story-note { min-height: 18rem; }
+    .fifteen-home__story-copy { min-width: 0; }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "15 Fifteen homepage",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "One Dose.\n15 Grams.\nNo Guesswork." },
-    { "type": "richtext", "id": "text", "label": "Hero text", "default": "<p>Delicious, convenient foods and drinks with exactly 15 grams of fast-acting carbohydrates—made for life with type 1 diabetes.</p>" },
-    { "type": "text", "id": "button_label", "label": "Hero button label", "default": "SHOP THE COLLECTION" },
-    { "type": "url", "id": "button_link", "label": "Hero button link" },
-    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
-    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#e83f74" },
-    { "type": "color", "id": "navy_color", "label": "Navy color", "default": "#071f48" },
-    { "type": "color", "id": "hero_color", "label": "Hero placeholder color", "default": "#92d7ef" },
-    { "type": "header", "content": "Collection" },
-    { "type": "text", "id": "collection_heading", "label": "Heading", "default": "MEET THE 15 COLLECTION" },
-    { "type": "collection", "id": "collection", "label": "Products collection" },
-    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 3, "max": 6, "step": 1, "default": 6 },
-    { "type": "header", "content": "Lifestyle" },
-    { "type": "image_picker", "id": "lifestyle_image", "label": "Lifestyle image" },
-    { "type": "text", "id": "lifestyle_heading", "label": "Heading", "default": "MADE FOR REAL LIFE" },
-    { "type": "richtext", "id": "lifestyle_text", "label": "Text", "default": "<p>Whether you're at school, at work, at practice, or on an adventure—15 is here for your lows, so you can get back to your highs.</p>" },
-    { "type": "text", "id": "subscribe_heading", "label": "Subscribe heading", "default": "NEVER BE WITHOUT 15" },
-    { "type": "richtext", "id": "subscribe_text", "label": "Subscribe text", "default": "<p>Subscribe and save on your favorite 15g essentials.</p>" },
-    { "type": "text", "id": "subscribe_button_label", "label": "Subscribe button label", "default": "SUBSCRIBE & SAVE" },
-    { "type": "url", "id": "subscribe_button_link", "label": "Subscribe button link" }
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One Dose.\n15 Grams.\nNo Guesswork."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Hero text",
+      "default": "<p>Delicious, convenient foods and drinks with exactly 15 grams of fast-acting carbohydrates—made for life with type 1 diabetes.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Hero button label",
+      "default": "SHOP THE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Hero button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#e83f74"
+    },
+    {
+      "type": "color",
+      "id": "navy_color",
+      "label": "Navy color",
+      "default": "#071f48"
+    },
+    {
+      "type": "color",
+      "id": "hero_color",
+      "label": "Hero placeholder color",
+      "default": "#92d7ef"
+    },
+    {
+      "type": "header",
+      "content": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "collection_heading",
+      "label": "Heading",
+      "default": "MEET THE 15 COLLECTION"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Products collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Lifestyle"
+    },
+    {
+      "type": "image_picker",
+      "id": "lifestyle_image",
+      "label": "Lifestyle image"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_heading",
+      "label": "Heading",
+      "default": "MADE FOR REAL LIFE"
+    },
+    {
+      "type": "richtext",
+      "id": "lifestyle_text",
+      "label": "Text",
+      "default": "<p>Whether you're at school, at work, at practice, or on an adventure—15 is here for your lows, so you can get back to your highs.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_heading",
+      "label": "Subscribe heading",
+      "default": "NEVER BE WITHOUT 15"
+    },
+    {
+      "type": "richtext",
+      "id": "subscribe_text",
+      "label": "Subscribe text",
+      "default": "<p>Subscribe and save on your favorite 15g essentials.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_button_label",
+      "label": "Subscribe button label",
+      "default": "SUBSCRIBE & SAVE"
+    },
+    {
+      "type": "url",
+      "id": "subscribe_button_link",
+      "label": "Subscribe button link"
+    },
+    {
+      "type": "header",
+      "content": "Our story"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_story",
+      "label": "Show our story",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Founder photo"
+    },
+    {
+      "type": "text",
+      "id": "story_eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Heading",
+      "default": "A personal mission."
+    },
+    {
+      "type": "text",
+      "id": "story_heading_accent",
+      "label": "Accent heading",
+      "default": "A better way through the lows."
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Story",
+      "default": "<p>As a father of a child with Type 1 diabetes, I’ve seen how hard lows can be on kids and parents. The options out there just didn’t feel good enough.</p><p><strong>So I created Fifteen.</strong></p><p>It’s what I wished we had: a simpler, more convenient way to handle the lows, so we can get back to living.</p>"
+    },
+    {
+      "type": "text",
+      "id": "story_signature",
+      "label": "Signature",
+      "default": "Christian & Finn"
+    },
+    {
+      "type": "text",
+      "id": "story_founders",
+      "label": "Founder names",
+      "default": "Christian and Finn Arquilla"
+    },
+    {
+      "type": "text",
+      "id": "story_role",
+      "label": "Founder title",
+      "default": "Founders"
+    }
   ],
   "blocks": [
-    { "type": "benefit", "name": "Benefit", "limit": 5, "settings": [
-      { "type": "text", "id": "icon", "label": "Icon", "default": "◎" },
-      { "type": "text", "id": "heading", "label": "Heading", "default": "EXACTLY 15g" },
-      { "type": "textarea", "id": "text", "label": "Text", "default": "No counting. No guessing." }
-    ] }
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "◎"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "EXACTLY 15g"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "No counting. No guessing."
+        }
+      ]
+    }
   ],
-  "presets": [{ "name": "15 Fifteen homepage", "blocks": [
-    { "type": "benefit", "settings": { "icon": "◎", "heading": "EXACTLY 15g", "text": "No counting. No guessing." } },
-    { "type": "benefit", "settings": { "icon": "ϟ", "heading": "FAST-ACTING", "text": "Designed to help raise low blood sugar." } },
-    { "type": "benefit", "settings": { "icon": "♧", "heading": "EASY TO CARRY", "text": "Fits in your pocket, bag, or anywhere." } },
-    { "type": "benefit", "settings": { "icon": "☺", "heading": "GREAT TASTE", "text": "Foods and drinks you'll actually enjoy." } },
-    { "type": "benefit", "settings": { "icon": "♡", "heading": "MADE FOR YOU", "text": "Created by people who get it." } }
-  ] }]
+  "presets": [
+    {
+      "name": "15 Fifteen homepage",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "◎",
+            "heading": "EXACTLY 15g",
+            "text": "No counting. No guessing."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "ϟ",
+            "heading": "FAST-ACTING",
+            "text": "Designed to help raise low blood sugar."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "♧",
+            "heading": "EASY TO CARRY",
+            "text": "Fits in your pocket, bag, or anywhere."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "☺",
+            "heading": "GREAT TASTE",
+            "text": "Foods and drinks you'll actually enjoy."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "♡",
+            "heading": "MADE FOR YOU",
+            "text": "Created by people who get it."
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
