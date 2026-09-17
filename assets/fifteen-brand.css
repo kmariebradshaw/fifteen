@@ -1,0 +1,88 @@
+/* Fifteen brand palette. Shared by the homepage, content pages and footer. */
+:root {
+  --brand-pink: #e83f74;
+  --brand-blue: #1597bd;
+  --brand-green: #48a26b;
+  --brand-gold: #e4ac25;
+  --brand-purple: #78469c;
+  --brand-navy: #071f48;
+  --brand-cream: #fffdf9;
+  --brand-pink-tint: #fbd5e2;
+  --brand-blue-tint: #cceef8;
+  --brand-green-tint: #d5eddb;
+  --brand-gold-tint: #fff0be;
+  --brand-purple-tint: #e9daf4;
+  --brand-sky: #92d7ef;
+  --brand-blue-gradient: linear-gradient(120deg, #92d7ef 0%, #d9f1fa 65%, #ffffff 100%);
+}
+
+/* Give repeated cards their own color while keeping dark, readable text. */
+.fifteen-about .fifteen-about__value:nth-child(3n + 1) { --card-accent: var(--brand-green); --card-tint: var(--brand-green-tint); }
+.fifteen-about .fifteen-about__value:nth-child(3n + 2) { --card-accent: var(--brand-blue); --card-tint: var(--brand-blue-tint); }
+.fifteen-about .fifteen-about__value:nth-child(3n + 3) { --card-accent: var(--brand-purple); --card-tint: var(--brand-purple-tint); }
+.fifteen-why .fifteen-why__benefit:nth-child(4n + 1) { --card-accent: var(--brand-pink); --card-tint: var(--brand-pink-tint); }
+.fifteen-why .fifteen-why__benefit:nth-child(4n + 2) { --card-accent: var(--brand-green); --card-tint: var(--brand-green-tint); }
+.fifteen-why .fifteen-why__benefit:nth-child(4n + 3) { --card-accent: var(--brand-gold); --card-tint: var(--brand-gold-tint); }
+.fifteen-why .fifteen-why__benefit:nth-child(4n + 4) { --card-accent: var(--brand-purple); --card-tint: var(--brand-purple-tint); }
+.fifteen-about .fifteen-about__value:nth-child(n),
+.fifteen-why .fifteen-why__benefit:nth-child(n) {
+  background: var(--card-tint);
+  border-top: .35rem solid var(--card-accent);
+  color: var(--brand-navy);
+}
+.fifteen-about .fifteen-about__value > span { color: var(--card-accent); }
+
+/* About Us: pink founder story, blue mission, gold section marker. */
+.fifteen-about .fifteen-about__photo { background: var(--brand-blue-tint); box-shadow: .45rem .45rem 0 var(--brand-blue); }
+.fifteen-about .fifteen-about__quote { background: var(--brand-pink-tint); border-top: .35rem solid var(--brand-pink); }
+.fifteen-about .fifteen-about__heart { color: var(--brand-pink); }
+.fifteen-about .fifteen-about__mission .fifteen-about__eyebrow { color: var(--brand-purple); }
+.fifteen-about .fifteen-about__mission h2 { color: var(--brand-navy); }
+.fifteen-about .fifteen-about__values > h2::after {
+  content: ""; display: block; width: 4rem; height: .35rem; border-radius: 99rem;
+  margin: .9rem auto 0; background: var(--brand-gold);
+}
+.fifteen-about .fifteen-about__cta { background: var(--brand-blue-gradient); }
+.fifteen-about .fifteen-about__button { box-shadow: .25rem .25rem 0 var(--brand-navy); }
+
+/* Why 15: keep the blue gradient and balance it with saturated accent colors. */
+.fifteen-why .fifteen-why__hero-art { background: var(--brand-blue-gradient); }
+.fifteen-why .fifteen-why__badge { box-shadow: .45rem .45rem 0 rgba(21,151,189,.2); }
+.fifteen-why .fifteen-why__portion h2 { color: var(--brand-gold-tint); }
+.fifteen-why .fifteen-why__formats .fifteen-why__underline { color: var(--brand-purple); }
+.fifteen-why .fifteen-why__life h2::after {
+  content: ""; display: block; width: 4rem; height: .35rem; border-radius: 99rem;
+  margin: .9rem auto 0; background: var(--brand-green);
+}
+.fifteen-why .fifteen-why__cta { background: var(--brand-blue-gradient); }
+.fifteen-why .fifteen-why__button { box-shadow: .25rem .25rem 0 var(--brand-navy); }
+
+/* Lifestyle icons carry the same five colors as the benefit strip. */
+.fifteen-home .fifteen-home__moment:nth-child(1) svg,
+.fifteen-why .fifteen-why__moments > div:nth-child(1) svg { color: var(--brand-green); }
+.fifteen-home .fifteen-home__moment:nth-child(2) svg,
+.fifteen-why .fifteen-why__moments > div:nth-child(2) svg { color: var(--brand-blue); }
+.fifteen-home .fifteen-home__moment:nth-child(3) svg,
+.fifteen-why .fifteen-why__moments > div:nth-child(3) svg { color: var(--brand-pink); }
+.fifteen-home .fifteen-home__moment:nth-child(4) svg,
+.fifteen-why .fifteen-why__moments > div:nth-child(4) svg { color: var(--brand-gold); }
+.fifteen-home .fifteen-home__moment:nth-child(5) svg,
+.fifteen-why .fifteen-why__moments > div:nth-child(5) svg { color: var(--brand-purple); }
+
+/* Homepage product panels and story accents. Keep the white benefits strip. */
+.fifteen-home .fifteen-home__product:nth-child(5n + 1) { --product-tint: var(--brand-green-tint); --product-accent: var(--brand-green); }
+.fifteen-home .fifteen-home__product:nth-child(5n + 2) { --product-tint: var(--brand-pink-tint); --product-accent: var(--brand-pink); }
+.fifteen-home .fifteen-home__product:nth-child(5n + 3) { --product-tint: var(--brand-blue-tint); --product-accent: var(--brand-blue); }
+.fifteen-home .fifteen-home__product:nth-child(5n + 4) { --product-tint: var(--brand-purple-tint); --product-accent: var(--brand-purple); }
+.fifteen-home .fifteen-home__product:nth-child(5n + 5) { --product-tint: var(--brand-gold-tint); --product-accent: var(--brand-gold); }
+.fifteen-home .fifteen-home__product .fifteen-home__product-image { background: var(--product-tint); border-bottom: .3rem solid var(--product-accent); }
+.fifteen-home .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { background: var(--brand-pink-tint); }
+.fifteen-home .fifteen-home__subscribe { background: #fff; border-top: .35rem solid var(--brand-pink); }
+.fifteen-home .fifteen-home__life-image { background: var(--brand-gold-tint); }
+.fifteen-home .fifteen-home__story-copy .fifteen-home__story-eyebrow { color: var(--brand-purple); }
+
+/* Footer value icons echo the palette without altering the navy signup row. */
+.fifteen-footer .fifteen-footer__value:nth-child(4n + 1) .fifteen-footer__value-icon { color: var(--brand-pink); }
+.fifteen-footer .fifteen-footer__value:nth-child(4n + 2) .fifteen-footer__value-icon { color: var(--brand-green); }
+.fifteen-footer .fifteen-footer__value:nth-child(4n + 3) .fifteen-footer__value-icon { color: var(--brand-blue); }
+.fifteen-footer .fifteen-footer__value:nth-child(4n + 4) .fifteen-footer__value-icon { color: var(--brand-purple); }
