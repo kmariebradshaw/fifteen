@@ -116,3 +116,15 @@
 .add-to-cart-button:not([data-added='true']):focus-visible {
   color: #fff !important;
 }
+
+/* Native selling-plan choices submitted with the product form. */
+.fifteen-selling-plans { margin: 0 0 24px; padding: 0; border: 0; color: var(--brand-navy); min-width: 0; }
+.fifteen-selling-plans legend { font-weight: 750; margin-bottom: 12px; }
+.fifteen-selling-plans__heading { margin: 18px 0 10px; font-weight: 750; color: var(--brand-purple); }
+.fifteen-selling-plans__option { display: flex; align-items: flex-start; gap: 12px; padding: 16px; margin-block: 8px; border: 1px solid #071f4826; border-radius: 14px; cursor: pointer; background: #fff; }
+.fifteen-selling-plans__option:has(input:checked) { border-color: var(--brand-pink); background: #fdf0f5; }
+.fifteen-selling-plans__option:focus-within { outline: 2px solid var(--brand-navy); outline-offset: 3px; }
+.fifteen-selling-plans__option input { appearance: auto; flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--brand-pink); }
+.fifteen-selling-plans__option > span { display: grid; gap: 5px; font-size: .9rem; overflow-wrap: anywhere; }
+.fifteen-selling-plans__terms, .fifteen-selling-plans__note { font-size: .78rem; line-height: 1.5; }
+.fifteen-selling-plans__note { margin: 12px 0 0; color: #344661; }

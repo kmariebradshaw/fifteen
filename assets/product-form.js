@@ -800,6 +800,26 @@ class ProductFormComponent extends Component {
       const { variantId } = this.refs;
       variantId.value = resource?.id ?? '';
 
+      // Refresh subscription eligibility and prices from the selected variant.
+      // Keep the same plan only when the new variant actually offers it.
+      const currentPlans = this.querySelector('[data-fifteen-selling-plans]');
+      const newPlans = html.querySelector('product-form-component [data-fifteen-selling-plans]');
+      if (currentPlans && newPlans) {
+        const previousPlan = currentPlans.querySelector('input[name="selling_plan"]:checked')?.value;
+        const replacement = newPlans.cloneNode(true);
+        const choices = replacement.querySelectorAll('input[name="selling_plan"]');
+        const matchingPlan = Array.from(choices).find((choice) => choice.value === previousPlan);
+        if (matchingPlan) {
+          choices.forEach((choice) => {
+            choice.checked = choice === matchingPlan;
+            choice.toggleAttribute('checked', choice === matchingPlan);
+          });
+        }
+        currentPlans.replaceWith(replacement);
+        replacement.querySelector('input:checked')?.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+
       const { addToCartButtonContainer: currentAddToCartButtonContainer, acceleratedCheckoutButtonContainer } =
         this.refs;
       const currentAddToCartButton = currentAddToCartButtonContainer?.refs.addToCartButton;

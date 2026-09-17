@@ -1,0 +1,35 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign allocations = selected_variant.selling_plan_allocations
+  assign has_savings = false
+  for allocation in allocations
+    if allocation.price < selected_variant.price
+      assign has_savings = true
+    endif
+  endfor
+%}
+<div data-fifteen-selling-plans>
+  {% if allocations.size > 0 %}
+    <fieldset class="fifteen-selling-plans">
+      <legend>Purchase options</legend>
+      {% unless product.requires_selling_plan or selected_variant.requires_selling_plan %}
+        <label class="fifteen-selling-plans__option">
+          <input type="radio" name="selling_plan" value="" checked>
+          <span><strong>One-time purchase</strong><span>{{ selected_variant.price | money_with_currency }}</span></span>
+        </label>
+      {% endunless %}
+      <p class="fifteen-selling-plans__heading">{% if has_savings %}Subscribe &amp; save{% else %}Subscribe{% endif %}</p>
+      {% for allocation in allocations %}
+        <label class="fifteen-selling-plans__option">
+          <input type="radio" name="selling_plan" value="{{ allocation.selling_plan.id }}" {% if product.requires_selling_plan or selected_variant.requires_selling_plan %}{% if forloop.first %}checked{% endif %}{% endif %}>
+          <span>
+            <strong>{{ allocation.selling_plan.name | escape }}</strong>
+            <span>{{ allocation.price | money_with_currency }} at checkout</span>
+            {% if allocation.selling_plan.description != blank %}<span class="fifteen-selling-plans__terms">{{ allocation.selling_plan.description | strip_html | escape }}</span>{% endif %}
+          </span>
+        </label>
+      {% endfor %}
+      <p class="fifteen-selling-plans__note">Subscriptions renew automatically according to your selected plan. Recurring charges and cancellation terms are shown at checkout.</p>
+    </fieldset>
+  {% endif %}
+</div>

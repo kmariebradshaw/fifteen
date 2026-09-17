@@ -67,6 +67,7 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
+        {% if block.settings.show_fifteen_subscriptions %}{% render 'fifteen-selling-plans', product: product %}{% endif %}
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
           <span class="buy-buttons-block__bar">
@@ -388,6 +389,13 @@
   "name": "t:names.product_buy_buttons",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_fifteen_subscriptions",
+      "label": "Show Fifteen subscription options",
+      "default": true,
+      "info": "Uses plans assigned by your subscription app. Turn off when using an app subscription widget."
+    },
     {
       "type": "checkbox",
       "id": "stacking",
