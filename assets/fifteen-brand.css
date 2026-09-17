@@ -178,3 +178,17 @@
   background: var(--brand-pink);
 }
 .header-actions__cart-icon .cart-bubble__text { color: #fff; }
+
+/* Center every desktop navigation label against the first-item pill. */
+@media screen and (min-width: 750px) {
+  header-menu overflow-list::part(list) { align-items: center; }
+  header-menu overflow-list > .menu-list__list-item:not([slot='overflow']) {
+    justify-content: center;
+    align-self: stretch;
+  }
+  header-menu overflow-list > .menu-list__list-item:not([slot='overflow']) > .menu-list__link,
+  header-menu overflow-list > .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger,
+  header-menu overflow-list > .menu-list__list-item:not([slot='overflow']) > .menu-list__trigger > .menu-list__link {
+    height: auto;
+  }
+}
