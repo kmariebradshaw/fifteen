@@ -8,8 +8,8 @@
 <section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
   <div class="fifteen-home__hero page-width">
     <div class="fifteen-home__hero-copy">
-      <h1>{{ section.settings.heading | newline_to_br }}</h1>
-      <div class="fifteen-home__underline" aria-hidden="true"></div>
+      <h1>{{ section.settings.heading }}</h1>
+      <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
       <div class="fifteen-home__hero-text rte">{{ section.settings.text }}</div>
       {% if section.settings.button_label != blank %}
         <a class="fifteen-home__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
@@ -19,10 +19,7 @@
       {% if section.settings.hero_image != blank %}
         {{ section.settings.hero_image | image_url: width: 1800 | image_tag: class: 'fifteen-home__hero-image', loading: 'eager', widths: '750, 1100, 1500, 1800', alt: section.settings.hero_image.alt | escape }}
       {% else %}
-        <div class="fifteen-home__hero-placeholder">
-          <span class="fifteen-home__dose">EXACTLY<br><strong>15g</strong><br>CARBS</span>
-          <p>Real product photography<br>coming soon</p>
-        </div>
+        <img class="fifteen-home__hero-image fifteen-home__hero-image--mockup" src="{{ 'fifteen-hero-mockup.jpg' | asset_url }}" width="574" height="470" loading="eager" fetchpriority="high" alt="Fifteen rescue powder, gummies, drink shot, freeze pop and chews">
       {% endif %}
     </div>
   </div>
@@ -126,8 +123,10 @@
   .fifteen-home__hero { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: stretch; min-height: min(38vw, 630px); }
   .fifteen-home__hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3.5rem, 8vw, 7.5rem) clamp(1rem, 5vw, 5rem) clamp(3.5rem, 8vw, 7.5rem) 0; }
   .fifteen-home__hero-copy h1, .fifteen-home h2, .fifteen-home h3 { color: var(--fifteen-navy); font-family: var(--font-heading--family); font-weight: 800; letter-spacing: -.055em; }
-  .fifteen-home__hero-copy h1 { max-width: 11ch; margin: 0; font-size: clamp(3.25rem, 5.6vw, 6.3rem); line-height: .95; }
+  .fifteen-home__hero-copy h1 { max-width: 100%; margin: 0; font-size: clamp(3.25rem, 5.6vw, 6.3rem); line-height: .95; }
   .fifteen-home__underline { width: min(20rem, 72%); height: .45rem; margin: 1rem 0 1.55rem; background: var(--fifteen-pink); border-radius: 99rem; transform: rotate(-2deg); }
+  .fifteen-home__hero-underline { display: block; width: min(100%, 25rem); height: 1.25rem; margin: .3rem 0 1.4rem; color: var(--fifteen-pink); transform: rotate(-1deg); overflow: visible; }
+  .fifteen-home__hero-image.fifteen-home__hero-image--mockup { object-fit: contain; }
   .fifteen-home__hero-text { max-width: 32rem; font-size: clamp(1rem, 1.35vw, 1.3rem); line-height: 1.52; }
   .fifteen-home__button { display: inline-flex; align-self: flex-start; margin-top: 1.8rem; padding: .9rem 1.55rem; border-radius: 99rem; background: var(--fifteen-pink); color: #fff; font-weight: 800; font-size: .82rem; letter-spacing: .02em; text-decoration: none; transition: transform .2s ease, filter .2s ease; }
   .fifteen-home__button:hover { color: #fff; filter: brightness(.94); transform: translateY(-2px); }
@@ -167,7 +166,7 @@
   .fifteen-home__subscribe h2 { margin: 0 0 1rem; color: var(--fifteen-pink); font-size: clamp(1.6rem, 2.4vw, 2.45rem); line-height: .95; }
   .fifteen-home__subscribe .rte { font-size: .92rem; line-height: 1.5; }
   @media screen and (max-width: 989px) { .fifteen-home__hero { grid-template-columns: 1fr 1fr; } .fifteen-home__products { grid-template-columns: repeat(3, 1fr); row-gap: 2.2rem; } .fifteen-home__life { grid-template-columns: 1fr 1fr; } .fifteen-home__subscribe { grid-column: span 2; } }
-  @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 10ch; } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(2, 1fr); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
+  @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 100%; font-size: clamp(2.3rem, 8.8vw, 4rem); } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(2, 1fr); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
 
   .fifteen-home__story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: clamp(2rem, 4vw, 4rem); padding-bottom: clamp(3rem, 6vw, 6rem); }
   .fifteen-home__story-media { overflow: hidden; border-radius: 1rem; background: #f9ddd3; }
@@ -198,10 +197,11 @@
   "name": "15 Fifteen homepage",
   "settings": [
     {
-      "type": "text",
+      "type": "html",
       "id": "heading",
-      "label": "Heading",
-      "default": "One Dose.\n15 Grams.\nNo Guesswork."
+      "label": "Hero headline (HTML)",
+      "info": "Use <br> for line breaks. Enter headline text without an h1 tag.",
+      "default": "One Dose.<br>15 Grams.<br>No Guesswork."
     },
     {
       "type": "richtext",
