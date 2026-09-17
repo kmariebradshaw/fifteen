@@ -1,0 +1,331 @@
+<article class="fifteen-why" style="--why-navy: {{ section.settings.navy }}; --why-pink: {{ section.settings.pink }}; --why-cream: {{ section.settings.cream }};">
+  <header class="fifteen-why__hero fifteen-why__width">
+    <div>
+      <p class="fifteen-why__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <svg class="fifteen-why__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+      <div class="rte">{{ section.settings.intro }}</div>
+    </div>
+    <div class="fifteen-why__hero-art">
+      <div class="fifteen-why__badge">
+        <span>{{ section.settings.badge_top | escape }}</span>
+        <strong>{{ section.settings.badge_amount | escape }}</strong>
+        <span>{{ section.settings.badge_bottom | escape }}</span>
+      </div>
+    </div>
+  </header>
+  <section class="fifteen-why__benefits fifteen-why__width">
+    <div class="fifteen-why__section-heading">
+      <h2>{{ section.settings.benefits_heading }}</h2>
+      <div class="rte">{{ section.settings.benefits_intro }}</div>
+    </div>
+    <div class="fifteen-why__benefit-grid">
+      {% for block in section.blocks %}
+        <div class="fifteen-why__benefit" {{ block.shopify_attributes }}>
+          {% assign icon_asset = 'fifteen-icon-' | append: block.settings.icon | append: '.svg' %}
+          <img src="{{ icon_asset | asset_url }}" alt="" width="64" height="64" loading="lazy">
+          <h3>{{ block.settings.heading | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="fifteen-why__portion-wrap">
+    <div class="fifteen-why__portion fifteen-why__width">
+      <h2>{{ section.settings.portion_heading }}</h2>
+      <div class="rte">{{ section.settings.portion_text }}</div>
+    </div>
+  </section>
+  <section class="fifteen-why__formats fifteen-why__width">
+    <h2>{{ section.settings.formats_heading }}</h2>
+    <svg class="fifteen-why__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+    <div class="rte">{{ section.settings.formats_text }}</div>
+  </section>
+  <section class="fifteen-why__life fifteen-why__width">
+    <h2>{{ section.settings.life_heading | escape }}</h2>
+    <div class="rte">{{ section.settings.life_text }}</div>
+    <div class="fifteen-why__moments">
+      {% assign moments = 'School,Work,Gym,Travel,Bedside' | split: ',' %}
+      {% for moment in moments %}
+        <div>{% render 'fifteen-moment-icon', name: moment %}<span>{{ moment }}</span></div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="fifteen-why__cta">
+    <div class="fifteen-why__width">
+      <h2>{{ section.settings.cta_heading | escape }}</h2>
+      <div class="rte">{{ section.settings.cta_text }}</div>
+      {% if section.settings.cta_label != blank %}
+        <a class="fifteen-why__button" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+      {% endif %}
+    </div>
+  </section>
+</article>
+
+{% stylesheet %}
+.fifteen-why { color: var(--why-navy); background: var(--why-cream); overflow: hidden; }
+.fifteen-why * { box-sizing: border-box; }
+.fifteen-why__width { max-width: 1440px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 5rem); }
+.fifteen-why h1, .fifteen-why h2, .fifteen-why h3 { color: inherit; font-family: var(--font-heading--family); font-weight: 800; letter-spacing: -.055em; margin: 0; }
+.fifteen-why h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1; }
+.fifteen-why h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.08; }
+.fifteen-why .rte { font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.7; }
+.fifteen-why .rte p { margin: 0 0 1rem; }
+.fifteen-why__eyebrow { font-size: .8rem; color: var(--why-pink); font-weight: 800; letter-spacing: .14em; margin: 0 0 1rem; }
+.fifteen-why__hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding-block: clamp(3rem, 6vw, 6rem); }
+.fifteen-why__hero .rte { max-width: 35rem; }
+.fifteen-why__underline { display: block; width: min(100%, 25rem); height: 1.25rem; margin: .7rem 0 1.5rem; color: var(--why-pink); transform: rotate(-1deg); overflow: visible; }
+.fifteen-why__hero-art { display: grid; place-items: center; min-height: 25rem; padding: 3rem 1rem; background: linear-gradient(135deg, #92d7ef, #edf9fd); border-radius: 45% 1.5rem 40% 1.5rem; }
+.fifteen-why__badge { display: flex; align-items: center; flex-direction: column; justify-content: center; width: min(100%, 19rem); aspect-ratio: 1; padding: 1.5rem; border-radius: 50%; background: var(--why-cream); color: var(--why-pink); transform: rotate(-7deg); font-family: var(--font-heading--family); font-weight: 800; }
+.fifteen-why__badge > span { font-size: clamp(1.1rem, 1.7vw, 1.7rem); line-height: 1.2; }
+.fifteen-why__badge strong { font-size: clamp(4.5rem, 8vw, 8rem); letter-spacing: -.07em; line-height: 1; }
+.fifteen-why__benefits { padding-bottom: clamp(3rem, 6vw, 6rem); }
+.fifteen-why__section-heading { text-align: center; max-width: 44rem; margin: 0 auto 2.5rem; }
+.fifteen-why__section-heading .rte { margin-top: 1.2rem; }
+.fifteen-why__benefit-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.3rem; }
+.fifteen-why__benefit { background: #fff; padding: clamp(1.5rem, 2.5vw, 2.5rem); border-radius: 1.2rem; }
+.fifteen-why__benefit:nth-child(2n) { background: #fce7ee; }
+.fifteen-why__benefit img { display: block; width: 3.5rem; height: auto; margin-bottom: 1.5rem; }
+.fifteen-why__benefit h3 { font-size: 1.4rem; line-height: 1.15; margin-bottom: .8rem; }
+.fifteen-why__benefit p { font-size: 1rem; line-height: 1.6; margin: 0; }
+.fifteen-why__portion-wrap { background: var(--why-navy); color: #fff; }
+.fifteen-why__portion { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-block: clamp(3rem, 5vw, 5rem); }
+.fifteen-why__formats { padding-block: clamp(3rem, 6vw, 6rem); text-align: center; }
+.fifteen-why__formats .fifteen-why__underline { margin-inline: auto; }
+.fifteen-why__formats .rte { max-width: 42rem; margin-inline: auto; }
+.fifteen-why__life { text-align: center; padding-bottom: clamp(3rem, 6vw, 6rem); }
+.fifteen-why__life .rte { max-width: 44rem; margin: 1.2rem auto 2rem; }
+.fifteen-why__moments { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 44rem; margin: 0 auto; gap: 1rem; }
+.fifteen-why__moments > div { display: flex; flex-direction: column; align-items: center; gap: .7rem; font-weight: 750; font-size: .9rem; }
+.fifteen-why__moments svg { display: block; width: min(100%, 3.5rem); height: auto; }
+.fifteen-why__cta { padding-block: clamp(3rem, 5vw, 5rem); text-align: center; background: #f9ddd3; }
+.fifteen-why__cta .rte { margin-top: 1rem; }
+.fifteen-why__button { display: inline-flex; align-items: center; gap: 1rem; border-radius: 99rem; background: var(--why-pink); color: #fff; font-size: .85rem; font-weight: 800; padding: 1rem 1.8rem; text-decoration: none; margin-top: 1rem; }
+.fifteen-why__button:focus-visible { outline: 3px solid var(--why-navy); outline-offset: 4px; }
+@media (max-width: 989px) { .fifteen-why__benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 749px) { .fifteen-why__hero, .fifteen-why__portion { grid-template-columns: minmax(0, 1fr); } .fifteen-why__hero-art { min-height: 20rem; } .fifteen-why__moments { gap: .5rem; } .fifteen-why__moments > div { font-size: .75rem; } }
+@media (max-width: 450px) { .fifteen-why__benefit-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .fifteen-why__button { transition: transform .2s ease; } .fifteen-why__button:hover { transform: translateY(-2px); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Fifteen Why 15",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "WHY 15?"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One portion.<br>Less guesswork."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Fifteen is built around a simple idea: 15 grams of carbohydrates in convenient foods and drinks that fit into everyday life.</p>"
+    },
+    {
+      "type": "text",
+      "id": "badge_top",
+      "label": "Badge top",
+      "default": "EXACTLY"
+    },
+    {
+      "type": "text",
+      "id": "badge_amount",
+      "label": "Badge amount",
+      "default": "15g"
+    },
+    {
+      "type": "text",
+      "id": "badge_bottom",
+      "label": "Badge bottom",
+      "default": "CARBS"
+    },
+    {
+      "type": "html",
+      "id": "benefits_heading",
+      "label": "Benefits heading",
+      "default": "Small details.<br>Everyday benefits."
+    },
+    {
+      "type": "richtext",
+      "id": "benefits_intro",
+      "label": "Benefits intro",
+      "default": "<p>A clear portion. A format you enjoy. Something easy to bring along. That’s the thinking behind Fifteen.</p>"
+    },
+    {
+      "type": "html",
+      "id": "portion_heading",
+      "label": "Portion heading",
+      "default": "The number is<br>the starting point."
+    },
+    {
+      "type": "richtext",
+      "id": "portion_text",
+      "label": "Portion text",
+      "default": "<p>With 15 grams of carbohydrates at the center of every product, Fifteen is designed to make the portion clear from the start.</p><p>Less figuring out how much to pack. More room to choose the format that works for your day.</p>"
+    },
+    {
+      "type": "html",
+      "id": "formats_heading",
+      "label": "Formats heading",
+      "default": "Different formats.<br>The same 15g focus."
+    },
+    {
+      "type": "richtext",
+      "id": "formats_text",
+      "label": "Formats text",
+      "default": "<p>Gummies, drink shots, and rescue powder bring a little variety to your everyday essentials. Pick the format that feels right for your routine.</p>"
+    },
+    {
+      "type": "text",
+      "id": "life_heading",
+      "label": "Life heading",
+      "default": "Made to come along."
+    },
+    {
+      "type": "richtext",
+      "id": "life_text",
+      "label": "Life text",
+      "default": "<p>In your school bag. At your desk. Ready for a trip. Beside the bed. Fifteen is designed around the places real life takes you.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "Cta heading",
+      "default": "Find your Fifteen."
+    },
+    {
+      "type": "richtext",
+      "id": "cta_text",
+      "label": "Cta text",
+      "default": "<p>Explore the collection and meet your everyday 15g essentials.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Cta label",
+      "default": "SHOP THE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Collection link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "color",
+      "id": "navy",
+      "label": "Navy",
+      "default": "#071f48"
+    },
+    {
+      "type": "color",
+      "id": "pink",
+      "label": "Pink",
+      "default": "#e83f74"
+    },
+    {
+      "type": "color",
+      "id": "cream",
+      "label": "Beige",
+      "default": "#fffdf9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Product benefit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "target",
+              "label": "Target"
+            },
+            {
+              "value": "backpack",
+              "label": "Backpack"
+            },
+            {
+              "value": "smile",
+              "label": "Smile"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "lightning",
+              "label": "Lightning"
+            }
+          ],
+          "default": "heart"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Made for real life"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Designed to fit your everyday routine."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fifteen Why 15",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "heading": "A clear 15g portion",
+            "text": "A consistent carbohydrate amount at the heart of the collection, so you know what you’re reaching for."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "backpack",
+            "heading": "Easy to carry",
+            "text": "Convenient formats that fit into the bags, desks, and routines you already have."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "smile",
+            "heading": "A format you’ll enjoy",
+            "text": "From fruity gummies to drink shots and powder, choose what suits your preferences."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "heading": "Created from experience",
+            "text": "Inspired by Christian and Finn’s family experience with Type 1 diabetes and the everyday moments around lows."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

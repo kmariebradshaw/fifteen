@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "main": {
+      "type": "fifteen-why",
+      "settings": {},
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "heading": "A clear 15g portion",
+            "text": "A consistent carbohydrate amount at the heart of the collection, so you know what you’re reaching for."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "backpack",
+            "heading": "Easy to carry",
+            "text": "Convenient formats that fit into the bags, desks, and routines you already have."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "smile",
+            "heading": "A format you’ll enjoy",
+            "text": "From fruity gummies to drink shots and powder, choose what suits your preferences."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "heading": "Created from experience",
+            "text": "Inspired by Christian and Finn’s family experience with Type 1 diabetes and the everyday moments around lows."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
