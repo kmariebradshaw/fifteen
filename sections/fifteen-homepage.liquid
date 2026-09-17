@@ -408,6 +408,32 @@
     }
   }
 
+
+  /* Give the mobile badge and product cutout separate space. */
+  @media screen and (max-width: 749px) {
+    .fifteen-home .fifteen-home__hero-underline {
+      width: 74%;
+      max-width: 18rem;
+    }
+    .fifteen-home .fifteen-home__hero-accent {
+      bottom: 3%;
+      height: 53%;
+      width: 86%;
+      left: 9%;
+    }
+    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
+      top: 6%;
+      right: 10%;
+      width: 50%;
+    }
+    .fifteen-home .fifteen-home__carb-badge span {
+      font-size: clamp(.5rem, 4.8cqw, .8rem);
+    }
+    .fifteen-home .fifteen-home__carb-badge strong {
+      font-size: clamp(1.2rem, 15cqw, 2.3rem);
+    }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
