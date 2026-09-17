@@ -6,7 +6,7 @@
 %}
 
 <section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
-  <div class="fifteen-home__hero page-width">
+  <div class="fifteen-home__hero page-width{% if section.settings.hero_image == blank %} fifteen-home__hero--text-only{% endif %}">
     <div class="fifteen-home__hero-copy">
       <h1>{{ section.settings.heading }}</h1>
       <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
@@ -15,13 +15,11 @@
         <a class="fifteen-home__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
       {% endif %}
     </div>
-    <div class="fifteen-home__hero-media">
-      {% if section.settings.hero_image != blank %}
+    {% if section.settings.hero_image != blank %}
+      <div class="fifteen-home__hero-media">
         {{ section.settings.hero_image | image_url: width: 1800 | image_tag: class: 'fifteen-home__hero-image', loading: 'eager', widths: '750, 1100, 1500, 1800', alt: section.settings.hero_image.alt | escape }}
-      {% else %}
-        <img class="fifteen-home__hero-image fifteen-home__hero-image--mockup" src="{{ 'fifteen-hero-mockup.jpg' | asset_url }}" width="574" height="470" loading="eager" fetchpriority="high" alt="Fifteen rescue powder, gummies, drink shot, freeze pop and chews">
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
 
   <div class="fifteen-home__benefits page-width">
@@ -126,7 +124,6 @@
   .fifteen-home__hero-copy h1 { max-width: 100%; margin: 0; font-size: clamp(3.25rem, 5.6vw, 6.3rem); line-height: .95; }
   .fifteen-home__underline { width: min(20rem, 72%); height: .45rem; margin: 1rem 0 1.55rem; background: var(--fifteen-pink); border-radius: 99rem; transform: rotate(-2deg); }
   .fifteen-home__hero-underline { display: block; width: min(100%, 25rem); height: 1.25rem; margin: .3rem 0 1.4rem; color: var(--fifteen-pink); transform: rotate(-1deg); overflow: visible; }
-  .fifteen-home__hero-image.fifteen-home__hero-image--mockup { object-fit: contain; }
   .fifteen-home__hero-text { max-width: 32rem; font-size: clamp(1rem, 1.35vw, 1.3rem); line-height: 1.52; }
   .fifteen-home__button { display: inline-flex; align-self: flex-start; margin-top: 1.8rem; padding: .9rem 1.55rem; border-radius: 99rem; background: var(--fifteen-pink); color: #fff; font-weight: 800; font-size: .82rem; letter-spacing: .02em; text-decoration: none; transition: transform .2s ease, filter .2s ease; }
   .fifteen-home__button:hover { color: #fff; filter: brightness(.94); transform: translateY(-2px); }
@@ -189,6 +186,9 @@
     .fifteen-home__story-note { min-height: 18rem; }
     .fifteen-home__story-copy { min-width: 0; }
   }
+
+  .fifteen-home__hero.fifteen-home__hero--text-only { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .fifteen-home__hero--text-only .fifteen-home__hero-copy { padding-right: 0; }
 
 {% endstylesheet %}
 
