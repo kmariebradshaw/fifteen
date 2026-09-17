@@ -457,6 +457,15 @@
     }
   }
 
+
+  /* Keep the supporting lifestyle photo compact on mobile. */
+  @media screen and (max-width: 749px) {
+    .fifteen-home .fifteen-home__life-image {
+      width: min(48vw, 12rem);
+      justify-self: center;
+    }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
