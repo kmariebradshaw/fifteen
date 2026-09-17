@@ -1,3 +1,4 @@
+{{ 'fifteen-product.css' | asset_url | stylesheet_tag }}
 
 
 <script type="application/ld+json">
@@ -375,6 +376,7 @@
 {% schema %}
 {
   "name": "t:names.product_information",
+  "class": "fifteen-product-main",
   "blocks": [
     {
       "type": "@theme"

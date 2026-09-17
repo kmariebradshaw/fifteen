@@ -1,0 +1,41 @@
+.fifteen-product-main { color: var(--brand-navy); }
+.fifteen-product-main .product-details h1 { color: var(--brand-navy); font-size: clamp(2rem, 3.7vw, 3.5rem); line-height: 1.04; letter-spacing: -.045em; text-wrap: balance; }
+.fifteen-product-main .product-information__media { background: var(--brand-blue-gradient); border-radius: 24px; }
+.fifteen-product-main .product-details .add-to-cart-button { border-radius: 999px; font-weight: 750; min-height: 54px; }
+.fifteen-product-main .product-details .add-to-cart-button:not(:disabled) { box-shadow: 0 4px 0 var(--brand-navy); }
+.fifteen-product-main .product-details .add-to-cart-button:focus-visible { outline: 3px solid var(--brand-navy); outline-offset: 5px; }
+.fifteen-product-highlights { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; width: 100%; padding-block: 18px; border-block: 1px solid #071f481a; color: var(--brand-navy); }
+.fifteen-product-highlights > div { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: .8rem; font-weight: 700; }
+.fifteen-product-highlights img { width: 32px; height: 32px; }
+.fifteen-product-benefits { background: var(--brand-cream); color: var(--brand-navy); padding: clamp(40px,6vw,80px) 24px; }
+.fifteen-product-benefits__inner { max-width: 1240px; margin-inline: auto; }
+.fifteen-product-benefits header { max-width: 760px; margin: 0 auto 36px; text-align: center; }
+.fifteen-product-benefits h2 { color: var(--brand-navy); font-size: clamp(1.9rem,3.4vw,3rem); letter-spacing: -.045em; line-height: 1.08; margin: 0 0 18px; text-wrap: balance; }
+.fifteen-product-benefits p { line-height: 1.6; margin: 0; }
+.fifteen-product-benefits .fifteen-product-benefits__eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .13em; margin-bottom: 14px; color: var(--brand-purple); }
+.fifteen-product-benefits__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; }
+.fifteen-product-benefits__card { border-radius: 24px; padding: 28px; border-top: 5px solid var(--accent); background: var(--tint); }
+.fifteen-product-benefits__card--target { --accent: var(--brand-pink); --tint: var(--brand-pink-tint); }
+.fifteen-product-benefits__card--lightning { --accent: var(--brand-blue); --tint: var(--brand-blue-tint); }
+.fifteen-product-benefits__card--backpack { --accent: var(--brand-green); --tint: var(--brand-green-tint); }
+.fifteen-product-benefits__card--smile { --accent: var(--brand-gold); --tint: var(--brand-gold-tint); }
+.fifteen-product-benefits__card--heart { --accent: var(--brand-purple); --tint: var(--brand-purple-tint); }
+.fifteen-product-benefits__card img { width: 56px; height: 56px; margin-bottom: 22px; }
+.fifteen-product-benefits__card h3 { color: var(--brand-navy); font-size: 1.35rem; font-weight: 750; line-height: 1.15; letter-spacing: -.025em; margin: 0 0 14px; }
+.fifteen-product-benefits__card p { font-size: .95rem; }
+.fifteen-product-benefits__life { display: grid; grid-template-columns: 1fr 1.15fr; align-items: center; gap: 40px; padding: clamp(26px,4vw,52px); margin-top: 36px; border-radius: 28px; background: var(--brand-blue-gradient); }
+.fifteen-product-benefits__moments { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; list-style: none; margin: 0; padding: 0; }
+.fifteen-product-benefits__moments li { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: .8rem; font-weight: 750; }
+.fifteen-product-benefits__moments svg { width: 52px; height: 52px; }
+.fifteen-product-benefits__moments li:nth-child(1) svg { color: var(--brand-green); }
+.fifteen-product-benefits__moments li:nth-child(2) svg { color: var(--brand-blue); }
+.fifteen-product-benefits__moments li:nth-child(3) svg { color: var(--brand-pink); }
+.fifteen-product-benefits__moments li:nth-child(4) svg { color: var(--brand-gold); }
+.fifteen-product-benefits__moments li:nth-child(5) svg { color: var(--brand-purple); }
+@media (max-width: 749px) {
+ .fifteen-product-benefits { padding-inline: 18px; }
+ .fifteen-product-benefits__life { grid-template-columns: 1fr; gap: 28px; }
+ .fifteen-product-benefits__grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+ .fifteen-product-benefits__card { padding: 22px 18px; }
+}
+@media (max-width: 420px) { .fifteen-product-benefits__grid { grid-template-columns: 1fr; } }

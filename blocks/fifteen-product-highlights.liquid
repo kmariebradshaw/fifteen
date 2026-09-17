@@ -1,0 +1,36 @@
+<div class="fifteen-product-highlights" {{ block.shopify_attributes }}>
+  <div><img src="{{ 'fifteen-icon-target.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_1 | escape }}</span></div>
+  <div><img src="{{ 'fifteen-icon-backpack.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_2 | escape }}</span></div>
+  <div><img src="{{ 'fifteen-icon-heart.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_3 | escape }}</span></div>
+</div>
+
+{% schema %}
+{
+  "name": "Fifteen highlights",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label_1",
+      "label": "Highlight 1",
+      "default": "Exactly 15g"
+    },
+    {
+      "type": "text",
+      "id": "label_2",
+      "label": "Highlight 2",
+      "default": "Easy to carry"
+    },
+    {
+      "type": "text",
+      "id": "label_3",
+      "label": "Highlight 3",
+      "default": "Made for you"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fifteen highlights"
+    }
+  ]
+}
+{% endschema %}
