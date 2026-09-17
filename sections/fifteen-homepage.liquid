@@ -35,7 +35,28 @@
     {% for block in section.blocks %}
       {% if block.type == 'benefit' %}
         <div class="fifteen-home__benefit" {{ block.shopify_attributes }}>
-          <span class="fifteen-home__benefit-icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          {% liquid
+            assign benefit_icon = ''
+            case block.settings.icon
+              when '◎'
+                assign benefit_icon = 'fifteen-icon-target.svg'
+              when 'ϟ'
+                assign benefit_icon = 'fifteen-icon-lightning.svg'
+              when '♧'
+                assign benefit_icon = 'fifteen-icon-backpack.svg'
+              when '☺'
+                assign benefit_icon = 'fifteen-icon-smile.svg'
+              when '♡'
+                assign benefit_icon = 'fifteen-icon-heart.svg'
+            endcase
+          %}
+          <span class="fifteen-home__benefit-icon" aria-hidden="true">
+            {% if benefit_icon != blank %}
+              <img src="{{ benefit_icon | asset_url }}" width="64" height="64" alt="" loading="lazy">
+            {% else %}
+              {{ block.settings.icon }}
+            {% endif %}
+          </span>
           <h2>{{ block.settings.heading }}</h2>
           <p>{{ block.settings.text }}</p>
         </div>
@@ -148,6 +169,7 @@
   .fifteen-home__benefit { min-height: 9rem; padding: .3rem 1.25rem; text-align: center; border-right: 1px solid #e6e1d9; }
   .fifteen-home__benefit:last-child { border-right: 0; }
   .fifteen-home__benefit-icon { display: block; min-height: 2.5rem; color: var(--fifteen-pink); font-size: 2.3rem; line-height: 1; }
+  .fifteen-home__benefit-icon img { display: block; width: clamp(3rem, 4.5vw, 4rem); height: auto; margin: 0 auto; }
   .fifteen-home__benefit h2 { margin: .65rem 0 .35rem; font-size: .82rem; letter-spacing: -.02em; }
   .fifteen-home__benefit p { margin: 0; font-size: .8rem; line-height: 1.38; }
   .fifteen-home__collection { padding-top: clamp(2.8rem, 5vw, 4.5rem) !important; padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
