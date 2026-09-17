@@ -119,6 +119,17 @@
           </div>
         {% endif %}
       </div>
+      <fifteen-story-flip class="fifteen-home__story-flip">
+        <div class="fifteen-home__flip-inner">
+          <button class="fifteen-home__flip-front" data-flip-front type="button" aria-expanded="false" aria-controls="FifteenStoryBack-{{ section.id }}" aria-label="Read our story">
+            {% if section.settings.story_flip_image != blank %}
+              {{ section.settings.story_flip_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400, 685, 1000, 1200', sizes: '(min-width: 750px) 48vw, 100vw', alt: section.settings.story_founders }}
+            {% else %}
+              <img src="{{ 'fifteen-story-family.webp' | asset_url }}" width="685" height="553" loading="lazy" alt="{{ section.settings.story_founders | escape }}">
+            {% endif %}
+            <span class="fifteen-home__flip-hint">Read our story <span aria-hidden="true">↗</span></span>
+          </button>
+          <div class="fifteen-home__flip-back" id="FifteenStoryBack-{{ section.id }}" data-flip-back>
       <div class="fifteen-home__story-copy">
         <p class="fifteen-home__story-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
         <h2 id="FifteenStory-{{ section.id }}">{{ section.settings.story_heading | escape }}<span>{{ section.settings.story_heading_accent | escape }}</span></h2>
@@ -129,6 +140,10 @@
           <p><strong>{{ section.settings.story_founders | escape }}</strong><span>{{ section.settings.story_role | escape }}</span></p>
         </div>
       </div>
+            <button type="button" class="fifteen-home__flip-return" data-flip-return>Back to photo</button>
+          </div>
+        </div>
+      </fifteen-story-flip>
     </section>
   {% endif %}
 
@@ -156,6 +171,8 @@
     </div>
   </div>
 </section>
+
+<script src="{{ 'fifteen-story-flip.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
   .fifteen-home { background: #fffdf9; color: var(--fifteen-navy); overflow: hidden; }
@@ -259,6 +276,20 @@
   @media screen and (max-width: 749px) {
     .fifteen-home__hero-accent { left: 3%; bottom: 3%; width: 60%; height: 78%; }
   }
+
+  .fifteen-home__story-flip { display: block; min-width: 0; perspective: 1200px; }
+  .fifteen-home__flip-front, .fifteen-home__flip-return { display: none; }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-inner { display: grid; transform-style: preserve-3d; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+  .fifteen-home__story-flip.is-flipped .fifteen-home__flip-inner { transform: rotateY(180deg); }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-front,
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 1rem; }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-front { display: block; position: relative; width: 100%; min-height: 26rem; padding: 0; border: 0; overflow: hidden; cursor: pointer; background: #f9ddd3; color: #fff; }
+  .fifteen-home__flip-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .fifteen-home__flip-hint { position: absolute; bottom: 1rem; right: 1rem; padding: .7rem 1rem; border-radius: 99rem; background: var(--fifteen-navy); font: inherit; font-weight: 700; }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { transform: rotateY(180deg); background: #fffdf9; padding: clamp(1rem, 2vw, 2rem); }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-return { display: inline-block; margin-top: 1rem; border: 0; border-bottom: 1px solid currentColor; padding: .35rem 0; background: transparent; color: var(--fifteen-navy); font: inherit; cursor: pointer; }
+  .fifteen-home__flip-front:focus-visible, .fifteen-home__flip-return:focus-visible { outline: 3px solid var(--fifteen-pink); outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) { .fifteen-home__story-flip.is-ready .fifteen-home__flip-inner { transition: none; } }
 
 {% endstylesheet %}
 
@@ -413,6 +444,11 @@
       "type": "image_picker",
       "id": "story_image",
       "label": "Founder photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_flip_image",
+      "label": "Story flip photo"
     },
     {
       "type": "text",
