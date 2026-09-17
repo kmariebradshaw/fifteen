@@ -106,3 +106,13 @@
     .fifteen-home__button, .fifteen-about__button, .fifteen-why__button)::after {
   box-shadow: none !important;
 }
+
+/* Keep purchase button text white through hover and focus. */
+.add-to-cart-button {
+  --button-color: #fff !important;
+}
+.add-to-cart-button:not([data-added='true']),
+.add-to-cart-button:not([data-added='true']):hover,
+.add-to-cart-button:not([data-added='true']):focus-visible {
+  color: #fff !important;
+}
