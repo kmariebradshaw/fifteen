@@ -107,29 +107,26 @@
 
   {% if section.settings.show_story %}
     <section class="fifteen-home__story page-width" aria-labelledby="FifteenStory-{{ section.id }}">
-      <div class="fifteen-home__story-media">
-        {% if section.settings.story_image != blank %}
-          {% assign story_image_alt = section.settings.story_image.alt | default: section.settings.story_founders %}
-          {{ section.settings.story_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__story-image', loading: 'lazy', widths: '400, 600, 900, 1200', sizes: '(min-width: 750px) 42vw, 100vw', alt: story_image_alt }}
-        {% else %}
-          <div class="fifteen-home__story-note">
-            <span class="fifteen-home__story-heart" aria-hidden="true">♡</span>
-            <p>For the lows.<br>For real life.<br>For families like ours.</p>
-            <span>{{ section.settings.story_signature | escape }}</span>
-          </div>
-        {% endif %}
-      </div>
       <fifteen-story-flip class="fifteen-home__story-flip">
         <div class="fifteen-home__flip-inner">
-          <button class="fifteen-home__flip-front" data-flip-front type="button" aria-expanded="false" aria-controls="FifteenStoryBack-{{ section.id }}" aria-label="Read our story">
+          <button class="fifteen-home__flip-front" data-flip-front type="button" aria-expanded="false" aria-controls="FifteenStoryBack-{{ section.id }}" aria-label="Our why">
             {% if section.settings.story_flip_image != blank %}
               {{ section.settings.story_flip_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400, 685, 1000, 1200', sizes: '(min-width: 750px) 48vw, 100vw', alt: section.settings.story_founders }}
             {% else %}
               <img src="{{ 'fifteen-story-family.webp' | asset_url }}" width="685" height="553" loading="lazy" alt="{{ section.settings.story_founders | escape }}">
             {% endif %}
-            <span class="fifteen-home__flip-hint">Read our story <span aria-hidden="true">↗</span></span>
+            <span class="fifteen-home__flip-hint">Our why <span aria-hidden="true">↗</span></span>
           </button>
           <div class="fifteen-home__flip-back" id="FifteenStoryBack-{{ section.id }}" data-flip-back>
+            <div class="fifteen-home__story-note">
+              <span class="fifteen-home__story-heart" aria-hidden="true">♡</span>
+              <p>For the lows.<br>For real life.<br>For families like ours.</p>
+              <span>{{ section.settings.story_signature | escape }}</span>
+            </div>
+            <button type="button" class="fifteen-home__flip-return" data-flip-return>Back to photo</button>
+          </div>
+        </div>
+      </fifteen-story-flip>
       <div class="fifteen-home__story-copy">
         <p class="fifteen-home__story-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
         <h2 id="FifteenStory-{{ section.id }}">{{ section.settings.story_heading | escape }}<span>{{ section.settings.story_heading_accent | escape }}</span></h2>
@@ -140,10 +137,6 @@
           <p><strong>{{ section.settings.story_founders | escape }}</strong><span>{{ section.settings.story_role | escape }}</span></p>
         </div>
       </div>
-            <button type="button" class="fifteen-home__flip-return" data-flip-return>Back to photo</button>
-          </div>
-        </div>
-      </fifteen-story-flip>
     </section>
   {% endif %}
 
@@ -159,7 +152,13 @@
       <h2>{{ section.settings.lifestyle_heading }}</h2>
       <div class="rte">{{ section.settings.lifestyle_text }}</div>
       <div class="fifteen-home__moments">
-        <span>School</span><span>Work</span><span>Gym</span><span>Travel</span><span>Bedside</span>
+        {% assign moments = 'School,Work,Gym,Travel,Bedside' | split: ',' %}
+        {% for moment in moments %}
+          <span class="fifteen-home__moment">
+            {% render 'fifteen-moment-icon', name: moment %}
+            <span class="fifteen-home__moment-label">{{ moment }}</span>
+          </span>
+        {% endfor %}
       </div>
     </div>
     <div class="fifteen-home__subscribe">
@@ -217,8 +216,11 @@
   .fifteen-home__life-placeholder { display: grid; width: 100%; height: 100%; place-items: center; text-align: center; background: linear-gradient(135deg, #ffe5a6, #f7ba91); color: var(--fifteen-navy); font-family: var(--font-heading--family); font-size: clamp(1.8rem, 3.3vw, 3.5rem); font-weight: 800; line-height: .92; }
   .fifteen-home__life-copy > h2 { text-align: left; }
   .fifteen-home__life-copy .rte { font-size: 1rem; line-height: 1.55; }
-  .fifteen-home__moments { display: flex; flex-wrap: wrap; gap: .7rem 1rem; margin-top: 1.6rem; color: var(--fifteen-navy); font-size: .78rem; font-weight: 700; }
-  .fifteen-home__moments span { border-bottom: 2px solid var(--fifteen-pink); padding-bottom: .25rem; }
+  .fifteen-home__moments { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .4rem; margin-top: 1.6rem; color: var(--fifteen-navy); font-size: clamp(.6rem, .85vw, .78rem); font-weight: 700; }
+  .fifteen-home__moment { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
+  .fifteen-home__moment svg { display: block; width: min(100%, 3rem); height: auto; aspect-ratio: 1; }
+  .fifteen-home__moment-label { white-space: nowrap; }
+  @media screen and (max-width: 749px) { .fifteen-home__moments { font-size: .75rem; } }
   .fifteen-home__subscribe { padding: clamp(1.5rem, 3vw, 2.8rem); border-radius: 1rem; background: #fff; box-shadow: 0 .5rem 2rem rgba(8, 35, 74, .1); }
   .fifteen-home__subscribe h2 { margin: 0 0 1rem; color: var(--fifteen-pink); font-size: clamp(1.6rem, 2.4vw, 2.45rem); line-height: .95; }
   .fifteen-home__subscribe .rte { font-size: .92rem; line-height: 1.5; }
@@ -286,8 +288,8 @@
   .fifteen-home__story-flip.is-ready .fifteen-home__flip-front { display: block; position: relative; width: 100%; min-height: 26rem; padding: 0; border: 0; overflow: hidden; cursor: pointer; background: #f9ddd3; color: #fff; }
   .fifteen-home__flip-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
   .fifteen-home__flip-hint { position: absolute; bottom: 1rem; right: 1rem; padding: .7rem 1rem; border-radius: 99rem; background: var(--fifteen-navy); font: inherit; font-weight: 700; }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { transform: rotateY(180deg); background: #fffdf9; padding: clamp(1rem, 2vw, 2rem); }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-return { display: inline-block; margin-top: 1rem; border: 0; border-bottom: 1px solid currentColor; padding: .35rem 0; background: transparent; color: var(--fifteen-navy); font: inherit; cursor: pointer; }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { transform: rotateY(180deg); position: relative; background: #f9ddd3; padding: 0 0 3rem; }
+  .fifteen-home__story-flip.is-ready .fifteen-home__flip-return { display: inline-block; position: absolute; bottom: 1rem; left: clamp(2rem, 4vw, 4rem); margin-top: 0; border: 0; border-bottom: 1px solid currentColor; padding: .35rem 0; background: transparent; color: var(--fifteen-navy); font: inherit; cursor: pointer; }
   .fifteen-home__flip-front:focus-visible, .fifteen-home__flip-return:focus-visible { outline: 3px solid var(--fifteen-pink); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) { .fifteen-home__story-flip.is-ready .fifteen-home__flip-inner { transition: none; } }
 
