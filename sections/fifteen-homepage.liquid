@@ -28,7 +28,7 @@
         <path d="M0 0 H600 V45 C400 125 200 -30 0 65 Z" fill="#fffdf9" />
       </svg>
       {% if section.settings.hero_accent_image != blank %}
-        {{ section.settings.hero_accent_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__hero-accent', loading: 'eager', widths: '400, 700, 1200', sizes: '(min-width: 750px) 34vw, 60vw', alt: 'Fifteen gummies, green apple rescue powder and grape drink shot' }}
+        {{ section.settings.hero_accent_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__hero-accent', loading: 'eager', widths: '400, 700, 1200', sizes: '(min-width: 750px) 34vw, 32vw', alt: 'Fifteen gummies, green apple rescue powder and grape drink shot' }}
       {% else %}
         <img class="fifteen-home__hero-accent" src="{{ 'fifteen-hero-accent.webp' | asset_url }}" width="1048" height="1501" loading="eager" fetchpriority="high" alt="Fifteen gummies, green apple rescue powder and grape drink shot">
       {% endif %}
@@ -334,6 +334,65 @@
     .fifteen-home__benefit-icon img, .fifteen-home__moment svg,
     .fifteen-home__product-link > span { transition: none; }
     .fifteen-home__button:hover { transform: none; }
+  }
+
+
+  /* Keep the desktop composition on phones, giving the copy most of the width. */
+  @media screen and (max-width: 749px) {
+    .fifteen-home .fifteen-home__hero {
+      grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+      min-height: 0;
+      padding-left: 1.1rem;
+      padding-right: 0;
+    }
+    .fifteen-home .fifteen-home__hero-copy {
+      min-width: 0;
+      padding: 2.5rem .65rem 2.5rem 0;
+    }
+    .fifteen-home .fifteen-home__hero-copy h1 {
+      font-size: clamp(1.9rem, 6.7vw, 3rem);
+      line-height: 1;
+      overflow-wrap: break-word;
+    }
+    .fifteen-home .fifteen-home__hero-underline {
+      height: .8rem;
+      margin: .35rem 0 1rem;
+    }
+    .fifteen-home .fifteen-home__hero-text {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+    .fifteen-home .fifteen-home__hero-copy .fifteen-home__button {
+      margin-top: 1.2rem;
+      padding: .8rem 1rem;
+      max-width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+    .fifteen-home .fifteen-home__hero-media--gradient {
+      min-height: 0;
+      aspect-ratio: auto;
+    }
+    .fifteen-home .fifteen-home__wave--desktop {
+      display: block;
+      width: 16%;
+      height: 100%;
+    }
+    .fifteen-home .fifteen-home__wave--mobile { display: none; }
+    .fifteen-home .fifteen-home__hero-accent {
+      left: 6%;
+      bottom: 10%;
+      width: 90%;
+      height: 60%;
+      object-position: center bottom;
+    }
+    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
+      top: 8%;
+      right: 7%;
+      width: 65%;
+    }
+    .fifteen-home .fifteen-home__carb-badge span { font-size: clamp(.6rem, 6cqw, 1rem); }
+    .fifteen-home .fifteen-home__carb-badge strong { font-size: clamp(1.5rem, 20cqw, 3rem); }
   }
 
 {% endstylesheet %}
