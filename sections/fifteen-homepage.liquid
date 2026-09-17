@@ -3,6 +3,11 @@
   if featured_collection == blank
     assign featured_collection = collections.all
   endif
+  assign product_limit = section.settings.products_to_show | default: 6 | plus: 0
+  assign product_columns = product_limit
+  if featured_collection.products.size > 0
+    assign product_columns = featured_collection.products.size | at_most: product_limit
+  endif
 %}
 
 <section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
@@ -22,6 +27,11 @@
       <svg class="fifteen-home__wave fifteen-home__wave--mobile" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path d="M0 0 H600 V45 C400 125 200 -30 0 65 Z" fill="#fffdf9" />
       </svg>
+      {% if section.settings.hero_accent_image != blank %}
+        {{ section.settings.hero_accent_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__hero-accent', loading: 'eager', widths: '400, 700, 1200', sizes: '(min-width: 750px) 34vw, 60vw', alt: 'Fifteen gummies, green apple rescue powder and grape drink shot' }}
+      {% else %}
+        <img class="fifteen-home__hero-accent" src="{{ 'fifteen-hero-accent.webp' | asset_url }}" width="1048" height="1501" loading="eager" fetchpriority="high" alt="Fifteen gummies, green apple rescue powder and grape drink shot">
+      {% endif %}
       <div class="fifteen-home__carb-badge">
         <span>{{ section.settings.carb_eyebrow | escape }}</span>
         <strong>{{ section.settings.carb_amount | escape }}</strong>
@@ -68,8 +78,8 @@
 
   <div class="fifteen-home__collection page-width">
     <h2>{{ section.settings.collection_heading }}</h2>
-    <div class="fifteen-home__products">
-      {% for product in featured_collection.products limit: section.settings.products_to_show %}
+    <div class="fifteen-home__products" style="--product-columns: {{ product_columns }}; --product-columns-tablet: {{ product_columns | at_most: 3 }}; --product-columns-mobile: {{ product_columns | at_most: 2 }};">
+      {% for product in featured_collection.products limit: product_limit %}
         <article class="fifteen-home__product">
           <a href="{{ product.url }}" class="fifteen-home__product-image">
             {% if product.featured_image %}
@@ -83,7 +93,7 @@
           <a class="fifteen-home__product-link" href="{{ product.url }}">SHOP {{ product.title | upcase }} <span aria-hidden="true">→</span></a>
         </article>
       {% else %}
-        {% for i in (1..6) %}
+        {% for i in (1..product_limit) %}
           <article class="fifteen-home__product fifteen-home__product--empty">
             <div class="fifteen-home__product-image">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
             <h3>Product {{ i }}</h3>
@@ -174,7 +184,7 @@
   .fifteen-home__benefit p { margin: 0; font-size: .8rem; line-height: 1.38; }
   .fifteen-home__collection { padding-top: clamp(2.8rem, 5vw, 4.5rem) !important; padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
   .fifteen-home__collection > h2, .fifteen-home__life-copy > h2 { margin: 0 0 1.7rem; font-size: clamp(1.65rem, 2.7vw, 2.6rem); line-height: 1; text-align: center; text-transform: uppercase; }
-  .fifteen-home__products { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(.65rem, 1.4vw, 1.4rem); }
+  .fifteen-home__products { display: grid; grid-template-columns: repeat(var(--product-columns, 6), minmax(0, 1fr)); gap: clamp(.65rem, 1.4vw, 1.4rem); }
   .fifteen-home__product { text-align: center; }
   .fifteen-home__product-image { display: block; aspect-ratio: .87; overflow: hidden; background: #e6f5f7; border-radius: .4rem; }
   .fifteen-home__product:nth-child(2n) .fifteen-home__product-image { background: #f9ddd3; }
@@ -195,8 +205,8 @@
   .fifteen-home__subscribe { padding: clamp(1.5rem, 3vw, 2.8rem); border-radius: 1rem; background: #fff; box-shadow: 0 .5rem 2rem rgba(8, 35, 74, .1); }
   .fifteen-home__subscribe h2 { margin: 0 0 1rem; color: var(--fifteen-pink); font-size: clamp(1.6rem, 2.4vw, 2.45rem); line-height: .95; }
   .fifteen-home__subscribe .rte { font-size: .92rem; line-height: 1.5; }
-  @media screen and (max-width: 989px) { .fifteen-home__hero { grid-template-columns: 1fr 1fr; } .fifteen-home__products { grid-template-columns: repeat(3, 1fr); row-gap: 2.2rem; } .fifteen-home__life { grid-template-columns: 1fr 1fr; } .fifteen-home__subscribe { grid-column: span 2; } }
-  @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 100%; font-size: clamp(2.3rem, 8.8vw, 4rem); } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(2, 1fr); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
+  @media screen and (max-width: 989px) { .fifteen-home__hero { grid-template-columns: 1fr 1fr; } .fifteen-home__products { grid-template-columns: repeat(var(--product-columns-tablet, 3), minmax(0, 1fr)); row-gap: 2.2rem; } .fifteen-home__life { grid-template-columns: 1fr 1fr; } .fifteen-home__subscribe { grid-column: span 2; } }
+  @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 100%; font-size: clamp(2.3rem, 8.8vw, 4rem); } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(var(--product-columns-mobile, 2), minmax(0, 1fr)); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
 
   .fifteen-home__story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: clamp(2rem, 4vw, 4rem); padding-bottom: clamp(3rem, 6vw, 6rem); }
   .fifteen-home__story-media { overflow: hidden; border-radius: 1rem; background: #f9ddd3; }
@@ -236,6 +246,12 @@
   .fifteen-home__carb-badge span { font-size: 3.6cqw; text-transform: uppercase; }
   .fifteen-home__carb-badge strong { display: block; margin: .035em 0; font-size: 10cqw; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
 
+  .fifteen-home__hero-accent { position: absolute; left: 5%; bottom: 3%; width: 62%; height: 88%; object-fit: contain; object-position: center bottom; }
+  .fifteen-home__carb-badge { z-index: 1; }
+  @media screen and (max-width: 749px) {
+    .fifteen-home__hero-accent { left: 3%; bottom: 3%; width: 60%; height: 78%; }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
@@ -265,6 +281,11 @@
       "type": "url",
       "id": "button_link",
       "label": "Hero button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_accent_image",
+      "label": "Hero product accent"
     },
     {
       "type": "text",
