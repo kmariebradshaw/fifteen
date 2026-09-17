@@ -434,6 +434,29 @@
     }
   }
 
+
+  /* Mobile reference: badge above a larger, bottom-aligned product cutout. */
+  @media screen and (max-width: 749px) {
+    .fifteen-home .fifteen-home__hero-accent {
+      left: -7%;
+      bottom: 3%;
+      width: 105%;
+      height: 55%;
+      object-position: center bottom;
+    }
+    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
+      top: 6%;
+      right: 10%;
+      width: 65%;
+    }
+    .fifteen-home .fifteen-home__carb-badge span {
+      font-size: clamp(.55rem, 5.5cqw, .9rem);
+    }
+    .fifteen-home .fifteen-home__carb-badge strong {
+      font-size: clamp(1.5rem, 20cqw, 3rem);
+    }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
