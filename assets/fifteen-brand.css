@@ -140,7 +140,8 @@
   --quick-add-foreground: #fff;
 }
 .quick-add .quick-add__button,
-.quick-add-modal .add-to-cart-button {
+.quick-add-modal .add-to-cart-button,
+.sticky-add-to-cart .sticky-add-to-cart__button {
   --button-background-color: var(--brand-pink) !important;
   --button-border-color: var(--brand-pink) !important;
   --button-color: #fff !important;
