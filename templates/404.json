@@ -6,8 +6,80 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
+    "fifteen_homepage_A43EEf": {
+      "type": "fifteen-homepage",
+      "blocks": {
+        "benefit_XLKpWT": {
+          "type": "benefit",
+          "settings": {
+            "icon": "◎",
+            "heading": "EXACTLY 15g",
+            "text": "No counting. No guessing."
+          }
+        },
+        "benefit_4hRfTB": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ϟ",
+            "heading": "FAST-ACTING",
+            "text": "Designed to help raise low blood sugar."
+          }
+        },
+        "benefit_EXUwb4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "♧",
+            "heading": "EASY TO CARRY",
+            "text": "Fits in your pocket, bag, or anywhere."
+          }
+        },
+        "benefit_MeFEbA": {
+          "type": "benefit",
+          "settings": {
+            "icon": "☺",
+            "heading": "GREAT TASTE",
+            "text": "Foods and drinks you'll actually enjoy."
+          }
+        },
+        "benefit_UibaLY": {
+          "type": "benefit",
+          "settings": {
+            "icon": "♡",
+            "heading": "MADE FOR YOU",
+            "text": "Created by people who get it."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_XLKpWT",
+        "benefit_4hRfTB",
+        "benefit_EXUwb4",
+        "benefit_MeFEbA",
+        "benefit_UibaLY"
+      ],
+      "name": "15 Fifteen homepage",
+      "settings": {
+        "heading": "One Dose.15 Grams.No Guesswork.",
+        "text": "<p>Delicious, convenient foods and drinks with exactly 15 grams of fast-acting carbohydrates—made for life with type 1 diabetes.</p>",
+        "button_label": "SHOP THE COLLECTION",
+        "button_link": "",
+        "accent_color": "#e83f74",
+        "navy_color": "#071f48",
+        "hero_color": "#92d7ef",
+        "collection_heading": "MEET THE 15 COLLECTION",
+        "collection": "",
+        "products_to_show": 6,
+        "lifestyle_heading": "MADE FOR REAL LIFE",
+        "lifestyle_text": "<p>Whether you're at school, at work, at practice, or on an adventure—15 is here for your lows, so you can get back to your highs.</p>",
+        "subscribe_heading": "NEVER BE WITHOUT 15",
+        "subscribe_text": "<p>Subscribe and save on your favorite 15g essentials.</p>",
+        "subscribe_button_label": "SUBSCRIBE & SAVE",
+        "subscribe_button_link": ""
+      }
+    },
     "main": {
       "type": "main-404",
       "blocks": {
@@ -21,10 +93,12 @@
             "alignment": "center",
             "type_preset": "h3",
             "font": "var(--font-body--family)",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -45,10 +119,12 @@
             "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
+            "font_size": "1rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -67,6 +143,10 @@
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -114,11 +194,13 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
+            "background_color": "",
             "video_position": "cover",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -136,10 +218,12 @@
                 "alignment": "left",
                 "type_preset": "h4",
                 "font": "var(--font-body--family)",
+                "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -161,9 +245,11 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
+            "background_color": "",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -179,6 +265,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
+                "border_color": "",
                 "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -201,6 +288,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -226,6 +314,7 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
+                "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -264,6 +353,7 @@
     }
   },
   "order": [
+    "fifteen_homepage_A43EEf",
     "main",
     "product_list_iA96Tq"
   ]
