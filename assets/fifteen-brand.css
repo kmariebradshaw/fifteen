@@ -86,3 +86,23 @@
 .fifteen-footer .fifteen-footer__value:nth-child(4n + 2) .fifteen-footer__value-icon { color: var(--brand-green); }
 .fifteen-footer .fifteen-footer__value:nth-child(4n + 3) .fifteen-footer__value-icon { color: var(--brand-blue); }
 .fifteen-footer .fifteen-footer__value:nth-child(4n + 4) .fifteen-footer__value-icon { color: var(--brand-purple); }
+
+/* Shared button treatment, including hover/active states and native theme CTAs. */
+:root {
+  --button-text-case-primary: uppercase !important;
+  --button-text-case-secondary: uppercase !important;
+}
+:is(button, input[type="submit"], input[type="button"], input[type="reset"],
+    .button, .button-primary, .button-secondary, .button-custom,
+    .fifteen-home__button, .fifteen-about__button, .fifteen-why__button) {
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+}
+:is(button, input[type="submit"], input[type="button"], input[type="reset"],
+    .button, .button-primary, .button-secondary, .button-custom,
+    .fifteen-home__button, .fifteen-about__button, .fifteen-why__button)::before,
+:is(button, input[type="submit"], input[type="button"], input[type="reset"],
+    .button, .button-primary, .button-secondary, .button-custom,
+    .fifteen-home__button, .fifteen-about__button, .fifteen-why__button)::after {
+  box-shadow: none !important;
+}
