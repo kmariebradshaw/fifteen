@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "fifteen-about",
+      "settings": {},
+      "blocks": {
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "heading": "People first",
+            "text": "Created from a family’s experience and shaped around the people living it every day."
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "icon": "shield",
+            "heading": "Keep it simple",
+            "text": "A clear 15g focus, convenient formats, and fewer things to figure out in a busy moment."
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "icon": "award",
+            "heading": "Made for real life",
+            "text": "From school bags to bedside tables, essentials designed to fit into the routines you already have."
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

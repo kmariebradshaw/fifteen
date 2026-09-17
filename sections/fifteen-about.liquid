@@ -1,0 +1,310 @@
+<article class="fifteen-about" style="--about-navy: {{ section.settings.navy }}; --about-pink: {{ section.settings.pink }}; --about-cream: {{ section.settings.cream }};">
+  <header class="fifteen-about__hero fifteen-about__width">
+    <div class="fifteen-about__hero-copy">
+      <p class="fifteen-about__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <svg class="fifteen-about__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+      <div class="fifteen-about__intro rte">{{ section.settings.intro }}</div>
+    </div>
+    <figure class="fifteen-about__photo">
+      {% if section.settings.photo != blank %}
+        {{ section.settings.photo | image_url: width: 1400 | image_tag: widths: '450, 685, 1000, 1400', sizes: '(min-width: 750px) 45vw, 100vw', loading: 'eager', alt: section.settings.photo_caption }}
+      {% else %}
+        <img src="{{ 'fifteen-story-family.webp' | asset_url }}" width="685" height="553" loading="eager" alt="{{ section.settings.photo_caption | escape }}">
+      {% endif %}
+      <figcaption>{{ section.settings.photo_caption | escape }}</figcaption>
+    </figure>
+  </header>
+  <div class="fifteen-about__story-wrap">
+    <section class="fifteen-about__story fifteen-about__width">
+      <div class="fifteen-about__story-copy">
+        <h2>{{ section.settings.story_heading }}</h2>
+        <svg class="fifteen-about__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+        <div class="rte">{{ section.settings.story_text }}</div>
+      </div>
+      <aside class="fifteen-about__quote">
+        <span class="fifteen-about__heart">{% render 'fifteen-footer-icon', name: 'heart' %}</span>
+        <blockquote>{{ section.settings.quote }}</blockquote>
+        <p>{{ section.settings.signature | escape }}</p>
+      </aside>
+    </section>
+  </div>
+  <section class="fifteen-about__mission fifteen-about__width">
+    <p class="fifteen-about__eyebrow">{{ section.settings.mission_eyebrow | escape }}</p>
+    <h2>{{ section.settings.mission_heading }}</h2>
+    <div class="rte">{{ section.settings.mission_text }}</div>
+  </section>
+  {% if section.blocks.size > 0 %}
+    <section class="fifteen-about__values fifteen-about__width">
+      <h2>{{ section.settings.values_heading | escape }}</h2>
+      <div class="fifteen-about__values-grid">
+        {% for block in section.blocks %}
+          <div class="fifteen-about__value" {{ block.shopify_attributes }}>
+            <span>{% render 'fifteen-footer-icon', name: block.settings.icon %}</span>
+            <h3>{{ block.settings.heading | escape }}</h3>
+            <p>{{ block.settings.text | escape }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+  <section class="fifteen-about__cta">
+    <div class="fifteen-about__width">
+      <h2>{{ section.settings.cta_heading }}</h2>
+      <div class="rte">{{ section.settings.cta_text }}</div>
+      {% if section.settings.cta_label != blank %}
+        <a class="fifteen-about__button" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_label | escape }} <span aria-hidden="true">→</span></a>
+      {% endif %}
+    </div>
+  </section>
+</article>
+
+{% stylesheet %}
+.fifteen-about { background: var(--about-cream); color: var(--about-navy); overflow: hidden; }
+.fifteen-about * { box-sizing: border-box; }
+.fifteen-about__width { max-width: 1440px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 5rem); }
+.fifteen-about h1, .fifteen-about h2, .fifteen-about h3 { font-family: var(--font-heading--family); font-weight: 800; letter-spacing: -.055em; color: inherit; }
+.fifteen-about h1 { font-size: clamp(2.6rem, 5vw, 5rem); line-height: 1.02; margin: 0; }
+.fifteen-about h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.08; margin: 0; }
+.fifteen-about .rte { font-size: clamp(1rem, 1.2vw, 1.15rem); line-height: 1.7; }
+.fifteen-about .rte p { margin: 0 0 1rem; }
+.fifteen-about__eyebrow { color: var(--about-pink); font-size: .8rem; font-weight: 800; letter-spacing: .14em; margin: 0 0 1rem; }
+.fifteen-about__hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); padding-block: clamp(3rem, 6vw, 6rem); }
+.fifteen-about__hero-copy { min-width: 0; }
+.fifteen-about__underline { display: block; width: min(100%, 25rem); height: 1.25rem; margin: .6rem 0 1.5rem; color: var(--about-pink); transform: rotate(-1deg); overflow: visible; }
+.fifteen-about__photo { margin: 0; padding: .9rem .9rem 0; border-radius: 1.3rem; background: #f9ddd3; transform: rotate(2deg); }
+.fifteen-about__photo img { display: block; width: 100%; height: auto; border-radius: .8rem; }
+.fifteen-about__photo figcaption { padding: 1rem; text-align: center; font-weight: 750; font-size: .85rem; }
+.fifteen-about__story-wrap { background: #fff; }
+.fifteen-about__story { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; padding-block: clamp(3rem, 6vw, 6rem); }
+.fifteen-about__quote { padding: clamp(2rem, 4vw, 4rem); border-radius: 1.3rem; background: #f9ddd3; }
+.fifteen-about__heart { display: block; color: var(--about-pink); width: 3.5rem; }
+.fifteen-about__heart svg { display: block; width: 100%; height: auto; }
+.fifteen-about__quote blockquote { border: 0; padding: 0; margin: 1.5rem 0; font-family: var(--font-heading--family); font-size: clamp(1.9rem, 3vw, 3rem); line-height: 1.08; font-weight: 800; letter-spacing: -.055em; }
+.fifteen-about__quote p { font-size: .9rem; font-weight: 750; margin: 0; }
+.fifteen-about__mission { padding-top: clamp(3rem, 6vw, 6rem); text-align: center; }
+.fifteen-about__mission h2 { margin-bottom: 1.5rem; }
+.fifteen-about__mission .rte { max-width: 46rem; margin-inline: auto; }
+.fifteen-about__values { padding-block: clamp(2rem, 4vw, 4rem) clamp(3rem, 6vw, 6rem); }
+.fifteen-about__values > h2 { text-align: center; font-size: clamp(1.5rem, 2.5vw, 2.4rem); margin-bottom: 2rem; }
+.fifteen-about__values-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.fifteen-about__value { padding: clamp(1.5rem, 3vw, 3rem); border-radius: 1.2rem; background: #fff; }
+.fifteen-about__value:nth-child(2) { background: #e5f4fa; }
+.fifteen-about__value:nth-child(3) { background: #fce7ee; }
+.fifteen-about__value > span { display: block; width: 3rem; color: var(--about-pink); margin-bottom: 1.2rem; }
+.fifteen-about__value svg { display: block; width: 100%; height: auto; }
+.fifteen-about__value h3 { font-size: 1.5rem; line-height: 1.15; margin: 0 0 .8rem; }
+.fifteen-about__value p { font-size: 1rem; line-height: 1.6; margin: 0; }
+.fifteen-about__cta { background: linear-gradient(120deg, #d9f1fa, #fff3f5); padding-block: clamp(3rem, 5vw, 5rem); text-align: center; }
+.fifteen-about__cta .rte { max-width: 38rem; margin: 1.2rem auto 0; }
+.fifteen-about__button { display: inline-flex; align-items: center; gap: 1rem; background: var(--about-pink); color: #fff; border-radius: 99rem; padding: 1rem 1.8rem; margin-top: 1rem; font-size: .85rem; font-weight: 800; text-decoration: none; }
+.fifteen-about__button:focus-visible { outline: 3px solid var(--about-navy); outline-offset: 4px; }
+@media (max-width: 749px) {
+  .fifteen-about__hero, .fifteen-about__story { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .fifteen-about__photo { margin-inline: .4rem; transform: rotate(1deg); }
+  .fifteen-about__values-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .fifteen-about__button { transition: transform .2s ease; }
+  .fifteen-about__button:hover { transform: translateY(-2px); }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Fifteen About Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A personal mission.<br>A better way through the lows."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Fifteen started with a family, a real-life need, and a simple idea: make the everyday moments around lows feel a little less complicated.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Founder photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_caption",
+      "label": "Photo caption",
+      "default": "Christian & Finn Arquilla"
+    },
+    {
+      "type": "html",
+      "id": "story_heading",
+      "label": "Story heading",
+      "default": "Built from experience.<br>Made for real life."
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Story text",
+      "default": "<p>As a father of a child with Type 1 diabetes, Christian saw how hard lows could be on kids and parents. The options available didn’t feel like what his family needed.</p><p><strong>So he created Fifteen.</strong></p><p>A simpler, more convenient approach. Foods and drinks with exactly 15 grams of carbohydrates, designed to fit into the bags, desks, routines, and real lives of the people who use them.</p><p>At its heart, Fifteen is a family story. Christian and Finn are building the brand they wished they had, with the everyday experience of living with Type 1 diabetes at the center.</p>"
+    },
+    {
+      "type": "html",
+      "id": "quote",
+      "label": "Quote",
+      "default": "For the lows.<br>For real life.<br>For families like ours."
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signature",
+      "default": "Christian & Finn"
+    },
+    {
+      "type": "text",
+      "id": "mission_eyebrow",
+      "label": "Mission eyebrow",
+      "default": "WHY FIFTEEN"
+    },
+    {
+      "type": "html",
+      "id": "mission_heading",
+      "label": "Mission heading",
+      "default": "Less guesswork.<br>More living."
+    },
+    {
+      "type": "richtext",
+      "id": "mission_text",
+      "label": "Mission text",
+      "default": "<p>School mornings. Workdays. Road trips. A bag packed by the door. We believe the things you reach for should feel simple, familiar, and easy to bring along.</p><p>Our goal is to make thoughtfully designed 15g essentials that belong in everyday life, so you can get back to the moments that matter.</p>"
+    },
+    {
+      "type": "text",
+      "id": "values_heading",
+      "label": "Values heading",
+      "default": "What matters to us"
+    },
+    {
+      "type": "html",
+      "id": "cta_heading",
+      "label": "Cta heading",
+      "default": "Here for your lows.<br>And everything after."
+    },
+    {
+      "type": "richtext",
+      "id": "cta_text",
+      "label": "Cta text",
+      "default": "<p>Get to know the Fifteen collection and find the essentials that fit your day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Cta label",
+      "default": "MEET THE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Collection button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "color",
+      "id": "navy",
+      "label": "Navy",
+      "default": "#071f48"
+    },
+    {
+      "type": "color",
+      "id": "pink",
+      "label": "Pink",
+      "default": "#e83f74"
+    },
+    {
+      "type": "color",
+      "id": "cream",
+      "label": "Beige",
+      "default": "#fffdf9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Brand value",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "shield",
+              "label": "Shield"
+            },
+            {
+              "value": "award",
+              "label": "Award"
+            }
+          ],
+          "default": "heart"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "People first"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Created for the people living it every day."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fifteen About Us",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "heading": "People first",
+            "text": "Created from a family’s experience and shaped around the people living it every day."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "shield",
+            "heading": "Keep it simple",
+            "text": "A clear 15g focus, convenient formats, and fewer things to figure out in a busy moment."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "award",
+            "heading": "Made for real life",
+            "text": "From school bags to bedside tables, essentials designed to fit into the routines you already have."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
