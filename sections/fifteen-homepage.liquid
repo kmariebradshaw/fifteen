@@ -13,7 +13,7 @@
 <section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
   <div class="fifteen-home__hero page-width">
     <div class="fifteen-home__hero-copy">
-      <h1>{{ section.settings.heading }}</h1>
+      <h1>{{ section.settings.heading | replace: 'No Guesswork.', '<span class="fifteen-home__keep-together">No Guesswork.</span>' }}</h1>
       <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
       <div class="fifteen-home__hero-text rte">{{ section.settings.text }}</div>
       {% if section.settings.button_label != blank %}
@@ -393,6 +393,19 @@
     }
     .fifteen-home .fifteen-home__carb-badge span { font-size: clamp(.6rem, 6cqw, 1rem); }
     .fifteen-home .fifteen-home__carb-badge strong { font-size: clamp(1.5rem, 20cqw, 3rem); }
+  }
+
+
+  /* Size against the actual text column and keep the closing phrase intact. */
+  .fifteen-home .fifteen-home__hero-copy { container-type: inline-size; }
+  .fifteen-home .fifteen-home__hero-copy h1 {
+    font-size: min(clamp(3.25rem, 5.6vw, 6.3rem), 12cqw);
+  }
+  .fifteen-home__keep-together { white-space: nowrap; }
+  @media screen and (max-width: 749px) {
+    .fifteen-home .fifteen-home__hero-copy h1 {
+      font-size: min(clamp(1.9rem, 6.7vw, 3rem), 12cqw);
+    }
   }
 
 {% endstylesheet %}
