@@ -15,13 +15,13 @@
         <a class="fifteen-home__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
       {% endif %}
     </div>
-    {% liquid
-      assign hero_background = 'fifteen-hero-products.png' | asset_url
-      if section.settings.hero_image != blank
-        assign hero_background = section.settings.hero_image | image_url: width: 1800
-      endif
-    %}
-    <div class="fifteen-home__hero-media fifteen-home__hero-media--background" style="background-image: url('{{ hero_background }}');">
+    <div class="fifteen-home__hero-media fifteen-home__hero-media--gradient">
+      <svg class="fifteen-home__wave fifteen-home__wave--desktop" viewBox="0 0 100 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 0 H65 C-30 160 125 350 45 600 H0 Z" fill="#ffffff" />
+      </svg>
+      <svg class="fifteen-home__wave fifteen-home__wave--mobile" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 0 H600 V45 C400 125 200 -30 0 65 Z" fill="#ffffff" />
+      </svg>
       <div class="fifteen-home__carb-badge">
         <span>{{ section.settings.carb_eyebrow | escape }}</span>
         <strong>{{ section.settings.carb_amount | escape }}</strong>
@@ -195,7 +195,17 @@
     .fifteen-home__story-copy { min-width: 0; }
   }
 
-  .fifteen-home__hero-media.fifteen-home__hero-media--background { position: relative; align-self: center; width: 100%; min-height: 0; aspect-ratio: 552 / 519; container-type: inline-size; background-color: transparent; background-repeat: no-repeat; background-position: center; background-size: contain; }
+  .fifteen-home__hero { background: #ffffff; }
+  .fifteen-home__hero-media.fifteen-home__hero-media--gradient { position: relative; align-self: stretch; width: 100%; min-height: 28rem; container-type: inline-size; background: linear-gradient(120deg, var(--fifteen-blue) 0%, #d9f1fa 65%, #ffffff 100%); }
+  .fifteen-home__wave { position: absolute; pointer-events: none; display: block; }
+  .fifteen-home__wave--desktop { top: 0; left: -1px; width: 16%; height: 100%; }
+  .fifteen-home__wave--mobile { display: none; }
+  @media screen and (max-width: 749px) {
+    .fifteen-home__hero-media.fifteen-home__hero-media--gradient { min-height: 20rem; aspect-ratio: 1.2; }
+    .fifteen-home__wave--desktop { display: none; }
+    .fifteen-home__wave--mobile { display: block; top: -1px; left: 0; width: 100%; height: 16%; }
+    .fifteen-home__hero-media--gradient .fifteen-home__carb-badge { top: 20%; right: 5%; }
+  }
   .fifteen-home__carb-badge { position: absolute; top: 5%; right: 3%; width: 32%; aspect-ratio: 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fffdf9; color: var(--fifteen-pink); font-family: var(--font-heading--family); font-weight: 800; text-align: center; line-height: 1.1; }
   .fifteen-home__carb-badge span { font-size: 3.6cqw; text-transform: uppercase; }
   .fifteen-home__carb-badge strong { display: block; margin: .035em 0; font-size: 10cqw; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
@@ -231,11 +241,6 @@
       "label": "Hero button link"
     },
     {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero background image"
-    },
-    {
       "type": "text",
       "id": "carb_eyebrow",
       "label": "Carb badge top line",
@@ -268,7 +273,7 @@
     {
       "type": "color",
       "id": "hero_color",
-      "label": "Hero placeholder color",
+      "label": "Hero gradient blue",
       "default": "#92d7ef"
     },
     {
