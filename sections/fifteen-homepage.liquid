@@ -6,7 +6,7 @@
 %}
 
 <section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
-  <div class="fifteen-home__hero page-width{% if section.settings.hero_image == blank %} fifteen-home__hero--text-only{% endif %}">
+  <div class="fifteen-home__hero page-width">
     <div class="fifteen-home__hero-copy">
       <h1>{{ section.settings.heading }}</h1>
       <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
@@ -15,11 +15,19 @@
         <a class="fifteen-home__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
       {% endif %}
     </div>
-    {% if section.settings.hero_image != blank %}
-      <div class="fifteen-home__hero-media">
-        {{ section.settings.hero_image | image_url: width: 1800 | image_tag: class: 'fifteen-home__hero-image', loading: 'eager', widths: '750, 1100, 1500, 1800', alt: section.settings.hero_image.alt | escape }}
+    {% liquid
+      assign hero_background = 'fifteen-hero-products.png' | asset_url
+      if section.settings.hero_image != blank
+        assign hero_background = section.settings.hero_image | image_url: width: 1800
+      endif
+    %}
+    <div class="fifteen-home__hero-media fifteen-home__hero-media--background" style="background-image: url('{{ hero_background }}');">
+      <div class="fifteen-home__carb-badge">
+        <span>{{ section.settings.carb_eyebrow | escape }}</span>
+        <strong>{{ section.settings.carb_amount | escape }}</strong>
+        <span>{{ section.settings.carb_label | escape }}</span>
       </div>
-    {% endif %}
+    </div>
   </div>
 
   <div class="fifteen-home__benefits page-width">
@@ -187,8 +195,10 @@
     .fifteen-home__story-copy { min-width: 0; }
   }
 
-  .fifteen-home__hero.fifteen-home__hero--text-only { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .fifteen-home__hero--text-only .fifteen-home__hero-copy { padding-right: 0; }
+  .fifteen-home__hero-media.fifteen-home__hero-media--background { position: relative; align-self: center; width: 100%; min-height: 0; aspect-ratio: 552 / 519; container-type: inline-size; background-color: transparent; background-repeat: no-repeat; background-position: center; background-size: contain; }
+  .fifteen-home__carb-badge { position: absolute; top: 5%; right: 3%; width: 32%; aspect-ratio: 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fffdf9; color: var(--fifteen-pink); font-family: var(--font-heading--family); font-weight: 800; text-align: center; line-height: 1.1; }
+  .fifteen-home__carb-badge span { font-size: 3.6cqw; text-transform: uppercase; }
+  .fifteen-home__carb-badge strong { display: block; margin: .035em 0; font-size: 10cqw; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
 
 {% endstylesheet %}
 
@@ -223,7 +233,25 @@
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero image"
+      "label": "Hero background image"
+    },
+    {
+      "type": "text",
+      "id": "carb_eyebrow",
+      "label": "Carb badge top line",
+      "default": "EXACTLY"
+    },
+    {
+      "type": "text",
+      "id": "carb_amount",
+      "label": "Carb badge amount",
+      "default": "15g"
+    },
+    {
+      "type": "text",
+      "id": "carb_label",
+      "label": "Carb badge bottom line",
+      "default": "CARBS"
     },
     {
       "type": "color",
