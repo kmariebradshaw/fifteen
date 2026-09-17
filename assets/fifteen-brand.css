@@ -192,3 +192,14 @@
     height: auto;
   }
 }
+
+/* Collection merchandising, scoped to the native collection results. */
+.fifteen-collection-grid { color: var(--brand-navy); }
+.fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #071f481a; padding-bottom: 18px; margin-bottom: 20px; }
+.fifteen-collection-grid .product-card { color: var(--brand-navy); }
+.fifteen-collection-grid .product-card .product-title { font-weight: 750; }
+.fifteen-collection-grid .product-card product-price { font-size: .95rem; }
+.fifteen-collection-grid .product-grid__item:nth-child(3n + 1) { --collection-accent: var(--brand-pink); }
+.fifteen-collection-grid .product-grid__item:nth-child(3n + 2) { --collection-accent: var(--brand-green); }
+.fifteen-collection-grid .product-grid__item:nth-child(3n + 3) { --collection-accent: var(--brand-purple); }
+.fifteen-collection-grid .card-gallery { border-bottom: 4px solid var(--collection-accent); }

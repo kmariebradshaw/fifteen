@@ -1,0 +1,80 @@
+<section class="fifteen-collection-hero" aria-labelledby="CollectionTitle-{{ section.id }}">
+  <div class="fifteen-collection-hero__inner">
+    <p class="fifteen-collection-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h1 id="CollectionTitle-{{ section.id }}">{{ collection.title | escape }}</h1>
+    <svg class="fifteen-collection-hero__underline" viewBox="0 0 300 20" aria-hidden="true"><path d="M4 15 Q145 0 296 7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
+    <div class="fifteen-collection-hero__description rte">{% if collection.description != blank %}{{ collection.description }}{% else %}<p>{{ section.settings.intro | escape }}</p>{% endif %}</div>
+    {% if section.settings.show_benefits %}
+      <ul class="fifteen-collection-hero__benefits" role="list">
+        <li><img src="{{ 'fifteen-icon-target.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_one | escape }}</span></li>
+        <li><img src="{{ 'fifteen-icon-backpack.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_two | escape }}</span></li>
+        <li><img src="{{ 'fifteen-icon-heart.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_three | escape }}</span></li>
+      </ul>
+    {% endif %}
+  </div>
+</section>
+{% stylesheet %}
+.fifteen-collection-hero { background: var(--brand-blue-gradient); color: var(--brand-navy); padding: clamp(36px,5vw,68px) 24px; }
+.fifteen-collection-hero__inner { max-width: 960px; margin-inline: auto; text-align: center; }
+.fifteen-collection-hero__eyebrow { margin: 0 0 14px; color: var(--brand-purple); font-size: .75rem; letter-spacing: .13em; font-weight: 800; }
+.fifteen-collection-hero h1 { margin: 0; color: var(--brand-navy); font-size: clamp(2.5rem,5vw,4.5rem); letter-spacing: -.05em; line-height: 1.05; text-wrap: balance; }
+.fifteen-collection-hero__underline { display: block; color: var(--brand-pink); width: min(240px,55%); height: 20px; margin: 6px auto 20px; }
+.fifteen-collection-hero__description { max-width: 620px; margin: 0 auto; line-height: 1.65; }
+.fifteen-collection-hero__benefits { list-style: none; padding: 0; margin: 26px 0 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.fifteen-collection-hero__benefits li { display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: #ffffffd9; font-size: .85rem; font-weight: 700; }
+.fifteen-collection-hero__benefits img { width: 28px; height: 28px; }
+@media (max-width: 749px) {
+ .fifteen-collection-hero { padding: 36px 20px; }
+ .fifteen-collection-hero__benefits { gap: 8px; }
+ .fifteen-collection-hero__benefits li { padding: 8px 12px; font-size: .75rem; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Fifteen collection header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "THE FIFTEEN COLLECTION"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Fallback description",
+      "default": "Your everyday essentials, in exactly 15 grams. Find the format that fits your life."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefit icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_one",
+      "label": "First benefit",
+      "default": "Exactly 15g"
+    },
+    {
+      "type": "text",
+      "id": "benefit_two",
+      "label": "Second benefit",
+      "default": "Easy to carry"
+    },
+    {
+      "type": "text",
+      "id": "benefit_three",
+      "label": "Third benefit",
+      "default": "Made for real life"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fifteen collection header"
+    }
+  ]
+}
+{% endschema %}
