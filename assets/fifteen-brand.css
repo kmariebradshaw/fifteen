@@ -149,3 +149,32 @@
   background: var(--brand-pink) !important;
   border-color: var(--brand-pink) !important;
 }
+
+/* The first top-level desktop link follows menu order, never its label. */
+@media screen and (min-width: 750px) {
+  header-menu overflow-list > li.menu-list__list-item:first-of-type > .menu-list__link,
+  header-menu overflow-list > li.menu-list__list-item:first-of-type > .menu-list__trigger > .menu-list__link {
+    background: var(--brand-pink);
+    color: #fff !important;
+    border-radius: 999px;
+    padding: .7rem 1.5rem;
+    height: auto;
+    align-self: center;
+    font-weight: 750;
+    text-transform: uppercase;
+    box-shadow: none;
+  }
+  header-menu overflow-list > li.menu-list__list-item:first-of-type .menu-list__link-title {
+    color: #fff;
+    opacity: 1;
+  }
+}
+/* Header cart count, on desktop and mobile. */
+.header-actions__cart-icon .cart-bubble {
+  --cart-bubble-background: var(--brand-pink);
+  --cart-bubble-text: #fff;
+}
+.header-actions__cart-icon .cart-bubble__background {
+  background: var(--brand-pink);
+}
+.header-actions__cart-icon .cart-bubble__text { color: #fff; }
