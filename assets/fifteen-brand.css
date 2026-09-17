@@ -128,3 +128,8 @@
 .fifteen-selling-plans__option > span { display: grid; gap: 5px; font-size: .9rem; overflow-wrap: anywhere; }
 .fifteen-selling-plans__terms, .fifteen-selling-plans__note { font-size: .78rem; line-height: 1.5; }
 .fifteen-selling-plans__note { margin: 12px 0 0; color: #344661; }
+
+/* Purchase options already display prices; avoid a duplicate heading price. */
+.fifteen-product-main .product-details:has(.fifteen-selling-plans) product-price {
+  display: none;
+}
