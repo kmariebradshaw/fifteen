@@ -210,7 +210,7 @@
   color: var(--brand-navy);
 }
 #cart-drawer .theme-drawer__header {
-  background: var(--brand-blue-gradient);
+  background: var(--brand-cream);
   border-bottom: 1px solid #071f4810;
   padding-block: 22px;
 }
