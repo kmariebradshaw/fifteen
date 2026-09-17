@@ -133,3 +133,18 @@
 .fifteen-product-main .product-details:has(.fifteen-selling-plans) product-price {
   display: none;
 }
+
+/* Match card quick-add and preview purchase buttons to the pink brand CTA. */
+.quick-add {
+  --quick-add-background: var(--brand-pink);
+  --quick-add-foreground: #fff;
+}
+.quick-add .quick-add__button,
+.quick-add-modal .add-to-cart-button {
+  --button-background-color: var(--brand-pink) !important;
+  --button-border-color: var(--brand-pink) !important;
+  --button-color: #fff !important;
+  --quick-add-foreground: #fff;
+  background: var(--brand-pink) !important;
+  border-color: var(--brand-pink) !important;
+}
