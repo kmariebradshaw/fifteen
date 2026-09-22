@@ -9,90 +9,12 @@
  */
 {
   "sections": {
-    "fifteen_homepage": {
-      "type": "fifteen-homepage",
-      "blocks": {
-        "benefit_1": {
-          "type": "benefit",
-          "settings": {
-            "icon": "◎",
-            "heading": "EXACTLY 15g",
-            "text": "No counting. No guessing."
-          }
-        },
-        "benefit_2": {
-          "type": "benefit",
-          "settings": {
-            "icon": "ϟ",
-            "heading": "FAST-ACTING",
-            "text": "Designed to help raise low blood sugar."
-          }
-        },
-        "benefit_3": {
-          "type": "benefit",
-          "settings": {
-            "icon": "♧",
-            "heading": "EASY TO CARRY",
-            "text": "Fits in your pocket, bag, or anywhere."
-          }
-        },
-        "benefit_4": {
-          "type": "benefit",
-          "settings": {
-            "icon": "☺",
-            "heading": "GREAT TASTE",
-            "text": "Foods and drinks you'll actually enjoy."
-          }
-        },
-        "benefit_5": {
-          "type": "benefit",
-          "settings": {
-            "icon": "♡",
-            "heading": "MADE FOR YOU",
-            "text": "Created by people who get it."
-          }
-        }
-      },
-      "block_order": [
-        "benefit_1",
-        "benefit_2",
-        "benefit_3",
-        "benefit_4",
-        "benefit_5"
-      ],
-      "settings": {
-        "heading": "One Dose.<br>15 Grams.<br>No Guesswork.",
-        "text": "<p>Delicious, convenient foods and drinks with exactly 15 grams of fast-acting carbohydrates—made for life with type 1 diabetes.</p>",
-        "button_label": "SHOP THE COLLECTION",
-        "button_link": "shopify://collections/all",
-        "carb_eyebrow": "EXACTLY",
-        "carb_amount": "15g",
-        "carb_label": "CARBS",
-        "accent_color": "#e83f74",
-        "navy_color": "#071f48",
-        "hero_color": "#92d7ef",
-        "collection_heading": "MEET THE 15 COLLECTION",
-        "collection": "all",
-        "products_to_show": 3,
-        "lifestyle_image": "shopify://shop_images/three-woman-in-sunglasses-smile-wide-for-the-camera.jpg",
-        "lifestyle_heading": "MADE FOR REAL LIFE",
-        "lifestyle_text": "<p>Whether you're at school, at work, at practice, or on an adventure—15 is here for your lows, so you can get back to your highs.</p>",
-        "subscribe_heading": "NEVER BE WITHOUT 15",
-        "subscribe_text": "<p>Subscribe and save on your favorite 15g essentials.</p>",
-        "subscribe_button_label": "SUBSCRIBE & SAVE",
-        "subscribe_button_link": "shopify://collections/all",
-        "show_story": true,
-        "story_eyebrow": "OUR STORY",
-        "story_heading": "A personal mission.",
-        "story_heading_accent": "A better way through the lows.",
-        "story_text": "<p>As a father of a child with Type 1 diabetes, I’ve seen how hard lows can be on kids and parents. The options out there just didn’t feel good enough.</p><p><strong>So I created Fifteen.</strong></p><p>It’s what I wished we had: a simpler, more convenient way to handle the lows, so we can get back to living.</p>",
-        "story_signature": "Christian & Finn",
-        "story_founders": "Christian and Finn Arquilla",
-        "story_role": "Founders"
-      }
+    "homepage_mockup": {
+      "type": "fifteen-homepage-mockup",
+      "settings": {}
     }
   },
   "order": [
-    "fifteen_homepage"
+    "homepage_mockup"
   ]
 }
