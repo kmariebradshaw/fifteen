@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "homepage_mockup": {
-      "type": "fifteen-homepage-mockup",
+    "fifteen_homepage": {
+      "type": "fifteen-homepage",
       "settings": {}
     }
   },
   "order": [
-    "homepage_mockup"
+    "fifteen_homepage"
   ]
 }
