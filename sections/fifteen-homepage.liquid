@@ -1,764 +1,191 @@
 {% liquid
-  assign featured_collection = section.settings.collection
-  if featured_collection == blank
-    assign featured_collection = collections.all
-  endif
-  assign product_limit = section.settings.products_to_show | default: 6 | plus: 0
-  assign product_columns = product_limit
-  if featured_collection.products.size > 0
-    assign product_columns = featured_collection.products.size | at_most: product_limit
-  endif
+  assign shop_url = section.settings.shop_link | default: routes.all_products_collection_url
 %}
 
-<section class="fifteen-home" style="--fifteen-pink: {{ section.settings.accent_color }}; --fifteen-navy: {{ section.settings.navy_color }}; --fifteen-blue: {{ section.settings.hero_color }};">
-  <div class="fifteen-home__hero page-width">
-    <div class="fifteen-home__hero-copy">
-      <h1>{{ section.settings.heading | replace: 'No Guesswork.', '<span class="fifteen-home__keep-together">No Guesswork.</span>' }}</h1>
-      <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
-      <div class="fifteen-home__hero-text rte">{{ section.settings.text }}</div>
-      {% if section.settings.button_label != blank %}
-        <a class="fifteen-home__button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
-      {% endif %}
-    </div>
-    <div class="fifteen-home__hero-media fifteen-home__hero-media--gradient">
-      <svg class="fifteen-home__wave fifteen-home__wave--desktop" viewBox="0 0 100 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M0 0 H65 C-30 160 125 350 45 600 H0 Z" fill="#fffdf9" />
-      </svg>
-      <svg class="fifteen-home__wave fifteen-home__wave--mobile" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M0 0 H600 V45 C400 125 200 -30 0 65 Z" fill="#fffdf9" />
-      </svg>
-      {% if section.settings.hero_accent_image != blank %}
-        {{ section.settings.hero_accent_image | image_url: width: 1200 | image_tag: class: 'fifteen-home__hero-accent', loading: 'eager', widths: '400, 700, 1200', sizes: '(min-width: 750px) 34vw, 32vw', alt: 'Fifteen gummies, green apple rescue powder and grape drink shot' }}
-      {% else %}
-        <img class="fifteen-home__hero-accent" src="{{ 'fifteen-hero-accent.webp' | asset_url }}" width="1048" height="1501" loading="eager" fetchpriority="high" alt="Fifteen gummies, green apple rescue powder and grape drink shot">
-      {% endif %}
-      <div class="fifteen-home__carb-badge">
-        <span>{{ section.settings.carb_eyebrow | escape }}</span>
-        <strong>{{ section.settings.carb_amount | escape }}</strong>
-        <span>{{ section.settings.carb_label | escape }}</span>
+<section class="f15-native" style="--navy:#071f48;--lime:#93e52f;--ink:#071f48;--soft:#f7f8f4;">
+  <div class="f15-hero">
+    <div class="f15-wrap f15-hero-grid">
+      <div class="f15-hero-copy">
+        <p class="f15-kicker">FOR LIFE'S LOWS</p>
+        <h1>WHEN LOW<br>HITS, REACH<br>FOR <span>FIFTEEN.</span></h1>
+        <p class="f15-lead">15g of fast-acting carbohydrates<br>in a small, convenient powder.</p>
+
+        <div class="f15-benefits">
+          <div><b>↯</b><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
+          <div><b>◉</b><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
+          <div><b>⬡</b><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
+        </div>
+
+        <a class="f15-cta" href="{{ shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
+        <p class="f15-script">Designed by a diabetic for diabetics.</p>
+      </div>
+
+      <div class="f15-hero-products" aria-label="Five Fifteen rescue powder flavors">
+        <div class="f15-packets">
+          {% assign names = 'GREEN APPLE,CHERRY,GRAPE,WATERMELON,BLUE RASPBERRY' | split: ',' %}
+          {% assign classes = 'apple,cherry,grape,watermelon,blue' | split: ',' %}
+          {% for name in names %}
+            <div class="f15-packet {{ classes[forloop.index0] }}">
+              <div class="f15-packet-top"></div>
+              <div class="f15-packet-logo">15<small>FIFTEEN</small></div>
+              <strong>RESCUE<br>POWDER</strong>
+              <em>FAST-ACTING<br>CARBOHYDRATES</em>
+              <span>15g</span>
+              <b>{{ name }}</b>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="f15-powders">
+          {% for name in names %}
+            <span class="f15-powder {{ classes[forloop.index0] }}"></span>
+          {% endfor %}
+        </div>
+        <div class="f15-spoon">
+          <span class="f15-spoon-bowl"></span><span class="f15-spoon-handle"></span>
+          <span class="f15-spoon-powder"></span>
+        </div>
+        <div class="f15-flavor-note">Same 15g.<br>Five Great<br>Flavors.</div>
+        <div class="f15-scoop-note">← Full scoop = 15g carbs<br><small>(for size reference)</small></div>
       </div>
     </div>
   </div>
 
-  <div class="fifteen-home__benefits-wrap">
-  <div class="fifteen-home__benefits page-width">
-    {% for block in section.blocks %}
-      {% if block.type == 'benefit' %}
-        <div class="fifteen-home__benefit" {{ block.shopify_attributes }}>
-          {% liquid
-            assign benefit_icon = ''
-            case block.settings.icon
-              when '◎'
-                assign benefit_icon = 'fifteen-icon-target.svg'
-              when 'ϟ'
-                assign benefit_icon = 'fifteen-icon-lightning.svg'
-              when '♧'
-                assign benefit_icon = 'fifteen-icon-backpack.svg'
-              when '☺'
-                assign benefit_icon = 'fifteen-icon-smile.svg'
-              when '♡'
-                assign benefit_icon = 'fifteen-icon-heart.svg'
-            endcase
-          %}
-          <span class="fifteen-home__benefit-icon" aria-hidden="true">
-            {% if benefit_icon != blank %}
-              <img src="{{ benefit_icon | asset_url }}" width="64" height="64" alt="" loading="lazy">
-            {% else %}
-              {{ block.settings.icon }}
-            {% endif %}
-          </span>
-          <h2>{{ block.settings.heading }}</h2>
-          <p>{{ block.settings.text }}</p>
+  <div class="f15-wrap f15-life">
+    <div class="f15-life-title">REAL LIFE.<br>SAME 15g.<i></i></div>
+    {% assign labels = 'AT WORK,IN THE CAR,AT THE GYM,IN THE MIDDLE OF THE NIGHT,IN YOUR BAG' | split: ',' %}
+    {% assign copy = 'Meetings, deadlines, and peace of mind.|Be ready wherever the day takes you.|Stay fueled and keep going.|Quickly treat lows and get back to rest.|Small enough to go anywhere.' | split: '|' %}
+    {% for label in labels %}
+      {% assign key = 'life_image_' | append: forloop.index %}
+      <div class="f15-life-card">
+        <div class="f15-life-photo life-{{ forloop.index }}">
+          {% if section.settings[key] != blank %}
+            {{ section.settings[key] | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320,520,900', sizes: '(min-width: 900px) 17vw, 44vw', alt: label }}
+          {% else %}
+            <div class="f15-life-fallback">
+              {% case forloop.index %}
+                {% when 1 %}💻
+                {% when 2 %}🚗
+                {% when 3 %}🏋
+                {% when 4 %}🌙
+                {% when 5 %}🎒
+              {% endcase %}
+            </div>
+          {% endif %}
         </div>
-      {% endif %}
+        <h3>{{ label }}</h3>
+        <p>{{ copy[forloop.index0] }}</p>
+      </div>
     {% endfor %}
   </div>
 
-  </div>
+  <section class="f15-ready f15-wrap">
+    <h2>THREE WAYS TO STAY READY<i></i></h2>
+    <div class="f15-ready-grid">
+      <article class="f15-product-card">
+        <div class="f15-product-art f15-15pack">
+          <div class="f15-box">15<small>FIFTEEN</small><b>RESCUE POWDER</b><strong>15</strong><em>PACKETS</em></div>
+          <div class="f15-mini-packet">15<small>RESCUE<br>POWDER</small></div>
+        </div>
+        <h3>RESCUE POWDER 15-PACK</h3>
+        <p>15 single-serve packets.<br>Take them anywhere.</p>
+        <a href="{{ shop_url }}">SHOP 15-PACK <span>→</span></a>
+      </article>
 
-  <div class="fifteen-home__collection page-width">
-    <h2>{{ section.settings.collection_heading }}</h2>
-    <div class="fifteen-home__products" style="--product-columns: {{ product_columns }}; --product-columns-tablet: {{ product_columns | at_most: 3 }}; --product-columns-mobile: {{ product_columns | at_most: 2 }};">
-      {% for product in featured_collection.products limit: product_limit %}
-        <article class="fifteen-home__product">
-          <a href="{{ product.url }}" class="fifteen-home__product-image">
-            {% if product.featured_image %}
-              {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '260, 430, 700', alt: product.featured_image.alt | escape }}
-            {% else %}
-              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-          </a>
-          <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
-          <div class="fifteen-home__product-description">{{ product.description | strip_html | truncate: 70 }}</div>
-          <a class="fifteen-home__product-link" href="{{ product.url }}">SHOP {{ product.title | upcase }} <span aria-hidden="true">→</span></a>
-        </article>
-      {% else %}
-        {% for i in (1..product_limit) %}
-          <article class="fifteen-home__product fifteen-home__product--empty">
-            <div class="fifteen-home__product-image">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
-            <h3>Product {{ i }}</h3>
-            <div class="fifteen-home__product-description">Add products to the selected collection.</div>
-          </article>
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-
-
-  {% if section.settings.show_story %}
-    <section class="fifteen-home__story page-width" aria-labelledby="FifteenStory-{{ section.id }}">
-      <fifteen-story-flip class="fifteen-home__story-flip">
-        <div class="fifteen-home__flip-inner">
-          <button class="fifteen-home__flip-front" data-flip-front type="button" aria-expanded="false" aria-controls="FifteenStoryBack-{{ section.id }}" aria-label="Our why">
-            {% if section.settings.story_flip_image != blank %}
-              {{ section.settings.story_flip_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '400, 685, 1000, 1200', sizes: '(min-width: 750px) 48vw, 100vw', alt: section.settings.story_founders }}
-            {% else %}
-              <img src="{{ 'fifteen-story-family.webp' | asset_url }}" width="685" height="553" loading="lazy" alt="{{ section.settings.story_founders | escape }}">
-            {% endif %}
-            <span class="fifteen-home__flip-hint">Our why <span aria-hidden="true">↗</span></span>
-          </button>
-          <div class="fifteen-home__flip-back" id="FifteenStoryBack-{{ section.id }}" data-flip-back>
-            <div class="fifteen-home__story-note">
-              <span class="fifteen-home__story-heart" aria-hidden="true">♡</span>
-              <p>For the lows.<br>For real life.<br>For families like ours.</p>
-              <span>{{ section.settings.story_signature | escape }}</span>
+      <article class="f15-product-card">
+        <div class="f15-product-art f15-bag">
+          <div class="f15-bag-shape">
+            <span class="f15-50">50<small>SERVINGS</small></span>
+            <div class="f15-bag-logo">15<small>FIFTEEN</small></div>
+            <b>RESCUE POWDER</b>
+            <em>FAST-ACTING CARBOHYDRATES</em>
+            <div class="f15-flavor-dots">
+              <i class="apple"></i><i class="cherry"></i><i class="grape"></i><i class="watermelon"></i><i class="blue"></i>
             </div>
-            <button type="button" class="fifteen-home__flip-return" data-flip-return>Back to photo</button>
+            <small>GREEN APPLE | CHERRY | GRAPE<br>WATERMELON | BLUE RASPBERRY</small>
+          </div>
+          <div class="f15-travel-bag">15</div>
+        </div>
+        <h3>RESCUE POWDER 50-SERVE BAG</h3>
+        <p>50 servings in a resealable bag<br>with reusable travel bags.</p>
+        <a href="{{ shop_url }}">SHOP 50-SERVE <span>→</span></a>
+      </article>
+
+      <article class="f15-product-card">
+        <div class="f15-product-art f15-bag">
+          <div class="f15-bag-shape">
+            <div class="f15-bag-logo">15<small>FIFTEEN</small></div>
+            <b>RESCUE SPHERES</b>
+            <em>FAST-ACTING CARBOHYDRATES</em>
+            <div class="f15-spheres">
+              <i class="apple"></i><i class="cherry"></i><i class="grape"></i><i class="watermelon"></i><i class="blue"></i>
+            </div>
+            <small>GREEN APPLE | CHERRY | GRAPE<br>WATERMELON | BLUE RASPBERRY</small>
           </div>
         </div>
-      </fifteen-story-flip>
-      <div class="fifteen-home__story-copy">
-        <p class="fifteen-home__story-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
-        <h2 id="FifteenStory-{{ section.id }}">{{ section.settings.story_heading | escape }}<span>{{ section.settings.story_heading_accent | escape }}</span></h2>
-        <svg class="fifteen-home__hero-underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" /></svg>
-        <div class="fifteen-home__story-text rte">{{ section.settings.story_text }}</div>
-        <div class="fifteen-home__story-signoff">
-          <span class="fifteen-home__story-signature">{{ section.settings.story_signature | escape }}</span>
-          <p><strong>{{ section.settings.story_founders | escape }}</strong><span>{{ section.settings.story_role | escape }}</span></p>
-        </div>
-      </div>
-    </section>
-  {% endif %}
+        <h3>RESCUE SPHERES</h3>
+        <p>15g of fast-acting carbs in a<br>crunchy, great-tasting sphere.</p>
+        <a href="{{ shop_url }}">SHOP RESCUE SPHERES <span>→</span></a>
+      </article>
+    </div>
+  </section>
 
-  <div class="fifteen-home__life page-width">
-    <div class="fifteen-home__life-image">
-      {% if section.settings.lifestyle_image != blank %}
-        {{ section.settings.lifestyle_image | image_url: width: 1100 | image_tag: loading: 'lazy', widths: '500, 800, 1100', alt: section.settings.lifestyle_image.alt | escape }}
-      {% else %}
-        <div class="fifteen-home__life-placeholder">MADE<br>FOR REAL<br>LIFE</div>
-      {% endif %}
-    </div>
-    <div class="fifteen-home__life-copy">
-      <h2>{{ section.settings.lifestyle_heading }}</h2>
-      <div class="rte">{{ section.settings.lifestyle_text }}</div>
-      <div class="fifteen-home__moments">
-        {% assign moments = 'School,Work,Gym,Travel,Bedside' | split: ',' %}
-        {% for moment in moments %}
-          <span class="fifteen-home__moment">
-            {% render 'fifteen-moment-icon', name: moment %}
-            <span class="fifteen-home__moment-label">{{ moment }}</span>
-          </span>
-        {% endfor %}
+  <section class="f15-story">
+    <div class="f15-wrap f15-story-grid">
+      <div class="f15-story-photo">
+        {% if section.settings.story_image != blank %}
+          {{ section.settings.story_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480,800,1200,1400', sizes: '(min-width:900px) 45vw,100vw', alt: 'Christian and Finn Arquilla' }}
+        {% else %}
+          <img src="{{ 'fifteen-story-family.webp' | asset_url }}" alt="Christian and Finn Arquilla" width="685" height="553" loading="lazy">
+        {% endif %}
+      </div>
+      <div class="f15-story-copy">
+        <p class="f15-story-kicker">OUR STORY</p>
+        <h2>A FATHER. A BETTER SOLUTION.</h2>
+        <p>I'm Christian, a dad, entrepreneur, and a person living with type 1 diabetes.</p>
+        <p>My son Finn was diagnosed with Type 1, and together we've experienced the daily highs and lows that come with it. We created Fifteen to make treating lows simpler, faster, and more convenient — because we live the problem, not lived.</p>
+        <p>Fifteen is designed by <strong>a diabetic for diabetics</strong>, because no one understands the need for a better solution more than we do.</p>
+        <div class="f15-signatures"><span>Christian</span><span>Finn</span></div>
+        <small>Christian and Finn Arquilla<br>Founders, Fifteen</small>
       </div>
     </div>
-    <div class="fifteen-home__subscribe">
-      <h2>{{ section.settings.subscribe_heading }}</h2>
-      <div class="rte">{{ section.settings.subscribe_text }}</div>
-      <ul class="fifteen-home__subscribe-benefits" role="list">
-        {% for i in (1..3) %}
-          {% assign benefit_key = 'subscribe_benefit_' | append: i %}
-          {% if section.settings[benefit_key] != blank %}
-            <li>
-              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="11" fill="currentColor" />
-                <path d="m7 12 3 3 7-7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span>{{ section.settings[benefit_key] | escape }}</span>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      {% if section.settings.subscribe_button_label != blank %}
-        <a class="fifteen-home__button" href="{{ section.settings.subscribe_button_link }}">{{ section.settings.subscribe_button_label }}</a>
-      {% endif %}
+  </section>
+
+  <section class="f15-community f15-wrap">
+    <div class="f15-community-head">
+      <div><h2>A COMMUNITY THAT GETS IT</h2><p>Real people. Real stories. Real life with Type 1.</p></div>
+      <a href="{{ shop_url }}">JOIN THE #FIFTEENCOMMUNITY →</a>
     </div>
-  </div>
+    <div class="f15-community-grid">
+      <article><div class="avatar">◉</div><blockquote>“Fifteen gives me confidence to handle lows anywhere.”</blockquote><small>— T1D since 2010</small></article>
+      <article><div class="avatar">🎒</div><blockquote>“I keep it in my backpack every day.”</blockquote><small>— T1D since 2018</small></article>
+      <article class="f15-community-center"><div class="shirts"><span>TYPE ONE<br>STRONG</span><span>TYPE ONE<br>STRONG</span><span>TYPE ONE<br>STRONG</span><span>TYPE ONE<br>STRONG</span></div></article>
+      <article><div class="avatar">◉</div><blockquote>“Fast, easy, and actually tastes great.”</blockquote><small>— T1D since 2016</small></article>
+      <article><div class="avatar">🧢</div><blockquote>“It's in my car, my bag, and my nightstand. Always ready.”</blockquote><small>— T1D since 1998</small></article>
+    </div>
+    <p class="f15-community-script">Different Lives. Same 15g.<i></i></p>
+  </section>
 </section>
 
-<script src="{{ 'fifteen-story-flip.js' | asset_url }}" defer></script>
-<script src="{{ 'fifteen-motion.js' | asset_url }}" defer></script>
-
 {% stylesheet %}
-  .fifteen-home { background: #fffdf9; color: var(--fifteen-navy); overflow: hidden; }
-  .fifteen-home .page-width { max-width: 1440px; margin: 0 auto; padding-left: clamp(1.25rem, 4vw, 4rem); padding-right: clamp(1.25rem, 4vw, 4rem); }
-  .fifteen-home__hero { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: stretch; min-height: min(38vw, 630px); }
-  .fifteen-home__hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(3.5rem, 8vw, 7.5rem) clamp(1rem, 5vw, 5rem) clamp(3.5rem, 8vw, 7.5rem) 0; }
-  .fifteen-home__hero-copy h1, .fifteen-home h2, .fifteen-home h3 { color: var(--fifteen-navy); font-family: var(--font-heading--family); font-weight: 800; letter-spacing: -.055em; }
-  .fifteen-home__hero-copy h1 { max-width: 100%; margin: 0; font-size: clamp(3.25rem, 5.6vw, 6.3rem); line-height: .95; }
-  .fifteen-home__underline { width: min(20rem, 72%); height: .45rem; margin: 1rem 0 1.55rem; background: var(--fifteen-pink); border-radius: 99rem; transform: rotate(-2deg); }
-  .fifteen-home__hero-underline { display: block; width: min(100%, 25rem); height: 1.25rem; margin: .3rem 0 1.4rem; color: var(--fifteen-pink); transform: rotate(-1deg); overflow: visible; }
-  .fifteen-home__hero-text { max-width: 32rem; font-size: clamp(1rem, 1.35vw, 1.3rem); line-height: 1.52; }
-  .fifteen-home__button { display: inline-flex; align-self: flex-start; margin-top: 1.8rem; padding: .9rem 1.55rem; border-radius: 99rem; background: var(--fifteen-pink); color: #fff; font-weight: 800; font-size: .82rem; letter-spacing: .02em; text-decoration: none; transition: transform .2s ease, filter .2s ease; }
-  .fifteen-home__button:hover { color: #fff; filter: brightness(.94); transform: translateY(-2px); }
-  .fifteen-home__hero-media { min-height: 100%; background: var(--fifteen-blue); overflow: hidden; }
-  .fifteen-home__hero-image { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .fifteen-home__hero-placeholder { height: 100%; min-height: 30rem; display: grid; place-items: center; align-content: center; gap: 2rem; text-align: center; color: var(--fifteen-navy); background: radial-gradient(circle at 54% 43%, #fffdf9 0 19%, transparent 19.25%), linear-gradient(130deg, #b8e6f7, var(--fifteen-blue)); }
-  .fifteen-home__dose { display: block; padding: 2rem; border-radius: 50%; background: #fffdf9; color: var(--fifteen-pink); font-size: 1rem; font-weight: 800; line-height: 1.2; }
-  .fifteen-home__dose strong { font-size: 3.7rem; line-height: 1; }
-  .fifteen-home__hero-placeholder p { margin: 0; font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
-  .fifteen-home__benefits { display: grid; grid-template-columns: repeat(5, 1fr); padding-top: 2.25rem !important; padding-bottom: 2.25rem !important; }
-  .fifteen-home__benefit { min-height: 9rem; padding: .3rem 1.25rem; text-align: center; border-right: 1px solid #e6e1d9; }
-  .fifteen-home__benefit:last-child { border-right: 0; }
-  .fifteen-home__benefit-icon { display: block; min-height: 2.5rem; color: var(--fifteen-pink); font-size: 2.3rem; line-height: 1; }
-  .fifteen-home__benefit-icon img { display: block; width: clamp(3rem, 4.5vw, 4rem); height: auto; margin: 0 auto; }
-  .fifteen-home__benefit h2 { margin: .65rem 0 .35rem; font-size: .82rem; letter-spacing: -.02em; }
-  .fifteen-home__benefit p { margin: 0; font-size: .8rem; line-height: 1.38; }
-  .fifteen-home__collection { padding-top: clamp(2.8rem, 5vw, 4.5rem) !important; padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
-  .fifteen-home__collection > h2, .fifteen-home__life-copy > h2 { margin: 0 0 1.7rem; font-size: clamp(1.65rem, 2.7vw, 2.6rem); line-height: 1; text-align: center; text-transform: uppercase; }
-  .fifteen-home__products { display: grid; grid-template-columns: repeat(var(--product-columns, 6), minmax(0, 1fr)); gap: clamp(.65rem, 1.4vw, 1.4rem); }
-  .fifteen-home__product { text-align: center; }
-  .fifteen-home__product-image { display: block; aspect-ratio: .87; overflow: hidden; background: #e6f5f7; border-radius: .4rem; }
-  .fifteen-home__product:nth-child(2n) .fifteen-home__product-image { background: #f9ddd3; }
-  .fifteen-home__product:nth-child(3n) .fifteen-home__product-image { background: #e1def7; }
-  .fifteen-home__product-image img, .fifteen-home__product-image svg { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .fifteen-home__product h3 { margin: .9rem 0 .4rem; font-size: clamp(.75rem, 1vw, .95rem); line-height: 1.1; text-transform: uppercase; }
-  .fifteen-home__product h3 a { color: inherit; text-decoration: none; }
-  .fifteen-home__product-description { min-height: 2.5em; font-size: .72rem; line-height: 1.35; }
-  .fifteen-home__product-link { display: inline-block; margin-top: .75rem; color: var(--fifteen-pink); font-size: .7rem; font-weight: 800; text-decoration: none; }
-  .fifteen-home__life { display: grid; grid-template-columns: 1.05fr .95fr .92fr; gap: clamp(2rem, 4vw, 4rem); align-items: center; padding-top: 2rem !important; padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
-  .fifteen-home__life-image { aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: #fde9bd; }
-  .fifteen-home__life-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .fifteen-home__life-placeholder { display: grid; width: 100%; height: 100%; place-items: center; text-align: center; background: linear-gradient(135deg, #ffe5a6, #f7ba91); color: var(--fifteen-navy); font-family: var(--font-heading--family); font-size: clamp(1.8rem, 3.3vw, 3.5rem); font-weight: 800; line-height: .92; }
-  .fifteen-home__life-copy > h2 { text-align: left; }
-  .fifteen-home__life-copy .rte { font-size: 1rem; line-height: 1.55; }
-  .fifteen-home__moments { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .4rem; margin-top: 1.6rem; color: var(--fifteen-navy); font-size: clamp(.6rem, .85vw, .78rem); font-weight: 700; }
-  .fifteen-home__moment { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
-  .fifteen-home__moment svg { display: block; width: min(100%, 3rem); height: auto; aspect-ratio: 1; }
-  .fifteen-home__moment-label { white-space: nowrap; }
-  @media screen and (max-width: 749px) { .fifteen-home__moments { font-size: .75rem; } }
-  .fifteen-home__subscribe { padding: clamp(1.5rem, 3vw, 2.8rem); border-radius: 1rem; background: #fff; box-shadow: 0 .5rem 2rem rgba(8, 35, 74, .1); }
-  .fifteen-home__subscribe h2 { margin: 0 0 1rem; color: var(--fifteen-pink); font-size: clamp(1.6rem, 2.4vw, 2.45rem); line-height: .95; }
-  .fifteen-home__subscribe .rte { font-size: .92rem; line-height: 1.5; }
-  @media screen and (max-width: 989px) { .fifteen-home__hero { grid-template-columns: 1fr 1fr; } .fifteen-home__products { grid-template-columns: repeat(var(--product-columns-tablet, 3), minmax(0, 1fr)); row-gap: 2.2rem; } .fifteen-home__life { grid-template-columns: 1fr 1fr; } .fifteen-home__subscribe { grid-column: span 2; } }
-  @media screen and (max-width: 749px) { .fifteen-home__hero { grid-template-columns: 1fr; } .fifteen-home__hero-copy { padding: 3.7rem 0 3rem; } .fifteen-home__hero-copy h1 { max-width: 100%; font-size: clamp(2.3rem, 8.8vw, 4rem); } .fifteen-home__hero-media { min-height: 24rem; } .fifteen-home__benefits { grid-template-columns: repeat(2, 1fr); } .fifteen-home__benefit { min-height: 8rem; padding: .8rem; border-bottom: 1px solid #e6e1d9; } .fifteen-home__benefit:nth-child(2n) { border-right: 0; } .fifteen-home__benefit:last-child { grid-column: span 2; } .fifteen-home__products { grid-template-columns: repeat(var(--product-columns-mobile, 2), minmax(0, 1fr)); } .fifteen-home__life { grid-template-columns: 1fr; } .fifteen-home__life-copy > h2 { text-align: center; } .fifteen-home__subscribe { grid-column: auto; } }
+.f15-native{background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif;overflow:hidden}.f15-wrap{width:min(1440px,100%);margin:auto;padding-left:clamp(18px,4vw,58px);padding-right:clamp(18px,4vw,58px)}.f15-hero{background:linear-gradient(90deg,#f7f7f3 0 46%,#fff 46%)}.f15-hero-grid{display:grid;grid-template-columns:.78fr 1.22fr;min-height:610px;align-items:center}.f15-kicker{font-weight:900;letter-spacing:.08em;margin:0 0 8px;font-size:18px}.f15-hero h1{font-weight:1000;letter-spacing:-.055em;line-height:.9;font-size:clamp(54px,5.6vw,92px);margin:0;color:var(--navy)}.f15-hero h1 span{color:var(--lime)}.f15-lead{font-size:clamp(18px,1.55vw,26px);line-height:1.25;margin:18px 0 22px}.f15-benefits{display:flex;gap:30px;margin:10px 0 18px}.f15-benefits>div{display:flex;align-items:center;gap:10px}.f15-benefits b{font-size:36px}.f15-benefits span{font-weight:800;font-size:12px;line-height:1.05}.f15-cta{display:flex;justify-content:center;gap:18px;align-items:center;background:var(--lime);color:#081d3c;text-decoration:none;font-weight:900;border-radius:999px;padding:16px 24px;width:min(100%,390px);font-size:17px}.f15-script{font-family:cursive;font-style:italic;font-weight:700;font-size:26px;margin:12px 0 0 6px;transform:rotate(-2deg);text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:6px;text-underline-offset:6px}.f15-hero-products{position:relative;min-height:610px;display:flex;align-items:center;justify-content:center;padding:80px 20px 120px}.f15-packets{display:flex;align-items:flex-end;gap:10px;z-index:2}.f15-packet{width:110px;height:330px;border-radius:8px 8px 12px 12px;background:linear-gradient(#fff 0 77%,var(--flavor) 77%);box-shadow:0 12px 28px #001c4824;display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 10px 12px;position:relative;border:1px solid #e7e7e7}.f15-packet:before{content:"";position:absolute;top:0;left:0;right:0;height:20px;background:var(--flavor);border-radius:8px 8px 0 0}.f15-packet-logo{font-size:54px;font-weight:1000;font-style:italic;line-height:.8;color:#111;margin-top:18px}.f15-packet-logo small{display:block;font-size:10px;letter-spacing:.1em;font-style:normal;margin-top:6px}.f15-packet strong{font-size:13px;line-height:.95;margin-top:18px}.f15-packet em{font-size:7px;font-style:normal;margin-top:7px}.f15-packet>span{font-size:10px;font-weight:800;margin-top:8px}.f15-packet>b{font-size:10px;color:#fff;margin-top:auto}.apple{--flavor:#7ccf2b}.cherry{--flavor:#e21e2f}.grape{--flavor:#7435b7}.watermelon{--flavor:#ef4672}.blue{--flavor:#0d9fe5}.f15-powders{position:absolute;bottom:92px;left:16%;right:18%;display:flex;justify-content:space-around;z-index:1}.f15-powder{width:72px;height:36px;background:var(--flavor);clip-path:polygon(0 100%,50% 0,100% 100%);filter:saturate(.8) brightness(1.25)}.f15-spoon{position:absolute;bottom:34px;right:2%;width:440px;height:78px;transform:rotate(-3deg)}.f15-spoon-bowl{position:absolute;left:0;top:9px;width:160px;height:66px;border-radius:50%;background:linear-gradient(180deg,#e9edf0,#9aa2a7);box-shadow:inset 0 7px 9px #ffffffaa}.f15-spoon-handle{position:absolute;left:140px;top:35px;width:300px;height:20px;border-radius:999px;background:linear-gradient(#dce2e5,#868f95)}.f15-spoon-powder{position:absolute;left:38px;top:13px;width:84px;height:40px;background:#ef4672;clip-path:polygon(0 100%,50% 0,100% 100%)}.f15-flavor-note{position:absolute;right:0;top:122px;font:700 31px/1.1 cursive;transform:rotate(-5deg)}.f15-flavor-note:after{content:"";display:block;height:7px;background:var(--lime);border-radius:99px;transform:rotate(-8deg);margin-top:9px}.f15-scoop-note{position:absolute;right:4%;bottom:0;font:700 22px/1.15 cursive;text-align:center}.f15-scoop-note small{font-size:15px}.f15-life{display:grid;grid-template-columns:140px repeat(5,1fr);gap:10px;padding-top:12px;padding-bottom:18px;align-items:start}.f15-life-title{font:900 28px/.95 cursive;align-self:center;transform:rotate(-5deg)}.f15-life-title i,.f15-ready h2 i,.f15-community-script i{display:block;width:95%;height:6px;background:var(--lime);border-radius:99px;margin-top:8px}.f15-life-photo{aspect-ratio:1.16;border-radius:5px;overflow:hidden;background:#eef1ef}.f15-life-photo img{width:100%;height:100%;object-fit:cover;display:block}.f15-life-fallback{width:100%;height:100%;display:grid;place-items:center;font-size:54px;background:linear-gradient(135deg,#e3e9e6,#cdd8d2)}.f15-life-card h3{font-size:14px;text-align:center;margin:7px 0 2px}.f15-life-card p{font-size:11px;line-height:1.2;text-align:center;margin:0}.f15-ready{padding-top:10px;padding-bottom:28px}.f15-ready>h2{text-align:center;font-weight:1000;letter-spacing:-.04em;font-size:30px;margin:0 0 16px}.f15-ready>h2 i{width:70px;margin:4px auto 0}.f15-ready-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.f15-product-card{text-align:center}.f15-product-art{height:310px;background:#f4f6f5;border-radius:7px;display:flex;align-items:center;justify-content:center;position:relative}.f15-box{width:170px;height:225px;background:#fff;border:1px solid #dde1e3;box-shadow:0 9px 25px #001c4814;display:flex;flex-direction:column;align-items:center;padding:20px;font-weight:1000;font-style:italic;font-size:78px;line-height:.65}.f15-box small{font-size:12px;margin:10px}.f15-box b{font-size:17px;line-height:1;font-style:normal;margin-top:18px}.f15-box strong{font-size:44px;line-height:1;margin-top:auto}.f15-box em{font-size:11px;font-style:normal}.f15-mini-packet{position:absolute;right:13%;bottom:24px;width:70px;height:150px;background:linear-gradient(#fff 0 72%,#7ccf2b 72%);box-shadow:0 9px 20px #001c481c;font-size:42px;font-weight:1000;font-style:italic;padding-top:30px}.f15-mini-packet small{display:block;font-size:8px;font-style:normal}.f15-bag-shape{width:285px;height:245px;background:#fff;border:1px solid #dfe4e5;border-radius:10px 10px 22px 22px;box-shadow:0 9px 25px #001c4813;padding:18px;display:flex;flex-direction:column;align-items:center;position:relative}.f15-bag-shape:before{content:"";position:absolute;left:0;right:0;top:17px;border-top:2px solid #e8ecec}.f15-50{position:absolute;left:16px;top:11px;font-size:25px;font-weight:1000}.f15-50 small{display:block;font-size:6px}.f15-bag-logo{font-size:62px;font-weight:1000;font-style:italic;line-height:.72;margin-top:28px}.f15-bag-logo small{display:block;font-size:10px;letter-spacing:.15em;font-style:normal;margin-top:8px}.f15-bag-shape>b{font-size:18px;margin-top:16px}.f15-bag-shape>em{font-size:8px;font-style:normal}.f15-bag-shape>small{font-size:8px;font-weight:800;line-height:1.4}.f15-flavor-dots,.f15-spheres{display:flex;gap:7px;margin:14px 0 7px}.f15-flavor-dots i{width:25px;height:16px;border-radius:50% 50% 30% 30%;background:var(--flavor);display:block}.f15-spheres i{width:31px;height:31px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff66 0 5%,transparent 6%),radial-gradient(circle at 70% 70%,#00000018 0 4%,transparent 5%),var(--flavor);display:block;box-shadow:inset 0 0 8px #0002}.f15-travel-bag{position:absolute;right:11%;bottom:20px;width:55px;height:95px;background:#fff;border:1px solid #ddd;display:grid;place-items:center;font-weight:1000}.f15-product-card h3{font-size:18px;margin:9px 0 4px}.f15-product-card p{font-size:14px;line-height:1.25;margin:0 0 11px}.f15-product-card>a{display:flex;justify-content:center;gap:18px;align-items:center;background:var(--navy);color:#fff;text-decoration:none;font-weight:900;border-radius:999px;padding:14px 18px;margin:0 auto;width:min(100%,290px);font-size:13px}.f15-story{background:#f7f8f4}.f15-story-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:stretch;padding-left:0}.f15-story-photo{min-height:420px}.f15-story-photo img{width:100%;height:100%;object-fit:cover;display:block}.f15-story-copy{padding:28px 58px;display:flex;flex-direction:column;justify-content:center}.f15-story-kicker{color:#79c91e;font-weight:900;margin:0 0 5px}.f15-story-copy h2{font-size:33px;letter-spacing:-.04em;margin:0 0 8px}.f15-story-copy p{font-size:15px;line-height:1.35;margin:0 0 7px}.f15-signatures{display:flex;gap:48px;margin:8px 0;font:italic 34px cursive}.f15-story-copy small{font-size:11px}.f15-community{padding-top:20px;padding-bottom:28px}.f15-community-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:10px}.f15-community-head h2{font-size:31px;letter-spacing:-.04em;margin:0}.f15-community-head p{margin:0;font-size:15px}.f15-community-head>a{border:1px solid var(--navy);border-radius:999px;padding:10px 20px;text-decoration:none;color:var(--navy);font-weight:800;font-size:12px}.f15-community-grid{display:grid;grid-template-columns:1fr 1fr 1.45fr 1fr 1fr;gap:8px}.f15-community-grid article{min-height:180px;background:#eef2ef;border-radius:4px;padding:16px;display:flex;flex-direction:column;justify-content:center}.f15-community-grid .avatar{font-size:46px}.f15-community-grid blockquote{font:700 16px/1.15 cursive;margin:7px 0}.f15-community-grid small{font-size:9px}.f15-community-center{padding:0!important;background:linear-gradient(#efa45e,#fdc480)!important}.shirts{display:flex;justify-content:center;align-items:center;gap:8px;height:100%}.shirts span{background:#1c2836;color:#fff;padding:28px 8px 22px;border-radius:28px 28px 5px 5px;font-size:10px;text-align:center;font-weight:800}.f15-community-script{text-align:center;font:italic 30px cursive;margin:10px auto 0;width:max-content}.f15-community-script i{width:170px;margin:0 auto}.f15-native a{transition:transform .18s ease,filter .18s ease}.f15-native a:hover{transform:translateY(-2px);filter:brightness(.97)}
 
-  .fifteen-home__story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: clamp(2rem, 4vw, 4rem); padding-bottom: clamp(3rem, 6vw, 6rem); }
-  .fifteen-home__story-media { overflow: hidden; border-radius: 1rem; background: #f9ddd3; }
-  .fifteen-home__story-image { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-  .fifteen-home__story-note { min-height: 24rem; padding: clamp(2rem, 4vw, 4rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
-  .fifteen-home__story-heart { color: var(--fifteen-pink); font-size: 4rem; line-height: 1; }
-  .fifteen-home__story-note p { margin: 1.25rem 0; font-family: var(--font-heading--family); font-size: clamp(2rem, 3.4vw, 3.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -.055em; }
-  .fifteen-home__story-note > span:last-child { font-weight: 700; font-size: .9rem; }
-  .fifteen-home__story-eyebrow { margin: 0 0 .85rem; color: var(--fifteen-navy); font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  .fifteen-home__story-copy h2 { margin: 0; font-size: clamp(2rem, 3.3vw, 3.3rem); line-height: 1.05; text-transform: uppercase; }
-  .fifteen-home__story-copy h2 > span { display: block; color: var(--fifteen-pink); }
-  .fifteen-home__story-text { max-width: 38rem; font-size: 1rem; line-height: 1.65; }
-  .fifteen-home__story-text p { margin: 0 0 1rem; }
-  .fifteen-home__story-signoff { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.75rem; }
-  .fifteen-home__story-signature { color: var(--fifteen-pink); font-family: var(--font-heading--family); font-weight: 800; font-style: italic; font-size: clamp(1.6rem, 2.5vw, 2.5rem); letter-spacing: -.04em; }
-  .fifteen-home__story-signoff p { margin: 0; padding-left: 1rem; border-left: 2px solid #e6e1d9; font-size: .8rem; line-height: 1.5; }
-  .fifteen-home__story-signoff p > span { display: block; }
-  @media screen and (max-width: 749px) {
-    .fifteen-home__story { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
-    .fifteen-home__story-note { min-height: 18rem; }
-    .fifteen-home__story-copy { min-width: 0; }
-  }
-
-  .fifteen-home .fifteen-home__hero { max-width: none; padding-right: 0; padding-left: max(clamp(1.25rem, 4vw, 4rem), calc((100% - 1440px) / 2 + 4rem)); background: #fffdf9; }
-  .fifteen-home__benefits-wrap { background: #ffffff; }
-  .fifteen-home__hero-media.fifteen-home__hero-media--gradient { position: relative; align-self: stretch; width: 100%; min-height: 28rem; container-type: inline-size; background: linear-gradient(120deg, var(--fifteen-blue) 0%, #d9f1fa 65%, #ffffff 100%); }
-  .fifteen-home__wave { position: absolute; pointer-events: none; display: block; }
-  .fifteen-home__wave--desktop { top: 0; left: -1px; width: 16%; height: 100%; }
-  .fifteen-home__wave--mobile { display: none; }
-  @media screen and (max-width: 749px) {
-    .fifteen-home__hero-media.fifteen-home__hero-media--gradient { min-height: 20rem; aspect-ratio: 1.2; }
-    .fifteen-home__wave--desktop { display: none; }
-    .fifteen-home__wave--mobile { display: block; top: -1px; left: 0; width: 100%; height: 16%; }
-    .fifteen-home__hero-media--gradient .fifteen-home__carb-badge { top: 20%; right: 5%; }
-  }
-  .fifteen-home__carb-badge { position: absolute; top: 5%; right: 3%; width: 32%; aspect-ratio: 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fffdf9; color: var(--fifteen-pink); font-family: var(--font-heading--family); font-weight: 800; text-align: center; line-height: 1.1; }
-  .fifteen-home__carb-badge span { font-size: 3.6cqw; text-transform: uppercase; }
-  .fifteen-home__carb-badge strong { display: block; margin: .035em 0; font-size: 10cqw; font-weight: 800; letter-spacing: -.06em; line-height: 1; }
-
-  .fifteen-home__hero-accent {
-    position: absolute;
-    left: 2%;
-    bottom: -2%;
-    width: 63%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center bottom;
-}
-  .fifteen-home__carb-badge { z-index: 1; }
-  @media screen and (max-width: 749px) {
-    .fifteen-home__hero-accent { left: 3%; bottom: 3%; width: 60%; height: 78%; }
-  }
-
-  .fifteen-home__story-flip { display: block; min-width: 0; perspective: 1200px; }
-  .fifteen-home__flip-front, .fifteen-home__flip-return { display: none; }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-inner { display: grid; transform-style: preserve-3d; transition: transform .65s cubic-bezier(.2,.7,.2,1); }
-  .fifteen-home__story-flip.is-flipped .fifteen-home__flip-inner { transform: rotateY(180deg); }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-front,
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 1rem; }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-front { display: block; position: relative; width: 100%; min-height: 26rem; padding: 0; border: 0; overflow: hidden; cursor: pointer; background: #f9ddd3; color: #fff; }
-  .fifteen-home__flip-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-  .fifteen-home__flip-hint { position: absolute; bottom: 1rem; right: 1rem; padding: .7rem 1rem; border-radius: 99rem; background: var(--fifteen-navy); font: inherit; font-weight: 700; }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-back { transform: rotateY(180deg); position: relative; background: #f9ddd3; padding: 0 0 3rem; }
-  .fifteen-home__story-flip.is-ready .fifteen-home__flip-return { display: inline-block; position: absolute; bottom: 1rem; left: clamp(2rem, 4vw, 4rem); margin-top: 0; border: 0; border-bottom: 1px solid currentColor; padding: .35rem 0; background: transparent; color: var(--fifteen-navy); font: inherit; cursor: pointer; }
-  .fifteen-home__flip-front:focus-visible, .fifteen-home__flip-return:focus-visible { outline: 3px solid var(--fifteen-pink); outline-offset: 4px; }
-  @media (prefers-reduced-motion: reduce) { .fifteen-home__story-flip.is-ready .fifteen-home__flip-inner { transition: none; } }
-
-  .fifteen-home__subscribe-benefits { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: .7rem; }
-  .fifteen-home__subscribe-benefits:empty { display: none; }
-  .fifteen-home__subscribe-benefits li { display: flex; align-items: flex-start; gap: .6rem; font-size: .9rem; line-height: 1.4; }
-  .fifteen-home__subscribe-benefits svg { flex: 0 0 1.25rem; width: 1.25rem; height: 1.25rem; color: var(--fifteen-pink); }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .fifteen-home__button { transition: transform .25s ease, filter .25s ease, box-shadow .25s ease; }
-    .fifteen-home__product-image img { transition: transform .55s cubic-bezier(.2,.65,.3,1); }
-    .fifteen-home__benefit-icon img, .fifteen-home__moment svg { transition: transform .3s ease; }
-    .fifteen-home__product-link { transition: color .2s ease; }
-    .fifteen-home__product-link > span { display: inline-block; transition: transform .25s ease; }
-    .fifteen-home__button:active { transform: translateY(0) scale(.98); }
-    @media (hover: hover) and (pointer: fine) {
-      .fifteen-home__button:hover { transform: translateY(-3px); box-shadow: 0 .45rem 1rem rgba(7,31,72,.14); }
-      .fifteen-home__product:hover .fifteen-home__product-image img { transform: scale(1.035); }
-      .fifteen-home__product:hover .fifteen-home__product-link > span { transform: translateX(.25rem); }
-      .fifteen-home__benefit:hover .fifteen-home__benefit-icon img,
-      .fifteen-home__moment:hover svg { transform: translateY(-.2rem); }
-    }
-    .fifteen-home__product:focus-within .fifteen-home__product-image img { transform: scale(1.035); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .fifteen-home__button, .fifteen-home__product-image img,
-    .fifteen-home__benefit-icon img, .fifteen-home__moment svg,
-    .fifteen-home__product-link > span { transition: none; }
-    .fifteen-home__button:hover { transform: none; }
-  }
-
-
-  /* Keep the desktop composition on phones, giving the copy most of the width. */
-  @media screen and (max-width: 749px) {
-    .fifteen-home .fifteen-home__hero {
-      grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
-      min-height: 0;
-      padding-left: 1.1rem;
-      padding-right: 0;
-    }
-    .fifteen-home .fifteen-home__hero-copy {
-      min-width: 0;
-      padding: 2.5rem .65rem 2.5rem 0;
-    }
-    .fifteen-home .fifteen-home__hero-copy h1 {
-      font-size: clamp(1.9rem, 6.7vw, 3rem);
-      line-height: 1;
-      overflow-wrap: break-word;
-    }
-    .fifteen-home .fifteen-home__hero-underline {
-      height: .8rem;
-      margin: .35rem 0 1rem;
-    }
-    .fifteen-home .fifteen-home__hero-text {
-      font-size: 1rem;
-      line-height: 1.45;
-    }
-    .fifteen-home .fifteen-home__hero-copy .fifteen-home__button {
-      margin-top: 1.2rem;
-      padding: .8rem 1rem;
-      max-width: 100%;
-      text-align: center;
-      justify-content: center;
-    }
-    .fifteen-home .fifteen-home__hero-media--gradient {
-      min-height: 0;
-      aspect-ratio: auto;
-    }
-    .fifteen-home .fifteen-home__wave--desktop {
-      display: block;
-      width: 16%;
-      height: 100%;
-    }
-    .fifteen-home .fifteen-home__wave--mobile { display: none; }
-    .fifteen-home .fifteen-home__hero-accent {
-      left: 6%;
-      bottom: 10%;
-      width: 90%;
-      height: 60%;
-      object-position: center bottom;
-    }
-    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
-      top: 8%;
-      right: 7%;
-      width: 65%;
-    }
-    .fifteen-home .fifteen-home__carb-badge span { font-size: clamp(.6rem, 6cqw, 1rem); }
-    .fifteen-home .fifteen-home__carb-badge strong { font-size: clamp(1.5rem, 20cqw, 3rem); }
-  }
-
-
-  /* Size against the actual text column and keep the closing phrase intact. */
-  .fifteen-home .fifteen-home__hero-copy { container-type: inline-size; }
-  .fifteen-home .fifteen-home__hero-copy h1 {
-    font-size: min(clamp(3.25rem, 5.6vw, 6.3rem), 12cqw);
-  }
-  .fifteen-home__keep-together { white-space: nowrap; }
-  @media screen and (max-width: 749px) {
-    .fifteen-home .fifteen-home__hero-copy h1 {
-      font-size: min(clamp(1.9rem, 6.7vw, 3rem), 12cqw);
-    }
-  }
-
-
-  /* Give the mobile badge and product cutout separate space. */
-  @media screen and (max-width: 749px) {
-    .fifteen-home .fifteen-home__hero-underline {
-      width: 74%;
-      max-width: 18rem;
-    }
-    .fifteen-home .fifteen-home__hero-accent {
-      bottom: 3%;
-      height: 53%;
-      width: 86%;
-      left: 9%;
-    }
-    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
-      top: 6%;
-      right: 10%;
-      width: 50%;
-    }
-    .fifteen-home .fifteen-home__carb-badge span {
-      font-size: clamp(.5rem, 4.8cqw, .8rem);
-    }
-    .fifteen-home .fifteen-home__carb-badge strong {
-      font-size: clamp(1.2rem, 15cqw, 2.3rem);
-    }
-  }
-
-
-  /* Mobile reference: badge above a larger, bottom-aligned product cutout. */
-  @media screen and (max-width: 749px) {
-    .fifteen-home .fifteen-home__hero-accent {
-      left: -7%;
-      bottom: 3%;
-      width: 105%;
-      height: 55%;
-      object-position: center bottom;
-    }
-    .fifteen-home .fifteen-home__hero-media--gradient .fifteen-home__carb-badge {
-      top: 6%;
-      right: 10%;
-      width: 65%;
-    }
-    .fifteen-home .fifteen-home__carb-badge span {
-      font-size: clamp(.55rem, 5.5cqw, .9rem);
-    }
-    .fifteen-home .fifteen-home__carb-badge strong {
-      font-size: clamp(1.5rem, 20cqw, 3rem);
-    }
-  }
-
-
-  /* Keep the supporting lifestyle photo compact on mobile. */
-  @media screen and (max-width: 749px) {
-    .fifteen-home .fifteen-home__life-image {
-      width: min(48vw, 12rem);
-      justify-self: center;
-    }
-  }
-
+@media(max-width:1100px){.f15-hero-grid{grid-template-columns:.9fr 1.1fr}.f15-packet{width:82px;height:285px}.f15-packet-logo{font-size:42px}.f15-flavor-note{display:none}.f15-spoon{width:330px}.f15-spoon-handle{width:210px}.f15-life{grid-template-columns:110px repeat(5,1fr)}}
+@media(max-width:800px){.f15-hero{background:#f7f7f3}.f15-hero-grid{grid-template-columns:1fr}.f15-hero-copy{padding-top:34px}.f15-hero h1{font-size:clamp(48px,13vw,72px)}.f15-hero-products{min-height:530px;padding:55px 0 110px}.f15-packets{gap:5px;transform:scale(.84)}.f15-benefits{gap:14px;flex-wrap:wrap}.f15-life{grid-template-columns:repeat(2,1fr)}.f15-life-title{grid-column:1/-1;text-align:center}.f15-life-card:last-child{grid-column:1/-1;width:50%;justify-self:center}.f15-ready-grid{grid-template-columns:1fr}.f15-product-art{height:300px}.f15-story-grid{grid-template-columns:1fr;padding-right:0}.f15-story-copy{padding:26px 20px}.f15-community-head{align-items:flex-start;gap:14px;flex-direction:column}.f15-community-grid{grid-template-columns:1fr 1fr}.f15-community-center{grid-column:1/-1}.f15-community-grid article{min-height:150px}}
+@media(max-width:520px){.f15-wrap{padding-left:14px;padding-right:14px}.f15-kicker{font-size:14px}.f15-lead{font-size:17px}.f15-benefits>div{gap:6px}.f15-benefits b{font-size:28px}.f15-benefits span{font-size:10px}.f15-script{font-size:20px}.f15-hero-products{margin-left:-8px;margin-right:-8px}.f15-packets{transform:scale(.62);width:150%;margin-left:-25%;margin-right:-25%}.f15-powders{bottom:96px}.f15-spoon{transform:scale(.72) rotate(-3deg);transform-origin:right bottom}.f15-scoop-note{font-size:16px}.f15-life{gap:12px}.f15-ready>h2,.f15-community-head h2{font-size:26px}.f15-story-photo{min-height:300px}.f15-community-grid{grid-template-columns:1fr}.f15-community-center{grid-column:auto}.f15-community-script{font-size:25px}}
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "15 Fifteen homepage",
+  "name": "Fifteen native homepage",
   "settings": [
-    {
-      "type": "html",
-      "id": "heading",
-      "label": "Hero headline (HTML)",
-      "info": "Use <br> for line breaks. Enter headline text without an h1 tag.",
-      "default": "One Dose.<br>15 Grams.<br>No Guesswork."
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Hero text",
-      "default": "<p>Delicious, convenient foods and drinks with exactly 15 grams of fast-acting carbohydrates—made for life with type 1 diabetes.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Hero button label",
-      "default": "SHOP THE COLLECTION"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Hero button link"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_accent_image",
-      "label": "Hero product accent"
-    },
-    {
-      "type": "text",
-      "id": "carb_eyebrow",
-      "label": "Carb badge top line",
-      "default": "EXACTLY"
-    },
-    {
-      "type": "text",
-      "id": "carb_amount",
-      "label": "Carb badge amount",
-      "default": "15g"
-    },
-    {
-      "type": "text",
-      "id": "carb_label",
-      "label": "Carb badge bottom line",
-      "default": "CARBS"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent color",
-      "default": "#e83f74"
-    },
-    {
-      "type": "color",
-      "id": "navy_color",
-      "label": "Navy color",
-      "default": "#071f48"
-    },
-    {
-      "type": "color",
-      "id": "hero_color",
-      "label": "Hero gradient blue",
-      "default": "#92d7ef"
-    },
-    {
-      "type": "header",
-      "content": "Collection"
-    },
-    {
-      "type": "text",
-      "id": "collection_heading",
-      "label": "Heading",
-      "default": "MEET THE 15 COLLECTION"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Products collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "label": "Products to show",
-      "min": 3,
-      "max": 6,
-      "step": 1,
-      "default": 6
-    },
-    {
-      "type": "header",
-      "content": "Lifestyle"
-    },
-    {
-      "type": "image_picker",
-      "id": "lifestyle_image",
-      "label": "Lifestyle image"
-    },
-    {
-      "type": "text",
-      "id": "lifestyle_heading",
-      "label": "Heading",
-      "default": "MADE FOR REAL LIFE"
-    },
-    {
-      "type": "richtext",
-      "id": "lifestyle_text",
-      "label": "Text",
-      "default": "<p>Whether you're at school, at work, at practice, or on an adventure—15 is here for your lows, so you can get back to your highs.</p>"
-    },
-    {
-      "type": "text",
-      "id": "subscribe_heading",
-      "label": "Subscribe heading",
-      "default": "NEVER BE WITHOUT 15"
-    },
-    {
-      "type": "richtext",
-      "id": "subscribe_text",
-      "label": "Subscribe text",
-      "default": "<p>Subscribe and save on your favorite 15g essentials.</p>"
-    },
-    {
-      "type": "text",
-      "id": "subscribe_benefit_1",
-      "label": "Subscribe benefit 1",
-      "default": "Customize your pack"
-    },
-    {
-      "type": "text",
-      "id": "subscribe_benefit_2",
-      "label": "Subscribe benefit 2",
-      "default": "Save up to 15%"
-    },
-    {
-      "type": "text",
-      "id": "subscribe_benefit_3",
-      "label": "Subscribe benefit 3",
-      "default": "Skip or cancel anytime"
-    },
-    {
-      "type": "text",
-      "id": "subscribe_button_label",
-      "label": "Subscribe button label",
-      "default": "SUBSCRIBE & SAVE"
-    },
-    {
-      "type": "url",
-      "id": "subscribe_button_link",
-      "label": "Subscribe button link"
-    },
-    {
-      "type": "header",
-      "content": "Our story"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_story",
-      "label": "Show our story",
-      "default": true
-    },
-    {
-      "type": "image_picker",
-      "id": "story_image",
-      "label": "Founder photo"
-    },
-    {
-      "type": "image_picker",
-      "id": "story_flip_image",
-      "label": "Story flip photo"
-    },
-    {
-      "type": "text",
-      "id": "story_eyebrow",
-      "label": "Eyebrow",
-      "default": "OUR STORY"
-    },
-    {
-      "type": "text",
-      "id": "story_heading",
-      "label": "Heading",
-      "default": "A personal mission."
-    },
-    {
-      "type": "text",
-      "id": "story_heading_accent",
-      "label": "Accent heading",
-      "default": "A better way through the lows."
-    },
-    {
-      "type": "richtext",
-      "id": "story_text",
-      "label": "Story",
-      "default": "<p>As a father of a child with Type 1 diabetes, I’ve seen how hard lows can be on kids and parents. The options out there just didn’t feel good enough.</p><p><strong>So I created Fifteen.</strong></p><p>It’s what I wished we had: a simpler, more convenient way to handle the lows, so we can get back to living.</p>"
-    },
-    {
-      "type": "text",
-      "id": "story_signature",
-      "label": "Signature",
-      "default": "Christian & Finn"
-    },
-    {
-      "type": "text",
-      "id": "story_founders",
-      "label": "Founder names",
-      "default": "Christian and Finn Arquilla"
-    },
-    {
-      "type": "text",
-      "id": "story_role",
-      "label": "Founder title",
-      "default": "Founders"
-    }
+    {"type":"url","id":"shop_link","label":"Shop button link"},
+    {"type":"image_picker","id":"life_image_1","label":"At work image"},
+    {"type":"image_picker","id":"life_image_2","label":"In the car image"},
+    {"type":"image_picker","id":"life_image_3","label":"At the gym image"},
+    {"type":"image_picker","id":"life_image_4","label":"Middle of the night image"},
+    {"type":"image_picker","id":"life_image_5","label":"In your bag image"},
+    {"type":"image_picker","id":"story_image","label":"Christian and Finn story photo"}
   ],
-  "blocks": [
-    {
-      "type": "benefit",
-      "name": "Benefit",
-      "limit": 5,
-      "settings": [
-        {
-          "type": "text",
-          "id": "icon",
-          "label": "Icon",
-          "default": "◎"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "EXACTLY 15g"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Text",
-          "default": "No counting. No guessing."
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "15 Fifteen homepage",
-      "blocks": [
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "◎",
-            "heading": "EXACTLY 15g",
-            "text": "No counting. No guessing."
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "ϟ",
-            "heading": "FAST-ACTING",
-            "text": "Designed to help raise low blood sugar."
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "♧",
-            "heading": "EASY TO CARRY",
-            "text": "Fits in your pocket, bag, or anywhere."
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "☺",
-            "heading": "GREAT TASTE",
-            "text": "Foods and drinks you'll actually enjoy."
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "♡",
-            "heading": "MADE FOR YOU",
-            "text": "Created by people who get it."
-          }
-        }
-      ]
-    }
-  ]
+  "presets":[{"name":"Fifteen native homepage"}]
 }
 {% endschema %}
