@@ -250,15 +250,15 @@
 .f15 .f15__flavor-pills button {font-weight:700}
 .f15__benefit-icon--tongue{mix-blend-mode:multiply}
 
-/* Static artwork, with crisp HTML annotations beside the packets and spoon arrow. */
-.f15__hero-static{display:grid;grid-template-columns:minmax(0,1fr) 8vw;gap:1.5vw;align-items:center;min-width:0;padding:3vw 0}
-.f15__hero-art{position:relative;min-width:0;margin:0}
+/* Static artwork reaches the right edge; annotations sit over its open space. */
+.f15__hero-static{position:relative;display:block;width:calc(100% + 4vw);min-width:0;padding:3vw 0}
+.f15__hero-art{position:relative;width:100%;min-width:0;margin:0 0 0 auto}
 .f15__hero-art>img{display:block;width:100%;height:auto}
 .f15__hero-scoop-label{position:absolute;left:56%;top:91%;width:43%;margin:0;color:var(--navy);font:400 1.1vw/1.4 "Story Script",sans-serif}
-.f15__hero-static-note{align-self:center;margin:0 0 5vw;color:var(--navy);font:400 2.5vw/1.05 "Story Script",sans-serif}
+.f15__hero-static-note{position:absolute;z-index:1;right:.3vw;top:30%;width:8vw;margin:0;color:var(--navy);font:400 2.5vw/1.05 "Story Script",sans-serif}
 @media(max-width:850px){
- .f15__hero-static{grid-template-columns:minmax(0,1fr) 14vw;gap:2vw;padding:5vw 0 7vw}
- .f15__hero-static-note{font-size:5vw;margin-bottom:8vw}
+ .f15__hero-static{width:calc(100% + 4vw);padding:5vw 0 7vw}
+ .f15__hero-static-note{right:.5vw;top:28%;width:14vw;font-size:4.5vw}
  .f15__hero-scoop-label{font-size:2.2vw}
 }
 {% endstylesheet %}
