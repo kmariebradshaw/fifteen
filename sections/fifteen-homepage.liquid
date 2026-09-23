@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
 {% liquid
   assign shop_url = section.settings.shop_link | default: routes.all_products_collection_url
   assign names = 'Green Apple,Cherry,Grape,Watermelon,Blue Raspberry' | split: ','
@@ -249,6 +253,17 @@
   .f15__hero .f15__benefit-icon{font-size:6vw}
   .f15__hero .f15__button{width:80vw;padding:3.5vw 4vw;gap:5vw;border-radius:10vw;font-size:3.2vw;line-height:4vw}
   .f15__hero .f15__hand{font-size:4.4vw;line-height:6vw;margin:3vw 0 0;text-decoration-thickness:.8vw;text-underline-offset:1vw}
+}
+/* Handwritten accents use the supplied regular face without synthetic bold or italics. */
+.f15 .f15__hand,
+.f15 .f15__flavor-note,
+.f15 .f15__scoop-copy,
+.f15 .f15__section-heading p,
+.f15 .f15__signatures,
+.f15 .f15__community-hand {
+  font-family: "Story Script", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 {% endstylesheet %}
 
