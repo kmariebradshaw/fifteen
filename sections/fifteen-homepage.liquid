@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Story+Script&display=swap" rel="stylesheet">
 
 {% liquid
   assign shop_url = section.settings.shop_link | default: routes.all_products_collection_url
@@ -18,7 +18,7 @@
 
         <div class="f15__benefits" aria-label="Product benefits">
           <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2 5 17h8l-2 13 16-19h-9l3-9Z"/></svg><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
-          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-dissolve.png' | asset_url }}" alt="" width="40" height="58" style="object-fit:contain;mix-blend-mode:multiply"><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
+          <div><svg class="f15__benefit-icon f15__benefit-icon--tongue" viewBox="9 6 33 38" aria-hidden="true" focusable="false"><image href="{{ 'fifteen-benefit-dissolve.png' | asset_url }}" width="40" height="58"/></svg><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
           <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 2 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16"/></svg><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
         </div>
 
@@ -283,6 +283,32 @@
  .f15__hero .f15__hand{font-size:5.4vw;line-height:7vw;margin:5vw 0 4vw .5vw}
  .f15__hand-underline{width:43vw;height:5.5vw;bottom:-3.5vw}
 }
+
+/* Body copy uses Poppins; display headings and Story Script accents retain their faces. */
+.f15 .f15__lead,
+.f15 .f15__benefits,
+.f15 .f15__button,
+.f15 .f15__life-card p,
+.f15 .f15__product-copy p,
+.f15 .f15__story-copy > p:not(.f15__eyebrow),
+.f15 .f15__story-copy > small,
+.f15 .f15__community-head p,
+.f15 .f15__community-head > a,
+.f15 .f15__flavor-pills button {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+.f15 .f15__lead,
+.f15 .f15__life-card p,
+.f15 .f15__product-copy p,
+.f15 .f15__story-copy > p:not(.f15__eyebrow),
+.f15 .f15__story-copy > small,
+.f15 .f15__community-head p {font-weight:400}
+.f15 .f15__benefits,
+.f15 .f15__button,
+.f15 .f15__community-head > a,
+.f15 .f15__flavor-pills button {font-weight:700}
+.f15__benefit-icon--tongue{mix-blend-mode:multiply}
 {% endstylesheet %}
 
 {% schema %}
