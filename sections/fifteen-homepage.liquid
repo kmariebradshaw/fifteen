@@ -307,18 +307,20 @@
 .f15__benefit-icon--tongue{mix-blend-mode:multiply}
 
 /* Real packet cutouts remain the interactive flavor controls. */
-.f15 .f15__hero-stage{min-height:44vw;padding:4vw 0 12vw;min-width:0}
-.f15 .f15__packet-row{width:100%;gap:.8vw;transform:none;margin:0;align-items:end}
-.f15 .f15__packet{width:10vw;height:28vw;min-width:0;flex:0 1 10vw;position:relative;overflow:visible;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;display:block}
-.f15 .f15__packet-image{display:block;width:auto;max-width:none;height:100%;object-fit:contain;object-position:center bottom;position:absolute;left:50%;bottom:0;transform:translateX(-50%);pointer-events:none}
+.f15 .f15__hero-stage{min-height:40vw;padding:4vw 1.5vw 12vw;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 11.5vw;column-gap:3vw;align-items:center}
+.f15 .f15__packet-row{width:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;transform:none;margin:0;align-items:end}
+.f15 .f15__packet{width:100%;height:23vw;min-width:0;position:relative;overflow:visible;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;display:block}
+.f15 .f15__packet-image{display:block;width:135%;max-width:none;height:100%;object-fit:contain;object-position:center bottom;position:absolute;left:50%;bottom:0;transform:translateX(-50%);pointer-events:none}
 .f15 .f15__packet:hover,.f15 .f15__packet.is-active{box-shadow:none;transform:translateY(-.6vw)}
 .f15 .f15__packet:focus-visible{outline:.18vw solid var(--navy);outline-offset:.3vw}
-.f15 .f15__flavor-note{top:1vw;right:1vw;font-size:2vw;line-height:2.5vw}
+.f15 .f15__flavor-note{position:static;display:block;grid-column:2;grid-row:1;min-width:0;margin:0;font-size:2vw;line-height:2.5vw;transform:none}
+.f15 .f15__flavor-note:after{width:100%;transform:none}
 .f15 .f15__powder-pile{display:none}
 @media(max-width:850px){
- .f15 .f15__hero-stage{min-height:78vw;padding:5vw 0 25vw}
- .f15 .f15__packet-row{gap:1vw}
- .f15 .f15__packet{width:17vw;height:46vw;flex-basis:17vw}
+ .f15 .f15__hero-stage{min-height:66vw;padding:5vw 2vw 25vw;grid-template-columns:minmax(0,1fr) 20vw;column-gap:5vw}
+ .f15 .f15__packet-row{gap:0}
+ .f15 .f15__packet{width:100%;height:38vw}
+ .f15 .f15__flavor-note{font-size:3.8vw;line-height:4.5vw}
  .f15 .f15__packet:hover,.f15 .f15__packet.is-active{transform:translateY(-1.5vw)}
  .f15 .f15__packet:focus-visible{outline-width:.5vw;outline-offset:.8vw}
 }
