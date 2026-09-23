@@ -17,13 +17,13 @@
         <p class="f15__lead">15g of fast-acting carbohydrates in a small, convenient powder.</p>
 
         <div class="f15__benefits" aria-label="Product benefits">
-          <div><span class="f15__benefit-icon">↯</span><span>FAST-ACTING<br>CARBS</span></div>
-          <div><span class="f15__benefit-icon">◉</span><span>DISSOLVES ON<br>YOUR TONGUE</span></div>
-          <div><span class="f15__benefit-icon">◇</span><span>SMALL.<br>PORTABLE.</span></div>
+          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-fast.png' | asset_url }}" alt="" width="40" height="58"><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
+          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-dissolve.png' | asset_url }}" alt="" width="40" height="58"><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
+          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-portable.png' | asset_url }}" alt="" width="60" height="58"><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
         </div>
 
         <a class="f15__button f15__button--lime" href="{{ shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
-        <p class="f15__hand">Designed by a diabetic for diabetics.</p>
+        <p class="f15__hand">Designed by a diabetic for diabetics.<img class="f15__hand-underline" src="{{ 'fifteen-hand-underline.png' | asset_url }}" alt="" width="198" height="39"></p>
       </div>
 
       <div class="f15__hero-stage">
@@ -264,6 +264,24 @@
   font-family: "Story Script", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+/* Hero benefit artwork and angled signature. */
+.f15__hero .f15__lead{margin-bottom:2vw}
+.f15__hero .f15__benefits{align-items:center;gap:1.8vw;margin:1.8vw 0 2vw}
+.f15__hero .f15__benefits>div{gap:.6vw;font-size:.77vw;line-height:1vw}
+.f15__hero .f15__benefit-icon{display:block;flex:none;width:2.8vw;height:3.6vw;object-fit:contain;mix-blend-mode:multiply}
+.f15__hero .f15__button{font-size:1.4vw;line-height:1.7vw;padding:1.05vw 1.8vw;width:30vw;letter-spacing:0;font-weight:800}
+.f15__hero .f15__hand{position:relative;display:table;transform:rotate(-4deg);transform-origin:left center;font-size:2.15vw;line-height:2.8vw;margin:2vw 0 1.5vw .3vw;text-decoration:none;white-space:nowrap}
+.f15__hand-underline{position:absolute;display:block;right:0;bottom:-1.4vw;width:17vw;height:2.2vw;object-fit:fill;mix-blend-mode:multiply;pointer-events:none}
+@media(max-width:850px){
+ .f15__hero .f15__lead{margin-bottom:5vw}
+ .f15__hero .f15__benefits{gap:4vw;margin:5vw 0}
+ .f15__hero .f15__benefits>div{gap:1.4vw;font-size:2vw;line-height:2.6vw}
+ .f15__hero .f15__benefit-icon{width:7vw;height:9vw}
+ .f15__hero .f15__button{font-size:3.8vw;line-height:4.8vw;padding:3vw 4vw;width:84vw}
+ .f15__hero .f15__hand{font-size:5.4vw;line-height:7vw;margin:5vw 0 4vw .5vw}
+ .f15__hand-underline{width:43vw;height:5.5vw;bottom:-3.5vw}
 }
 {% endstylesheet %}
 
