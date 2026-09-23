@@ -215,3 +215,11 @@
   background: var(--brand-pink);
   color: #fff;
 }
+
+/* Sitewide type roles, including custom text blocks and branded sections. */
+:root { --font-handwritten--family: "Story Script", sans-serif; }
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+[class*="__eyebrow"], [class*="-eyebrow"] {
+  font-family: var(--font-heading--family) !important;
+}

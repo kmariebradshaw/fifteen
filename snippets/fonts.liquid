@@ -10,3 +10,8 @@
 {%- unless settings.type_accent_font.system? -%}
   {{ settings.type_accent_font | font_url | preload_tag: as: 'font', type: 'font/woff2', fetchpriority: 'low' }}
 {%- endunless -%}
+
+{% comment %}Handwritten brand accents are available on every storefront page.{% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@800;900&family=Poppins:wght@500;600;800;900&family=Story+Script&display=swap" rel="stylesheet">
