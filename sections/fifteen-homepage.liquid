@@ -9,7 +9,7 @@
     <div class="f15__wrap f15__hero-grid">
       <div class="f15__hero-copy">
         <p class="f15__eyebrow">FOR LIFE'S LOWS</p>
-        <h1>WHEN LOW<br>HITS, REACH<br>FOR <span>FIFTEEN.</span></h1>
+        <h1><span class="f15__headline-line">WHEN LOW</span> <span class="f15__headline-line">HITS, REACH</span> <span class="f15__headline-line">FOR <span class="f15__headline-accent">FIFTEEN.</span></span></h1>
         <p class="f15__lead">15g of fast-acting carbohydrates in a small, convenient powder.</p>
 
         <div class="f15__benefits" aria-label="Product benefits">
@@ -224,6 +224,32 @@
 @media(max-width:1100px){.f15__packet{width:88px;height:305px}.f15__packet-logo{font-size:45px}.f15__flavor-note{display:none}.f15__spoon{width:330px}.f15__spoon-handle{width:210px}.f15__flavor-pills{right:0;width:260px}}
 @media(max-width:850px){.f15__hero{background:var(--paper)}.f15__hero-grid{grid-template-columns:1fr}.f15__hero-copy{padding:40px 0 20px}.f15__hero h1{font-size:clamp(50px,13vw,75px)}.f15__hero-stage{min-height:560px;padding:50px 0 135px}.f15__packet-row{transform:scale(.85)}.f15__life-grid{grid-template-columns:repeat(2,1fr)}.f15__life-card:last-child{grid-column:1/-1;width:50%;justify-self:center}.f15__product-grid{grid-template-columns:1fr}.f15__story-grid{grid-template-columns:1fr;padding-right:0}.f15__story-copy{padding:28px 20px}.f15__community-head{align-items:flex-start;flex-direction:column}.f15__community-grid{grid-template-columns:repeat(2,1fr)}.f15__community-card:last-child{grid-column:1/-1;width:50%;justify-self:center}.f15__community-photo{width:100%}}
 @media(max-width:520px){.f15__wrap{padding-left:14px;padding-right:14px}.f15__hero-stage{min-height:500px}.f15__packet-row{transform:scale(.63);width:150%;margin-left:-25%;margin-right:-25%}.f15__powder-demo{left:5%;right:2%}.f15__spoon{transform:scale(.72) rotate(-4deg);transform-origin:right bottom}.f15__flavor-pills{bottom:105px;right:0;width:100%;justify-content:center}.f15__scoop-copy{font-size:15px}.f15__benefits{gap:12px;flex-wrap:wrap}.f15__button--lime{min-width:0;width:100%}.f15__hand{font-size:20px}.f15__section-heading{justify-content:center}.f15__section-heading p,.f15__section-heading h2{font-size:22px}.f15__life-grid{gap:12px}.f15__product-visual{height:295px}.f15__story-media{min-height:300px}.f15__community-grid{grid-template-columns:1fr}.f15__community-card:last-child{grid-column:auto;width:100%}.f15__community-hand{font-size:24px}}
+
+/* Hero copy scales with the viewport; explicit lines preserve the art direction. */
+.f15__hero-grid{width:100%;padding-left:5vw;padding-right:5vw;grid-template-columns:40% 60%}
+.f15__hero-copy{min-width:0;padding:4vw 2vw 4vw 0}
+.f15__hero .f15__eyebrow{font-size:1.3vw;letter-spacing:.1vw;margin:0 0 .7vw}
+.f15__hero h1{font-size:4.5vw;line-height:4.3vw;letter-spacing:-.2vw;margin:0;font-weight:900}
+.f15__hero h1 .f15__headline-line{display:block;white-space:nowrap;color:var(--navy)}
+.f15__hero h1 .f15__headline-accent{color:var(--lime)}
+.f15__hero .f15__lead{font-size:1.65vw;line-height:2.1vw;max-width:33vw;margin:1.2vw 0 1.7vw}
+.f15__hero .f15__benefits{gap:1.5vw;margin:1.7vw 0}
+.f15__hero .f15__benefits>div{gap:.55vw;font-size:.8vw;line-height:.95vw}
+.f15__hero .f15__benefit-icon{font-size:2.5vw}
+.f15__hero .f15__button{min-width:0;width:29vw;padding:1.2vw 1.8vw;gap:1.8vw;border-radius:5vw;font-size:1.15vw;line-height:1.4vw}
+.f15__hero .f15__hand{font-size:1.8vw;line-height:2.3vw;margin:1.2vw 0 0;text-decoration-thickness:.35vw;text-underline-offset:.5vw}
+@media(max-width:850px){
+  .f15__hero-grid{grid-template-columns:1fr;padding-left:5vw;padding-right:5vw}
+  .f15__hero-copy{padding:7vw 0 3vw}
+  .f15__hero .f15__eyebrow{font-size:3vw;letter-spacing:.25vw;margin-bottom:2vw}
+  .f15__hero h1{font-size:11.5vw;line-height:11vw;letter-spacing:-.5vw}
+  .f15__hero .f15__lead{font-size:4.2vw;line-height:5.6vw;max-width:82vw;margin:4vw 0}
+  .f15__hero .f15__benefits{gap:4vw;margin:4vw 0;flex-wrap:nowrap}
+  .f15__hero .f15__benefits>div{gap:1.3vw;font-size:2.1vw;line-height:2.6vw}
+  .f15__hero .f15__benefit-icon{font-size:6vw}
+  .f15__hero .f15__button{width:80vw;padding:3.5vw 4vw;gap:5vw;border-radius:10vw;font-size:3.2vw;line-height:4vw}
+  .f15__hero .f15__hand{font-size:4.4vw;line-height:6vw;margin:3vw 0 0;text-decoration-thickness:.8vw;text-underline-offset:1vw}
+}
 {% endstylesheet %}
 
 {% schema %}
