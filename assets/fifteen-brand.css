@@ -223,3 +223,13 @@ h1, h2, h3, h4, h5, h6,
 [class*="__eyebrow"], [class*="-eyebrow"] {
   font-family: var(--font-heading--family) !important;
 }
+
+/* Let a single product-link column use the full left side of the desktop dropdown. */
+@media screen and (min-width: 990px) {
+  header-menu .mega-menu__grid:has(.mega-menu__content-list--products) > .mega-menu__list:has(> .mega-menu__column:only-child) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  header-menu .mega-menu__grid:has(.mega-menu__content-list--products) > .mega-menu__list > .mega-menu__column:only-child {
+    grid-column: 1 / -1;
+  }
+}
