@@ -57,16 +57,6 @@
   <section class="fifteen-why__life fifteen-why__width">
     <h2>{{ section.settings.life_heading | escape }}</h2>
     <div class="rte">{{ section.settings.life_text }}</div>
-    <div class="fifteen-why__lifestyle-gallery">
-      <figure>
-        <img src="{{ 'fifteen-life-work-v1.webp' | asset_url }}" width="900" height="770" loading="lazy" alt="Fifteen rescue powder beside a laptop during a workday">
-        <figcaption>AT YOUR DESK</figcaption>
-      </figure>
-      <figure>
-        <img src="{{ 'fifteen-life-gym-v1.webp' | asset_url }}" width="900" height="769" loading="lazy" alt="A basketball player with a Fifteen packet tucked into her gym bag">
-        <figcaption>ON YOUR TEAM</figcaption>
-      </figure>
-    </div>
     <div class="fifteen-why__moments">
       {% assign moments = 'School,Work,Gym,Travel,Bedside' | split: ',' %}
       {% for moment in moments %}
