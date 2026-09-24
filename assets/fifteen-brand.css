@@ -154,8 +154,8 @@
 @media screen and (min-width: 750px) {
   header-menu overflow-list > li.menu-list__list-item:first-of-type > .menu-list__link,
   header-menu overflow-list > li.menu-list__list-item:first-of-type > .menu-list__trigger > .menu-list__link {
-    background: var(--brand-pink);
-    color: #fff !important;
+    background: #92e631;
+    color: var(--brand-navy) !important;
     border-radius: 999px;
     padding: .55rem 1.15rem;
     height: auto;
@@ -165,17 +165,17 @@
     box-shadow: none;
   }
   header-menu overflow-list > li.menu-list__list-item:first-of-type .menu-list__link-title {
-    color: #fff;
+    color: var(--brand-navy);
     opacity: 1;
   }
 }
 /* Header cart count, on desktop and mobile. */
 .header-actions__cart-icon .cart-bubble {
-  --cart-bubble-background: var(--brand-pink);
+  --cart-bubble-background: var(--brand-navy);
   --cart-bubble-text: #fff;
 }
 .header-actions__cart-icon .cart-bubble__background {
-  background: var(--brand-pink);
+  background: var(--brand-navy);
 }
 .header-actions__cart-icon .cart-bubble__text { color: #fff; }
 
