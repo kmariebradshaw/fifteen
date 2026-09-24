@@ -10,7 +10,7 @@
       {% for block in section.blocks %}
         {% assign icon_asset = 'fifteen-icon-' | append: block.settings.icon | append: '.svg' %}
         <article class="fifteen-product-benefits__card fifteen-product-benefits__card--{{ block.settings.icon }}" {{ block.shopify_attributes }}>
-          <img src="{{ icon_asset | asset_url }}" width="56" height="56" alt="" loading="lazy">
+          <span class="fifteen-product-icon" style="--benefit-icon: url('{{ icon_asset | asset_url }}');" aria-hidden="true"></span>
           <h3>{{ block.settings.heading | escape }}</h3>
           <p>{{ block.settings.text | escape }}</p>
         </article>
@@ -95,27 +95,27 @@
         {
           "type": "select",
           "id": "icon",
-          "label": "Icon and color",
+          "label": "Icon",
           "options": [
             {
               "value": "target",
-              "label": "Pink target"
+              "label": "Target"
             },
             {
               "value": "lightning",
-              "label": "Blue lightning"
+              "label": "Lightning"
             },
             {
               "value": "backpack",
-              "label": "Green backpack"
+              "label": "Backpack"
             },
             {
               "value": "smile",
-              "label": "Gold smile"
+              "label": "Smile"
             },
             {
               "value": "heart",
-              "label": "Purple heart"
+              "label": "Heart"
             }
           ],
           "default": "target"
