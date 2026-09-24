@@ -1,81 +1,80 @@
-.fifteen-product-main { color: var(--brand-navy); }
-.fifteen-product-main .product-details h1 { color: var(--brand-navy); font-size: clamp(2rem, 3.7vw, 3.5rem); line-height: 1.04; letter-spacing: -.045em; text-wrap: balance; }
-.fifteen-product-main .product-information__media { border-radius: 24px; }
-.fifteen-product-main .product-details .add-to-cart-button { border-radius: 999px; font-weight: 750; min-height: 54px; }
-.fifteen-product-main .product-details .add-to-cart-button:not(:disabled) { box-shadow: 0 4px 0 var(--brand-navy); }
-.fifteen-product-main .product-details .add-to-cart-button:focus-visible { outline: 3px solid var(--brand-navy); outline-offset: 5px; }
-.fifteen-product-highlights { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; width: 100%; padding-block: 18px; border-block: 1px solid #071f481a; color: var(--brand-navy); }
-.fifteen-product-highlights > div { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: .8rem; font-weight: 700; }
-.fifteen-product-highlights img { width: 32px; height: 32px; }
-.fifteen-product-benefits { background: var(--brand-cream); color: var(--brand-navy); padding: clamp(40px,6vw,80px) 24px; }
+/* Fifteen product pages: paper, navy and lime. */
+.fifteen-product-main { color: #071f48; --brand-paper: #f7f7f2; --brand-lime: #92e631; }
+.fifteen-product-main .product-information__media { border-radius: 0; }
+.fifteen-product-main .product-details { color: #071f48; }
+.fifteen-product-main .product-details > .group-block { width: 100%; max-width: 580px; padding: clamp(24px,3vw,40px); background: #fff; border: 1px solid #071f4826; border-radius: 0; box-shadow: none; position: relative; }
+.fifteen-product-main .product-details > .group-block::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: #92e631; }
+.fifteen-product-main .product-details h1 { margin: 0; color: #071f48; font-family: var(--font-heading--family); font-size: clamp(2rem,3.1vw,3.25rem); font-weight: 800; line-height: 1.02; letter-spacing: -.045em; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
+.fifteen-product-main .product-details .rte { color: #071f48; font-family: var(--font-body--family); font-size: 1rem; line-height: 1.65; }
+.fifteen-product-main .product-details product-price { color: #071f48; font-size: 1.5rem; font-weight: 750; }
+.fifteen-product-main .product-details .product-form-buttons { gap: 14px; --height-buy-buttons: 56px; }
+.fifteen-product-main .product-details .quantity-selector { border-radius: 0; background: #f7f7f2; border: 1px solid #071f4840; color: #071f48; }
+.fifteen-product-main .add-to-cart-button,
+.fifteen-product-main .sticky-add-to-cart__button {
+  --button-background-color: #92e631 !important;
+  --button-border-color: #92e631 !important;
+  --button-color: #071f48 !important;
+  background: #92e631 !important; border-color: #92e631 !important;
+  color: #071f48 !important; border-radius: 0; box-shadow: none;
+  font-family: var(--font-heading--family); font-weight: 750;
+}
+.fifteen-product-main .product-details .add-to-cart-button { min-height: 56px; height: auto; font-size: 1rem; letter-spacing: .025em; }
+.fifteen-product-main .add-to-cart-button:not([data-added='true']):hover,
+.fifteen-product-main .add-to-cart-button:not([data-added='true']):focus-visible { color: #071f48 !important; }
+.fifteen-product-main .add-to-cart-button:focus-visible { outline: 3px solid #071f48; outline-offset: 4px; }
+.fifteen-product-main .product-details .accelerated-checkout-block { margin-top: 6px; }
+.fifteen-product-main .product-details shopify-accelerated-checkout { --shopify-accelerated-checkout-button-border-radius: 0px; --shopify-accelerated-checkout-button-block-size: 48px; }
+.fifteen-product-main .variant-picker {
+  --options-border-radius: 0px;
+  --color-variant-background: #fff; --color-variant-text: #071f48; --color-variant-border: #071f4840;
+  --color-selected-variant-background: #071f48; --color-selected-variant-text: #fff; --color-selected-variant-border: #071f48;
+  --color-variant-hover-background: #f7f7f2; --color-variant-hover-text: #071f48; --color-variant-hover-border: #071f48;
+}
+.fifteen-product-main .variant-option__select-wrapper { border-radius: 0; }
+.fifteen-product-main .fifteen-selling-plans__heading { color: #071f48; font-family: var(--font-heading--family); }
+.fifteen-product-main .fifteen-selling-plans__option { border-radius: 0; border-color: #071f4833; background: #fff; }
+.fifteen-product-main .fifteen-selling-plans__option:has(input:checked) { border-color: #071f48; background: #f7f7f2; box-shadow: inset 4px 0 #92e631; }
+.fifteen-product-main .fifteen-selling-plans__option input { accent-color: #071f48; }
+.fifteen-product-main .sticky-add-to-cart__bar { border-radius: 0; color: #071f48; background: #f7f7f2; }
+.fifteen-product-main .sticky-add-to-cart__bar::before { background: #f7f7f2; border-color: #071f4826; backdrop-filter: none; }
+.fifteen-product-highlights { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; width: 100%; padding: 18px 0 0; border-top: 1px solid #071f4826; color: #071f48; }
+.fifteen-product-highlights > div { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 12px 4px; text-align: center; font-family: var(--font-heading--family); font-size: .7rem; font-weight: 700; line-height: 1.4; text-transform: uppercase; letter-spacing: .025em; }
+.fifteen-product-icon { display: block; width: 32px; height: 32px; flex-shrink: 0; background: #071f48; mask: var(--benefit-icon) center / contain no-repeat; -webkit-mask: var(--benefit-icon) center / contain no-repeat; }
+.fifteen-product-benefits { background: #f7f7f2; color: #071f48; padding: clamp(40px,6vw,80px) clamp(20px,4vw,60px); border-top: 1px solid #071f4826; }
 .fifteen-product-benefits__inner { max-width: 1240px; margin-inline: auto; }
-.fifteen-product-benefits header { max-width: 760px; margin: 0 auto 36px; text-align: center; }
-.fifteen-product-benefits h2 { color: var(--brand-navy); font-size: clamp(1.9rem,3.4vw,3rem); letter-spacing: -.045em; line-height: 1.08; margin: 0 0 18px; text-wrap: balance; }
-.fifteen-product-benefits p { line-height: 1.6; margin: 0; }
-.fifteen-product-benefits .fifteen-product-benefits__eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .13em; margin-bottom: 14px; color: var(--brand-purple); }
-.fifteen-product-benefits__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; }
-.fifteen-product-benefits__card { border-radius: 24px; padding: 28px; border-top: 5px solid var(--accent); background: var(--tint); }
-.fifteen-product-benefits__card--target { --accent: var(--brand-pink); --tint: var(--brand-pink-tint); }
-.fifteen-product-benefits__card--lightning { --accent: var(--brand-blue); --tint: var(--brand-blue-tint); }
-.fifteen-product-benefits__card--backpack { --accent: var(--brand-green); --tint: var(--brand-green-tint); }
-.fifteen-product-benefits__card--smile { --accent: var(--brand-gold); --tint: var(--brand-gold-tint); }
-.fifteen-product-benefits__card--heart { --accent: var(--brand-purple); --tint: var(--brand-purple-tint); }
-.fifteen-product-benefits__card img { width: 56px; height: 56px; margin-bottom: 22px; }
-.fifteen-product-benefits__card h3 { color: var(--brand-navy); font-size: 1.35rem; font-weight: 750; line-height: 1.15; letter-spacing: -.025em; margin: 0 0 14px; }
-.fifteen-product-benefits__card p { font-size: .95rem; }
-.fifteen-product-benefits__life { display: grid; grid-template-columns: 1fr 1.15fr; align-items: center; gap: 40px; padding: clamp(26px,4vw,52px); margin-top: 36px; border-radius: 28px; background: var(--brand-blue-gradient); }
+.fifteen-product-benefits header { max-width: 760px; margin: 0 0 32px; }
+.fifteen-product-benefits h2 { color: #071f48; font-family: var(--font-heading--family); font-size: clamp(1.9rem,3.4vw,3rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.045em; line-height: 1.05; margin: 0 0 18px; text-wrap: balance; }
+.fifteen-product-benefits p { font-family: var(--font-body--family); line-height: 1.6; margin: 0; }
+.fifteen-product-benefits .fifteen-product-benefits__eyebrow { display: inline-block; padding: 6px 10px; background: #92e631; color: #071f48; font-family: var(--font-heading--family); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.fifteen-product-benefits__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; }
+.fifteen-product-benefits__card { padding: 26px; border: 1px solid #071f4826; border-top: 4px solid #92e631; background: #fff; }
+.fifteen-product-benefits__card .fifteen-product-icon { width: 44px; height: 44px; margin-bottom: 24px; }
+.fifteen-product-benefits__card h3 { color: #071f48; font-family: var(--font-heading--family); font-size: 1.2rem; font-weight: 750; line-height: 1.2; letter-spacing: -.025em; margin: 0 0 14px; }
+.fifteen-product-benefits__card p { font-size: .9rem; }
+.fifteen-product-benefits__life { display: grid; grid-template-columns: 1fr 1.15fr; align-items: center; gap: 40px; padding: clamp(24px,4vw,48px); margin-top: 32px; background: #071f48; color: #f7f7f2; border-left: 5px solid #92e631; }
+.fifteen-product-benefits__life h2 { color: #fff; }
+.fifteen-product-benefits__life .fifteen-product-benefits__eyebrow { background: transparent; padding: 0; color: #92e631; }
 .fifteen-product-benefits__moments { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; list-style: none; margin: 0; padding: 0; }
-.fifteen-product-benefits__moments li { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: .8rem; font-weight: 750; }
-.fifteen-product-benefits__moments svg { width: 52px; height: 52px; }
-.fifteen-product-benefits__moments li:nth-child(1) svg { color: var(--brand-green); }
-.fifteen-product-benefits__moments li:nth-child(2) svg { color: var(--brand-blue); }
-.fifteen-product-benefits__moments li:nth-child(3) svg { color: var(--brand-pink); }
-.fifteen-product-benefits__moments li:nth-child(4) svg { color: var(--brand-gold); }
-.fifteen-product-benefits__moments li:nth-child(5) svg { color: var(--brand-purple); }
+.fifteen-product-benefits__moments li { display: flex; flex-direction: column; align-items: center; gap: 12px; font-family: var(--font-heading--family); font-size: .75rem; font-weight: 750; text-transform: uppercase; }
+.fifteen-product-benefits__moments svg { width: 44px; height: 44px; color: #92e631; }
+/* Match related-product controls on product pages. */
+body:has(.fifteen-product-main) .product-recommendations .card-gallery { border-radius: 0; border-bottom: 3px solid #92e631; }
+body:has(.fifteen-product-main) .product-recommendations [ref="productTitleLink"] p { color: #071f48; font-family: var(--font-heading--family); font-weight: 750; }
+body:has(.fifteen-product-main) .product-recommendations .quick-add__button,
+body:has(.fifteen-product-main) .quick-add-modal .add-to-cart-button {
+ --button-background-color: #92e631 !important; --button-border-color: #92e631 !important; --button-color: #071f48 !important; --quick-add-foreground: #071f48;
+ background: #92e631 !important; border-color: #92e631 !important; color: #071f48 !important; border-radius: 0;
+}
+@media (min-width: 750px) {
+ .fifteen-product-main .product-information__grid { align-items: start; }
+ .fifteen-product-main .product-details { padding-top: 16px; }
+}
 @media (max-width: 749px) {
- .fifteen-product-benefits { padding-inline: 18px; }
+ .fifteen-product-main .product-information.section--page-width .product-details > .group-block { padding: 24px 20px; }
+ .fifteen-product-main .product-details { padding-top: 20px; }
  .fifteen-product-benefits__life { grid-template-columns: 1fr; gap: 28px; }
  .fifteen-product-benefits__grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
  .fifteen-product-benefits__card { padding: 22px 18px; }
 }
 @media (max-width: 420px) { .fifteen-product-benefits__grid { grid-template-columns: 1fr; } }
-
-/* Purchase panel: scoped to the main product, including its editor blocks. */
-.fifteen-product-main .product-details { color: var(--brand-navy); }
-.fifteen-product-main .product-details > .group-block {
-  width: 100%; max-width: 580px; padding: clamp(24px,3vw,40px);
-  background: #fff; border: 1px solid #071f4810; border-radius: 28px;
-  box-shadow: 0 12px 40px #071f4809; position: relative;
-}
-.fifteen-product-main .product-details > .group-block::before {
-  content: ''; position: absolute; left: 36px; top: 0; width: 72px; height: 5px;
-  background: var(--brand-pink); border-radius: 0 0 5px 5px;
-}
-.fifteen-product-main .product-details h1 { font-size: clamp(2rem,3.1vw,3rem); margin: 0; }
-.fifteen-product-main .product-details .rte { color: #344661; font-size: 1rem; line-height: 1.65; }
-.fifteen-product-main .product-details product-price { color: var(--brand-navy); font-size: 1.5rem; font-weight: 750; }
-.fifteen-product-main .product-details .product-form-buttons { gap: 14px; --height-buy-buttons: 56px; }
-.fifteen-product-main .product-details .quantity-selector { border-radius: 14px; background: var(--brand-cream); border: 1px solid #071f4826; color: var(--brand-navy); }
-.fifteen-product-main .product-details .add-to-cart-button { border-radius: 14px; font-size: 1rem; letter-spacing: .01em; height: 56px; }
-.fifteen-product-main .product-details .add-to-cart-button:not(:disabled) { box-shadow: 0 3px 0 var(--brand-navy); }
-.fifteen-product-main .product-details .accelerated-checkout-block { margin-top: 6px; }
-.fifteen-product-main .product-details shopify-accelerated-checkout {
-  --shopify-accelerated-checkout-button-border-radius: 14px;
-  --shopify-accelerated-checkout-button-block-size: 48px;
-}
-.fifteen-product-main .product-details .fifteen-product-highlights { border: 0; padding: 0; gap: 8px; }
-.fifteen-product-main .fifteen-product-highlights > div { border-radius: 14px; padding: 16px 6px; font-size: .72rem; }
-.fifteen-product-main .fifteen-product-highlights > div:nth-child(1) { background: #fdf0f5; }
-.fifteen-product-main .fifteen-product-highlights > div:nth-child(2) { background: #edf7ef; }
-.fifteen-product-main .fifteen-product-highlights > div:nth-child(3) { background: #f3edf8; }
-@media (min-width: 750px) {
-  .fifteen-product-main .product-information__grid { align-items: start; }
-  .fifteen-product-main .product-details { padding-top: 16px; }
-}
-@media (max-width: 749px) {
-  .fifteen-product-main .product-information.section--page-width .product-details > .group-block { padding: 28px 20px; }
-  .fifteen-product-main .product-details { padding-top: 20px; }
-}
-@media (max-width: 380px) {
-  .fifteen-product-main .product-details .product-form-buttons > add-to-cart-component { flex-basis: 100%; }
-}
+@media (max-width: 380px) { .fifteen-product-main .product-details .product-form-buttons > add-to-cart-component { flex-basis: 100%; } }
