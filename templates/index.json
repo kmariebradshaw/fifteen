@@ -11,7 +11,10 @@
   "sections": {
     "fifteen_homepage": {
       "type": "fifteen-homepage",
-      "settings": {}
+      "settings": {
+        "shop_link": "",
+        "product_collection": "all"
+      }
     }
   },
   "order": [
