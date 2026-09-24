@@ -55,58 +55,38 @@
     </div>
   </section>
 
-  <section class="f15__products f15__wrap">
-    <div class="f15__center-heading">
-      <h2>THREE WAYS TO STAY READY</h2>
-      <i></i>
-    </div>
-
-    <div class="f15__product-grid">
-      <article class="f15__product-card">
-        <div class="f15__product-visual">
-          <div class="f15__box-pack">
-            <strong>15</strong><small>FIFTEEN</small><b>RESCUE POWDER</b><em>15 PACKETS</em>
-          </div>
-          <div class="f15__single apple"><strong>15</strong><small>RESCUE<br>POWDER</small></div>
-        </div>
-        <div class="f15__product-copy">
-          <h3>RESCUE POWDER 15-PACK</h3>
-          <p>15 single-serve packets. Keep them in your desk, car, gym bag, nightstand, or backpack.</p>
-          <a class="f15__button f15__button--navy" href="{{ shop_url }}">SHOP 15-PACK <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="f15__product-card">
-        <div class="f15__product-visual">
-          <div class="f15__bulk-bag">
-            <span class="f15__servings">50<small>SERVINGS</small></span>
-            <strong>15</strong><small>FIFTEEN</small><b>RESCUE POWDER</b><em>FAST-ACTING CARBOHYDRATES</em>
-            <div class="f15__dots"><i class="apple"></i><i class="cherry"></i><i class="grape"></i><i class="watermelon"></i><i class="blue"></i></div>
-          </div>
-          <div class="f15__travel-pouch">15</div>
-        </div>
-        <div class="f15__product-copy">
-          <h3>RESCUE POWDER 50-SERVE BAG</h3>
-          <p>50 servings in a resealable bag, with reusable small bags for everyday carry.</p>
-          <a class="f15__button f15__button--navy" href="{{ shop_url }}">SHOP 50-SERVE <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="f15__product-card">
-        <div class="f15__product-visual">
-          <div class="f15__bulk-bag">
-            <strong>15</strong><small>FIFTEEN</small><b>RESCUE SPHERES</b><em>FAST-ACTING CARBOHYDRATES</em>
-            <div class="f15__spheres"><i class="apple"></i><i class="cherry"></i><i class="grape"></i><i class="watermelon"></i><i class="blue"></i></div>
-          </div>
-        </div>
-        <div class="f15__product-copy">
-          <h3>RESCUE SPHERES</h3>
-          <p>Porous, crunchy rescue spheres with the look and feel of a freeze-dried hard candy.</p>
-          <a class="f15__button f15__button--navy" href="{{ shop_url }}">SHOP RESCUE SPHERES <span>→</span></a>
-        </div>
-      </article>
-    </div>
-  </section>
+  {% assign featured_collection = section.settings.product_collection %}
+  {% if featured_collection != blank and featured_collection.products_count > 0 %}
+    <section class="f15__products f15__wrap">
+      <div class="f15__center-heading">
+        <h2>THREE WAYS TO STAY READY</h2>
+        <i aria-hidden="true"></i>
+      </div>
+      <div class="f15__product-grid">
+        {% for featured_product in featured_collection.products limit: 3 %}
+          <article class="f15__product-card">
+            <a class="f15__product-visual" href="{{ featured_product.url }}" aria-label="{{ featured_product.title | escape }}">
+              {% if featured_product.featured_image != blank %}
+                {% assign product_image_alt = featured_product.featured_image.alt | default: featured_product.title %}
+                {{ featured_product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360,600,900,1200', sizes: '(min-width: 851px) 30vw, 92vw', alt: product_image_alt }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'f15__product-placeholder' }}
+              {% endif %}
+            </a>
+            <div class="f15__product-copy">
+              <h3><a href="{{ featured_product.url }}">{{ featured_product.title | escape }}</a></h3>
+              {% if featured_product.description != blank %}
+                <div class="f15__product-description rte">{{ featured_product.description }}</div>
+              {% endif %}
+              <a class="f15__button f15__button--navy" href="{{ featured_product.url }}" aria-label="Shop {{ featured_product.title | escape }}">Shop Now <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% elsif request.design_mode %}
+    <div class="f15__wrap f15__products-setup">Select a product collection in this section's settings. Its first three products will appear here, in collection order.</div>
+  {% endif %}
 
   <section class="f15__story">
     <div class="f15__wrap f15__story-grid">
@@ -274,6 +254,18 @@
 
 /* Keep lifestyle captions inset, centered and balanced beneath each photo. */
 .f15__life-card p{width:84%;max-width:24ch;margin:0 auto;text-align:center;text-wrap:balance}
+
+/* Collection-driven product cards preserve full product descriptions. */
+.f15__product-card{display:flex;flex-direction:column;min-width:0}
+.f15__product-visual{height:auto;aspect-ratio:1;overflow:hidden}
+.f15__product-visual img,.f15__product-placeholder{display:block;width:100%;height:100%;object-fit:contain}
+.f15__product-copy{display:flex;flex:1;flex-direction:column;align-items:center}
+.f15__product-copy h3 a{color:inherit;text-decoration:none}
+.f15__product-description{width:90%;margin:0 auto 1.2vw;font-family:var(--font-body--family);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.f15__product-description p{min-height:0;margin:0 0 .7em;line-height:inherit}
+.f15__product-description img,.f15__product-description video{max-width:100%;height:auto}
+.f15__product-copy>.f15__button{margin-top:auto}
+.f15__products-setup{padding-block:2vw;text-align:center}
 {% endstylesheet %}
 
 {% schema %}
@@ -281,6 +273,7 @@
   "name": "Fifteen native homepage",
   "settings": [
     {"type":"url","id":"shop_link","label":"Shop button link"},
+    {"type":"collection","id":"product_collection","label":"Product collection","info":"Shows the first three products in collection order, using their product images, titles and descriptions."},
     {"type":"image_picker","id":"life_image_1","label":"At work image"},
     {"type":"image_picker","id":"life_image_2","label":"In the car image"},
     {"type":"image_picker","id":"life_image_3","label":"At the gym image"},
