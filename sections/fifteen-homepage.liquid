@@ -1,5 +1,7 @@
 {% liquid
   assign shop_url = section.settings.shop_link | default: routes.all_products_collection_url
+  assign hero_product = section.settings.hero_product | default: all_products['drink-shots']
+  assign hero_shop_url = hero_product.url | default: shop_url
 %}
 
 <section class="f15" data-fifteen-home>
@@ -16,7 +18,7 @@
           <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 2 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16"/></svg><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
         </div>
 
-        <a class="f15__button f15__button--lime" href="{{ shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
+        <a class="f15__button f15__button--lime" href="{{ hero_shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
         <p class="f15__hand">Designed by a diabetic for diabetics.<img class="f15__hand-underline" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></p>
       </div>
 
@@ -293,7 +295,8 @@
 {
   "name": "Fifteen native homepage",
   "settings": [
-    {"type":"url","id":"shop_link","label":"Shop button link"},
+    {"type":"product","id":"hero_product","label":"Shop Rescue Powder product","info":"Product linked from the hero button. Defaults to Rescue Powder when no product is selected."},
+    {"type":"url","id":"shop_link","label":"Community link"},
     {"type":"collection","id":"product_collection","label":"Product collection","info":"Shows the first three products in collection order, using their product images, titles and descriptions."},
     {"type":"image_picker","id":"life_image_1","label":"At work image"},
     {"type":"image_picker","id":"life_image_2","label":"In the car image"},
