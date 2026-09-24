@@ -42,11 +42,11 @@
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "bottom",
             "thumbnail_width": 72,
-            "thumbnail_radius": 12,
+            "thumbnail_radius": 0,
             "aspect_ratio": "1",
             "constrain_to_viewport": true,
             "media_fit": "contain",
-            "media_radius": 24,
+            "media_radius": 0,
             "extend_media": false,
             "zoom": false,
             "video_loop": false,
@@ -78,7 +78,7 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_color": "",
-            "border_radius": 28,
+            "border_radius": 0,
             "padding-block-start": 36,
             "padding-block-end": 36,
             "padding-inline-start": 36,
@@ -203,7 +203,7 @@
                   "name": "Fifteen eyebrow",
                   "settings": {
                     "text": "<p>FIFTEEN / EVERYDAY ESSENTIALS</p>",
-                    "width": "100%",
+                    "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "custom",
@@ -213,14 +213,14 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "text_color": "#78469c",
-                    "background": false,
-                    "background_color": "#00000026",
+                    "text_color": "#071f48",
+                    "background": true,
+                    "background_color": "#92e631",
                     "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-block-start": 6,
+                    "padding-block-end": 6,
+                    "padding-inline-start": 10,
+                    "padding-inline-end": 10
                   },
                   "blocks": {}
                 }
@@ -299,9 +299,9 @@
                   "static": true,
                   "settings": {
                     "style_class": "button-custom",
-                    "custom_button_background": "#e83f74",
-                    "custom_button_text": "#ffffff",
-                    "custom_button_border": "#e83f74"
+                    "custom_button_background": "#92e631",
+                    "custom_button_text": "#071f48",
+                    "custom_button_border": "#92e631"
                   },
                   "blocks": {}
                 },
@@ -337,7 +337,7 @@
         "limit_details_width": false,
         "gap": 48,
         "enable_sticky_add_to_cart": true,
-        "background_color": "#fffdf9",
+        "background_color": "#f7f7f2",
         "padding-block-start": 32,
         "padding-block-end": 48
       }
@@ -377,14 +377,14 @@
           "static": true,
           "settings": {
             "product_card_gap": 8,
-            "background_color": "",
-            "border": "none",
+            "background_color": "#fff",
+            "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_color": "",
+            "border_color": "#071f4826",
             "border_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 8,
+            "padding-block-end": 16,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -420,14 +420,14 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "",
+                "text_color": "#071f48",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 4,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
               },
               "blocks": {}
             },
@@ -445,11 +445,11 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
-                "text_color": "",
+                "text_color": "#071f48",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
               },
               "blocks": {}
             }
@@ -479,7 +479,7 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#f7f7f2",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
