@@ -246,13 +246,13 @@
 .f15 .f15__flavor-pills button {font-weight:700}
 .f15__benefit-icon--tongue{mix-blend-mode:multiply}
 
-/* Static artwork reaches the right edge; annotations sit over its open space. */
+/* Keep the composition right-aligned, with breathing room for the tilted flavor note. */
 .f15__hero-static{position:relative;display:block;width:calc(100% + 5vw);min-width:0;padding:3vw 0}
 .f15__hero-art{position:relative;width:85%;min-width:0;margin:0 0 0 auto}
-.f15__hero-art>img{display:block;width:100%;height:auto}
-.f15__hero-scoop-label{position:absolute;left:56%;top:91%;width:43%;margin:0;text-align:center;color:var(--navy);font:400 2.1vw/1.4 "Story Script",sans-serif}
+.f15__hero-art>img{display:block;width:92%;height:auto}
+.f15__hero-scoop-label{position:absolute;left:51.52%;top:91%;width:39.56%;margin:0;text-align:center;color:var(--navy);font:400 2.1vw/1.4 "Story Script",sans-serif}
 .f15__hero-scoop-label small{display:block;font-size:1.1vw;line-height:1.4}
-.f15__hero-static-note{position:absolute;z-index:1;right:.3vw;top:30%;width:8vw;margin:0;color:var(--navy);font:400 2.5vw/1.05 "Story Script",sans-serif}
+.f15__hero-static-note{position:absolute;z-index:1;right:.3vw;top:30%;width:8vw;margin:0;transform:rotate(-5deg);transform-origin:center;color:var(--navy);font:400 2.5vw/1.05 "Story Script",sans-serif}
 .f15__hero-note-swoosh{display:block;width:6vw;height:auto;margin:.4vw 0 0;mix-blend-mode:multiply}
 @media(max-width:850px){
  .f15__hero-static{width:calc(100% + 5vw);padding:5vw 0 7vw}
