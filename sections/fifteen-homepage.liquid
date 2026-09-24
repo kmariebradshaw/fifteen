@@ -60,7 +60,7 @@
     <section class="f15__products f15__wrap">
       <div class="f15__center-heading">
         <h2>THREE WAYS TO STAY READY</h2>
-        <i aria-hidden="true"></i>
+        <img class="f15__products-heading-slash" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39">
       </div>
       <div class="f15__product-grid">
         {% for featured_product in featured_collection.products limit: 3 %}
@@ -266,6 +266,9 @@
 .f15__product-description img,.f15__product-description video{max-width:100%;height:auto}
 .f15__product-copy>.f15__button{margin-top:auto}
 .f15__products-setup{padding-block:2vw;text-align:center}
+/* Branded green slash beneath the product section heading. */
+.f15__products-heading-slash{display:block;width:8vw;height:auto;margin:.5vw auto 0;mix-blend-mode:multiply}
+@media(max-width:850px){.f15__products-heading-slash{width:20vw;margin-top:1vw}}
 {% endstylesheet %}
 
 {% schema %}
