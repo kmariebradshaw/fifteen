@@ -194,7 +194,8 @@
 }
 
 /* Collection merchandising: clinical paper, navy type and lime accents. */
-.fifteen-collection-grid { color: var(--brand-navy); background: #f7f7f2; }
+.fifteen-collection-grid { color: var(--brand-navy); --color-background: #ffffff; background: #ffffff !important; }
+.shopify-section:has(.fifteen-collection-grid) > .section-background { --color-background: #ffffff; background-color: #ffffff !important; }
 .fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #071f4826; padding-bottom: 18px; margin-bottom: 24px; }
 .fifteen-collection-grid .product-card { color: var(--brand-navy); }
 .fifteen-collection-grid .product-card__content { background: #fff; border: 1px solid #071f4826; border-radius: 0; box-shadow: none; overflow: hidden; }
