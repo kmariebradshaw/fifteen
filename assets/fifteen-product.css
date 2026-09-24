@@ -102,3 +102,10 @@ body:has(.fifteen-product-main) .quick-add-modal .add-to-cart-button {
   mask: var(--legacy-benefit-icon) center / contain no-repeat;
 }
 .fifteen-product-benefits__card > img { display: none; }
+
+/* Keep the related-product section white, including its full-width background layer. */
+body:has(.fifteen-product-main) .product-recommendations > .section-background,
+body:has(.fifteen-product-main) .product-recommendations > .section {
+  --color-background: #ffffff;
+  background-color: #ffffff !important;
+}
