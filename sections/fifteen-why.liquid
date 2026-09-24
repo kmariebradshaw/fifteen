@@ -2,7 +2,7 @@
   <header class="fifteen-why__hero fifteen-why__width">
     <div>
       <p class="fifteen-why__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-      <h1>{{ section.settings.heading }}</h1>
+      <h1>{{ section.settings.heading | replace: 'Less guesswork.', 'Less&nbsp;guesswork.' }}</h1>
       <svg class="fifteen-why__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
       <div class="rte">{{ section.settings.intro }}</div>
     </div>
@@ -40,10 +40,33 @@
     <h2>{{ section.settings.formats_heading }}</h2>
     <svg class="fifteen-why__underline" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 15 Q200 0 396 11" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
     <div class="rte">{{ section.settings.formats_text }}</div>
+    {% assign formats_collection = section.settings.product_collection | default: collections.all %}
+    {% if formats_collection.products.size > 0 %}
+      <div class="fifteen-why__product-gallery">
+        {% for format_product in formats_collection.products limit: 3 %}
+          <a class="fifteen-why__product-card" href="{{ format_product.url }}">
+            {% if format_product.featured_image != blank %}
+              {{ format_product.featured_image | image_url: width: 900 | image_tag: widths: '240, 360, 540, 720, 900', sizes: '(min-width: 750px) 28vw, 80vw', loading: 'lazy', alt: format_product.title }}
+            {% endif %}
+            <span>{{ format_product.title | escape }} <span aria-hidden="true">→</span></span>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
   </section>
   <section class="fifteen-why__life fifteen-why__width">
     <h2>{{ section.settings.life_heading | escape }}</h2>
     <div class="rte">{{ section.settings.life_text }}</div>
+    <div class="fifteen-why__lifestyle-gallery">
+      <figure>
+        <img src="{{ 'fifteen-life-work-v1.webp' | asset_url }}" width="900" height="770" loading="lazy" alt="Fifteen rescue powder beside a laptop during a workday">
+        <figcaption>AT YOUR DESK</figcaption>
+      </figure>
+      <figure>
+        <img src="{{ 'fifteen-life-gym-v1.webp' | asset_url }}" width="900" height="769" loading="lazy" alt="A basketball player with a Fifteen packet tucked into her gym bag">
+        <figcaption>ON YOUR TEAM</figcaption>
+      </figure>
+    </div>
     <div class="fifteen-why__moments">
       {% assign moments = 'School,Work,Gym,Travel,Bedside' | split: ',' %}
       {% for moment in moments %}
@@ -237,6 +260,12 @@
       "id": "cream",
       "label": "Beige",
       "default": "#fffdf9"
+    },
+    {
+      "type": "collection",
+      "id": "product_collection",
+      "label": "Featured product collection",
+      "info": "Shows the first three products. Leave blank to use all products."
     }
   ],
   "blocks": [
