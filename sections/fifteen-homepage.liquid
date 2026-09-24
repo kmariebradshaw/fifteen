@@ -34,7 +34,7 @@
     <h2 class="f15__life-heading">Real Life<br>Ready 15g<img src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></h2>
     <div class="f15__life-grid">
       {% assign labels = 'At work,In the car,At the gym,Middle of the night,In your bag' | split: ',' %}
-      {% assign body = 'Meetings, deadlines, and peace of mind.|Ready wherever the day takes you.|Treat a low and keep moving.|Quick access without leaving bed.|A small backup that goes everywhere.' | split: '|' %}
+      {% assign body = 'Meetings, deadlines, and peace of&nbsp;mind.|Ready wherever the day takes&nbsp;you.|Treat a low and keep&nbsp;moving.|Quick access without leaving&nbsp;bed.|A small backup that goes&nbsp;everywhere.' | split: '|' %}
       {% for label in labels %}
         {% assign key = 'life_image_' | append: forloop.index %}
         <article class="f15__life-card">
@@ -268,6 +268,9 @@
  .f15 .f15__life-heading{font-size:5vw;margin-top:3vw}
  .f15__life-heading img{width:16vw;margin-top:.7vw}
 }
+
+/* Keep lifestyle captions inset, centered and balanced beneath each photo. */
+.f15__life-card p{width:84%;max-width:24ch;margin:0 auto;text-align:center;text-wrap:balance}
 {% endstylesheet %}
 
 {% schema %}
