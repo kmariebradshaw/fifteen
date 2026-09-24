@@ -78,3 +78,27 @@ body:has(.fifteen-product-main) .quick-add-modal .add-to-cart-button {
 }
 @media (max-width: 420px) { .fifteen-product-benefits__grid { grid-template-columns: 1fr; } }
 @media (max-width: 380px) { .fifteen-product-main .product-details .product-form-buttons > add-to-cart-component { flex-basis: 100%; } }
+
+/* Apply the white top section even when Shopify retains older template settings. */
+.fifteen-product-main > .section-background,
+.fifteen-product-main > .product-information {
+  --color-background: #ffffff;
+  background-color: #ffffff !important;
+}
+/* Support the image-based benefit markup still rendered by the live theme. */
+.fifteen-product-benefits__card--target { --legacy-benefit-icon: url("fifteen-icon-target.svg"); }
+.fifteen-product-benefits__card--backpack { --legacy-benefit-icon: url("fifteen-icon-backpack.svg"); }
+.fifteen-product-benefits__card--smile { --legacy-benefit-icon: url("fifteen-icon-smile.svg"); }
+.fifteen-product-benefits__card--heart { --legacy-benefit-icon: url("fifteen-icon-heart.svg"); }
+.fifteen-product-benefits__card--lightning { --legacy-benefit-icon: url("fifteen-icon-lightning.svg"); }
+.fifteen-product-benefits__card:has(> img):not(:has(> .fifteen-product-icon))::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 16px;
+  background-color: #071f48;
+  -webkit-mask: var(--legacy-benefit-icon) center / contain no-repeat;
+  mask: var(--legacy-benefit-icon) center / contain no-repeat;
+}
+.fifteen-product-benefits__card > img { display: none; }
