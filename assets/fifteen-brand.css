@@ -193,16 +193,26 @@
   }
 }
 
-/* Collection merchandising, scoped to the native collection results. */
-.fifteen-collection-grid { color: var(--brand-navy); }
-.fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #071f481a; padding-bottom: 18px; margin-bottom: 20px; }
+/* Collection merchandising: clinical paper, navy type and lime accents. */
+.fifteen-collection-grid { color: var(--brand-navy); background: #f7f7f2; }
+.fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #071f4826; padding-bottom: 18px; margin-bottom: 24px; }
 .fifteen-collection-grid .product-card { color: var(--brand-navy); }
-.fifteen-collection-grid .product-card .product-title { font-weight: 750; }
-.fifteen-collection-grid .product-card product-price { font-size: .95rem; }
-.fifteen-collection-grid .product-grid__item:nth-child(3n + 1) { --collection-accent: var(--brand-pink); }
-.fifteen-collection-grid .product-grid__item:nth-child(3n + 2) { --collection-accent: var(--brand-green); }
-.fifteen-collection-grid .product-grid__item:nth-child(3n + 3) { --collection-accent: var(--brand-purple); }
-.fifteen-collection-grid .card-gallery { border-bottom: 4px solid var(--collection-accent); }
+.fifteen-collection-grid .product-card__content { background: #fff; border: 1px solid #071f4826; border-radius: 0; box-shadow: none; overflow: hidden; }
+.fifteen-collection-grid .product-card [ref="productTitleLink"] p { font-family: var(--font-heading--family); font-weight: 750; letter-spacing: -.025em; }
+.fifteen-collection-grid .product-card product-price { font-family: var(--font-body--family); font-size: .95rem; }
+.fifteen-collection-grid .card-gallery { border-radius: 0; border-bottom: 3px solid #92e631; }
+.fifteen-collection-grid .quick-add { --quick-add-background: #92e631; --quick-add-foreground: #071f48; }
+.fifteen-collection-grid .quick-add .quick-add__button {
+  --button-background-color: #92e631 !important;
+  --button-border-color: #92e631 !important;
+  --button-color: #071f48 !important;
+  --quick-add-foreground: #071f48;
+  background: #92e631 !important;
+  border-color: #92e631 !important;
+  color: #071f48 !important;
+  border-radius: 0;
+}
+.fifteen-collection-grid .product-card:focus-within { outline: 2px solid #071f48; outline-offset: 3px; }
 
 /* Keep native cart drawer styling; use pink for checkout and item count. */
 #cart-drawer .cart__checkout-button {
