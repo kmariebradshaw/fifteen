@@ -12,8 +12,8 @@
     "fifteen_homepage": {
       "type": "fifteen-homepage",
       "settings": {
+        "hero_product": "rescue-powder",
         "shop_link": "",
-        "hero_product": "drink-shots",
         "product_collection": "all"
       }
     }
