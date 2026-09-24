@@ -13,6 +13,7 @@
       "type": "fifteen-homepage",
       "settings": {
         "shop_link": "",
+        "hero_product": "drink-shots",
         "product_collection": "all"
       }
     }
