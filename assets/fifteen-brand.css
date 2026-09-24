@@ -435,3 +435,27 @@ h1, h2, h3, h4, h5, h6,
   .f15 .f15__community-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .f15 .f15__community-card:nth-child(5) { display: none; }
 }
+
+/* Give the mobile packet composition a white canvas and readable annotations. */
+@media (max-width: 850px) {
+  .f15 .f15__hero-static,
+  .f15 .f15__hero-art { background: #fff; }
+  .f15 .f15__hero-static-note {
+    top: 15%;
+    right: 1%;
+    width: 18%;
+    font-size: 5.7vw;
+    line-height: 1.05;
+  }
+  .f15 .f15__hero-note-swoosh { width: 13vw; margin-top: 1vw; }
+  .f15 .f15__hero-scoop-label {
+    left: 55%;
+    top: 91%;
+    width: 42%;
+    margin: 0;
+    font-size: 3.1vw;
+    line-height: 1.25;
+    text-align: center;
+  }
+  .f15 .f15__hero-scoop-label small { font-size: 2.3vw; line-height: 1.35; }
+}
