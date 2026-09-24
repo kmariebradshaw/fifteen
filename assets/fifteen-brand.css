@@ -81,9 +81,8 @@
 .fifteen-home .fifteen-home__life-image { background: var(--brand-gold-tint); }
 .fifteen-home .fifteen-home__story-copy .fifteen-home__story-eyebrow { color: var(--brand-purple); }
 
-/* Footer icons and signup label use the updated brand navy. */
+/* Footer value icons and signup label use the updated brand navy. */
 .fifteen-footer .fifteen-footer__value-icon,
-.fifteen-footer .fifteen-footer__social-links a,
 .fifteen-footer .fifteen-footer__email-row button {
   color: var(--brand-navy);
 }
