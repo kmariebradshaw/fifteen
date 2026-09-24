@@ -250,3 +250,21 @@ h1, h2, h3, h4, h5, h6,
     grid-column: 1 / -1;
   }
 }
+
+/* The inner results grid carries its own Shopify background setting. */
+.fifteen-collection-grid .main-collection-grid {
+  --color-background: #ffffff;
+  background-color: #ffffff !important;
+}
+/* Remove the former swoosh from older collection header markup too. */
+.fifteen-collection-hero .fifteen-collection-hero__underline { display: none !important; }
+.fifteen-collection-hero .fifteen-collection-hero__inner {
+  grid-template-areas: "eyebrow eyebrow" "title description" "benefits benefits";
+}
+.fifteen-collection-hero .fifteen-collection-hero__benefits { margin-top: 28px; }
+@media (max-width: 749px) {
+  .fifteen-collection-hero .fifteen-collection-hero__inner {
+    grid-template-areas: "eyebrow" "title" "description" "benefits";
+  }
+  .fifteen-collection-hero .fifteen-collection-hero__description { margin-top: 20px; }
+}
