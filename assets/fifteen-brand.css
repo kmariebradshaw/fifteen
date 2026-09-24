@@ -81,11 +81,12 @@
 .fifteen-home .fifteen-home__life-image { background: var(--brand-gold-tint); }
 .fifteen-home .fifteen-home__story-copy .fifteen-home__story-eyebrow { color: var(--brand-purple); }
 
-/* Footer value icons echo the palette without altering the navy signup row. */
-.fifteen-footer .fifteen-footer__value:nth-child(4n + 1) .fifteen-footer__value-icon { color: var(--brand-pink); }
-.fifteen-footer .fifteen-footer__value:nth-child(4n + 2) .fifteen-footer__value-icon { color: var(--brand-green); }
-.fifteen-footer .fifteen-footer__value:nth-child(4n + 3) .fifteen-footer__value-icon { color: var(--brand-blue); }
-.fifteen-footer .fifteen-footer__value:nth-child(4n + 4) .fifteen-footer__value-icon { color: var(--brand-purple); }
+/* Footer icons and signup label use the updated brand navy. */
+.fifteen-footer .fifteen-footer__value-icon,
+.fifteen-footer .fifteen-footer__social-links a,
+.fifteen-footer .fifteen-footer__email-row button {
+  color: var(--brand-navy);
+}
 
 /* Shared button treatment, including hover/active states and native theme CTAs. */
 :root {
