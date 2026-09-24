@@ -31,11 +31,7 @@
   </div>
 
   <section class="f15__real-life f15__wrap">
-    <div class="f15__section-heading">
-      <p>REAL LIFE.</p>
-      <h2>SAME 15g.</h2>
-      <i></i>
-    </div>
+    <h2 class="f15__life-heading">Real Life<br>Ready 15g<img src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></h2>
     <div class="f15__life-grid">
       {% assign labels = 'At work,In the car,At the gym,Middle of the night,In your bag' | split: ',' %}
       {% assign body = 'Meetings, deadlines, and peace of mind.|Ready wherever the day takes you.|Treat a low and keep moving.|Quick access without leaving bed.|A small backup that goes everywhere.' | split: '|' %}
@@ -260,6 +256,17 @@
  .f15__hero-note-swoosh{width:10vw;margin-top:.8vw}
  .f15__hero-scoop-label{font-size:2.2vw}
  .f15__hero-scoop-label small{font-size:1.8vw}
+}
+
+/* Handwritten lifestyle heading sits beside the photos. */
+.f15__real-life{display:grid;grid-template-columns:16% minmax(0,1fr);gap:3vw;align-items:center;padding-top:3vw;padding-bottom:3vw}
+.f15 .f15__life-heading{margin:0;font-family:"Story Script",sans-serif !important;font-size:2.5vw;font-weight:400;font-style:normal;line-height:1.15;letter-spacing:0;text-transform:none;transform:rotate(-12deg);transform-origin:center}
+.f15__life-heading img{display:block;width:8vw;height:auto;margin:.7vw auto 0 0;mix-blend-mode:multiply}
+.f15__real-life .f15__life-grid{min-width:0}
+@media(max-width:850px){
+ .f15__real-life{grid-template-columns:24% minmax(0,1fr);gap:4vw;align-items:start;padding-top:6vw;padding-bottom:6vw}
+ .f15 .f15__life-heading{font-size:5vw;margin-top:6vw}
+ .f15__life-heading img{width:16vw;margin-top:1.4vw}
 }
 {% endstylesheet %}
 
