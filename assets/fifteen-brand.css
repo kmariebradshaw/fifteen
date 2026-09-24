@@ -386,3 +386,9 @@ h1, h2, h3, h4, h5, h6,
   .fifteen-why__product-card > img { max-height: 300px; }
   .fifteen-why__lifestyle-gallery { grid-template-columns: minmax(0,1fr); gap: 20px; }
 }
+
+/* Match the About Us hero headline to Why 15. */
+.fifteen-about .fifteen-about__hero h1 { font-size: clamp(2.1rem,4.2vw,4.2rem); line-height: 1.06; }
+@media (max-width: 749px) {
+  .fifteen-about .fifteen-about__hero h1 { font-size: clamp(1.85rem,7.5vw,3rem); }
+}
