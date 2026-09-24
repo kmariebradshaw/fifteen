@@ -35,6 +35,8 @@
     <div class="f15__life-grid">
       {% assign labels = 'At work,In the car,At the gym,Middle of the night,In your bag' | split: ',' %}
       {% assign body = 'Meetings, deadlines, and peace of&nbsp;mind.|Ready wherever the day takes&nbsp;you.|Treat a low and keep&nbsp;moving.|Quick access without leaving&nbsp;bed.|A small backup that goes&nbsp;everywhere.' | split: '|' %}
+      {% assign life_assets = 'work,car,gym,night,bag' | split: ',' %}
+      {% assign life_alts = 'Woman working at a laptop with a Fifteen packet on her desk|Passenger holding a Fifteen packet in a parked car|Teen taking a break at basketball practice with a Fifteen packet in her sports bag|Parent and child at bedtime with a Fifteen packet on the nightstand|Fifteen packets tucked into an everyday tote bag' | split: '|' %}
       {% for label in labels %}
         {% assign key = 'life_image_' | append: forloop.index %}
         <article class="f15__life-card">
@@ -42,7 +44,8 @@
             {% if section.settings[key] != blank %}
               {{ section.settings[key] | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '360,640,1000', sizes: '(min-width: 990px) 18vw, 46vw', alt: label }}
             {% else %}
-              <span>PHOTO<br>PLACEHOLDER</span>
+              {% assign life_asset = 'fifteen-life-' | append: life_assets[forloop.index0] | append: '-v1.webp' %}
+              <img src="{{ life_asset | asset_url }}" alt="{{ life_alts[forloop.index0] | escape }}" width="900" height="770" loading="lazy" decoding="async">
             {% endif %}
           </div>
           <h3>{{ label }}</h3>
