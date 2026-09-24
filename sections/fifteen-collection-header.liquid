@@ -16,12 +16,13 @@
 {% stylesheet %}
 
 .fifteen-collection-hero { background: #f7f7f2; color: #071f48; padding: clamp(36px,5vw,72px) clamp(20px,4vw,60px) 0; border-bottom: 1px solid #071f4826; }
-.fifteen-collection-hero__inner { max-width: 1320px; margin-inline: auto; display: grid; grid-template-columns: 1.2fr 1fr; column-gap: clamp(24px,6vw,88px); grid-template-areas: "eyebrow eyebrow" "title description" "slash description" "benefits benefits"; align-items: center; }
+.fifteen-collection-hero__inner { max-width: 1320px; margin-inline: auto; display: grid; grid-template-columns: 1.2fr 1fr; column-gap: clamp(24px,6vw,88px); grid-template-areas: "eyebrow eyebrow" "title description" "slash ." "benefits benefits"; align-items: center; }
 .fifteen-collection-hero__eyebrow { grid-area: eyebrow; justify-self: start; margin: 0 0 22px; padding: 7px 12px; background: #92e631; color: #071f48; font-size: .72rem; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }
 .fifteen-collection-hero h1 { grid-area: title; margin: 0; color: #071f48; font-family: var(--font-heading--family); font-weight: 800; font-size: clamp(2.5rem,5.5vw,5.5rem); letter-spacing: -.055em; line-height: .98; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
-.fifteen-collection-hero__underline { grid-area: slash; display: block; color: #92e631; width: clamp(130px,16vw,230px); height: auto; mix-blend-mode: multiply; margin: 16px 0 28px; }
+.fifteen-collection-hero__underline { grid-area: slash; display: block; color: #92e631; width: clamp(162px,20vw,288px); max-width: 100%; height: auto; mix-blend-mode: multiply; margin: 16px 0 28px; }
 .fifteen-collection-hero__description { grid-area: description; max-width: 480px; font-family: var(--font-body--family); font-size: clamp(.95rem,1.2vw,1.1rem); line-height: 1.65; text-wrap: pretty; }
 .fifteen-collection-hero__description p { margin: 0 0 12px; }
+.fifteen-collection-hero__description > :last-child { margin-bottom: 0; }
 .fifteen-collection-hero__benefits { grid-area: benefits; list-style: none; padding: 20px 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 18px 36px; border-top: 1px solid #071f4826; }
 .fifteen-collection-hero__benefits li { display: flex; align-items: center; gap: 10px; color: #071f48; font-family: var(--font-heading--family); font-size: .78rem; font-weight: 700; letter-spacing: .035em; text-transform: uppercase; }
 .fifteen-collection-hero__icon { display: block; flex: 0 0 26px; width: 26px; height: 26px; background: #071f48; mask: var(--benefit-icon) center / contain no-repeat; -webkit-mask: var(--benefit-icon) center / contain no-repeat; }
