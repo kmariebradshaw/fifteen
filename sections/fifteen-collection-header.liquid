@@ -2,31 +2,38 @@
   <div class="fifteen-collection-hero__inner">
     <p class="fifteen-collection-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
     <h1 id="CollectionTitle-{{ section.id }}">{{ collection.title | escape }}</h1>
-    <svg class="fifteen-collection-hero__underline" viewBox="0 0 300 20" aria-hidden="true"><path d="M4 15 Q145 0 296 7" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
+    <svg class="fifteen-collection-hero__underline" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 13 295 2 288 13 0 20Z" fill="currentColor"/></svg>
     <div class="fifteen-collection-hero__description rte">{% if collection.description != blank %}{{ collection.description }}{% else %}<p>{{ section.settings.intro | escape }}</p>{% endif %}</div>
     {% if section.settings.show_benefits %}
       <ul class="fifteen-collection-hero__benefits" role="list">
-        <li><img src="{{ 'fifteen-icon-target.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_one | escape }}</span></li>
-        <li><img src="{{ 'fifteen-icon-backpack.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_two | escape }}</span></li>
-        <li><img src="{{ 'fifteen-icon-heart.svg' | asset_url }}" width="32" height="32" alt=""><span>{{ section.settings.benefit_three | escape }}</span></li>
+        <li><span class="fifteen-collection-hero__icon" style="--benefit-icon: url('{{ 'fifteen-icon-target.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ section.settings.benefit_one | escape }}</span></li>
+        <li><span class="fifteen-collection-hero__icon" style="--benefit-icon: url('{{ 'fifteen-icon-backpack.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ section.settings.benefit_two | escape }}</span></li>
+        <li><span class="fifteen-collection-hero__icon" style="--benefit-icon: url('{{ 'fifteen-icon-heart.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ section.settings.benefit_three | escape }}</span></li>
       </ul>
     {% endif %}
   </div>
 </section>
 {% stylesheet %}
-.fifteen-collection-hero { background: var(--brand-blue-gradient); color: var(--brand-navy); padding: clamp(36px,5vw,68px) 24px; }
-.fifteen-collection-hero__inner { max-width: 960px; margin-inline: auto; text-align: center; }
-.fifteen-collection-hero__eyebrow { margin: 0 0 14px; color: var(--brand-purple); font-size: .75rem; letter-spacing: .13em; font-weight: 800; }
-.fifteen-collection-hero h1 { margin: 0; color: var(--brand-navy); font-size: clamp(2.5rem,5vw,4.5rem); letter-spacing: -.05em; line-height: 1.05; text-wrap: balance; }
-.fifteen-collection-hero__underline { display: block; color: var(--brand-pink); width: min(240px,55%); height: 20px; margin: 6px auto 20px; }
-.fifteen-collection-hero__description { max-width: 620px; margin: 0 auto; line-height: 1.65; }
-.fifteen-collection-hero__benefits { list-style: none; padding: 0; margin: 26px 0 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-.fifteen-collection-hero__benefits li { display: flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: #ffffffd9; font-size: .85rem; font-weight: 700; }
-.fifteen-collection-hero__benefits img { width: 28px; height: 28px; }
+
+.fifteen-collection-hero { background: #f7f7f2; color: #071f48; padding: clamp(36px,5vw,72px) clamp(20px,4vw,60px) 0; border-bottom: 1px solid #071f4826; }
+.fifteen-collection-hero__inner { max-width: 1320px; margin-inline: auto; display: grid; grid-template-columns: 1.2fr 1fr; column-gap: clamp(24px,6vw,88px); grid-template-areas: "eyebrow eyebrow" "title description" "slash description" "benefits benefits"; align-items: center; }
+.fifteen-collection-hero__eyebrow { grid-area: eyebrow; justify-self: start; margin: 0 0 22px; padding: 7px 12px; background: #92e631; color: #071f48; font-size: .72rem; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }
+.fifteen-collection-hero h1 { grid-area: title; margin: 0; color: #071f48; font-family: var(--font-heading--family); font-weight: 800; font-size: clamp(2.5rem,5.5vw,5.5rem); letter-spacing: -.055em; line-height: .98; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
+.fifteen-collection-hero__underline { grid-area: slash; display: block; color: #92e631; width: clamp(130px,16vw,230px); height: 22px; margin: 16px 0 28px; }
+.fifteen-collection-hero__description { grid-area: description; max-width: 480px; font-family: var(--font-body--family); font-size: clamp(.95rem,1.2vw,1.1rem); line-height: 1.65; text-wrap: pretty; }
+.fifteen-collection-hero__description p { margin: 0 0 12px; }
+.fifteen-collection-hero__benefits { grid-area: benefits; list-style: none; padding: 20px 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 18px 36px; border-top: 1px solid #071f4826; }
+.fifteen-collection-hero__benefits li { display: flex; align-items: center; gap: 10px; color: #071f48; font-family: var(--font-heading--family); font-size: .78rem; font-weight: 700; letter-spacing: .035em; text-transform: uppercase; }
+.fifteen-collection-hero__icon { display: block; flex: 0 0 26px; width: 26px; height: 26px; background: #071f48; mask: var(--benefit-icon) center / contain no-repeat; -webkit-mask: var(--benefit-icon) center / contain no-repeat; }
 @media (max-width: 749px) {
- .fifteen-collection-hero { padding: 36px 20px; }
- .fifteen-collection-hero__benefits { gap: 8px; }
- .fifteen-collection-hero__benefits li { padding: 8px 12px; font-size: .75rem; }
+ .fifteen-collection-hero { padding: 32px 20px 0; }
+ .fifteen-collection-hero__inner { grid-template-columns: minmax(0,1fr); grid-template-areas: "eyebrow" "title" "slash" "description" "benefits"; }
+ .fifteen-collection-hero__eyebrow { margin-bottom: 18px; font-size: .65rem; }
+ .fifteen-collection-hero__underline { margin: 12px 0 20px; }
+ .fifteen-collection-hero__description { max-width: 100%; }
+ .fifteen-collection-hero__benefits { gap: 14px 20px; padding-block: 18px; }
+ .fifteen-collection-hero__benefits li { font-size: .66rem; gap: 8px; }
+ .fifteen-collection-hero__icon { flex-basis: 22px; width: 22px; height: 22px; }
 }
 {% endstylesheet %}
 
