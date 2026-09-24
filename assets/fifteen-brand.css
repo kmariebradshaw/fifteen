@@ -427,7 +427,9 @@ h1, h2, h3, h4, h5, h6,
     align-items: start;
   }
   .f15 .f15__real-life .f15__life-grid { display: contents; }
-  .f15 .f15__life-heading { align-self: center; margin: 0; padding-left: 3vw; font-size: 5vw; }
+  .f15 .f15__life-heading { place-self: center; margin: 0; padding: 0; font-size: 5.7vw; text-align: center; }
+  .f15 .f15__life-heading img { margin-inline: auto; }
+  .f15 .f15__center-heading h2 { font-size: 4.8vw; line-height: 1.1; white-space: nowrap; }
   .f15 .f15__life-card { min-width: 0; width: 100%; grid-column: auto; justify-self: stretch; }
   .f15 .f15__life-card h3 { font-size: clamp(.6875rem,2.6vw,.8125rem); }
   .f15 .f15__life-card p { width: 92%; font-size: clamp(.625rem,2.4vw,.75rem); overflow-wrap: anywhere; }
