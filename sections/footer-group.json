@@ -199,7 +199,8 @@
         "value_4"
       ],
       "settings": {
-        "tagline": "<p><strong>Simple. Reliable. Delicious.</strong><br>Everything you need for lows,<br>in exactly 15 grams.</p>",
+        "logo": "shopify://shop_images/fifteen-15-logo-white.png",
+        "tagline": "<p><strong>Simple. Reliable. Delicious.</strong><br/>Everything you need for lows,<br/>in exactly 15 grams.</p>",
         "newsletter_heading": "STAY IN THE KNOW",
         "email_placeholder": "Enter your email",
         "join_label": "JOIN",
