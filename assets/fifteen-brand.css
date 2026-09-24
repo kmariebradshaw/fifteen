@@ -214,17 +214,23 @@
 }
 .fifteen-collection-grid .product-card:focus-within { outline: 2px solid #071f48; outline-offset: 3px; }
 
-/* Keep native cart drawer styling; use pink for checkout and item count. */
+/* Cart drawer accents follow the lime and navy palette. */
+#cart-drawer { --brand-pink: #92e631; --brand-pink-tint: #eefbdd; }
+#cart-drawer .button,
 #cart-drawer .cart__checkout-button {
-  --button-background-color: var(--brand-pink) !important;
-  --button-color: #fff !important;
-  background: var(--brand-pink) !important;
-  color: #fff !important;
+  --button-background-color: #92e631 !important;
+  --button-border-color: #92e631 !important;
+  --button-color: #071f48 !important;
+  --button-hover-background-color: #92e631;
+  --button-hover-border-color: #071f48;
+  --button-hover-color: #071f48;
+  background: #92e631 !important;
+  border-color: #92e631 !important;
+  color: #071f48 !important;
 }
-#cart-drawer .theme-drawer__badge {
-  background: var(--brand-pink);
-  color: #fff;
-}
+#cart-drawer .button:hover,
+#cart-drawer .button:focus-visible { color: #071f48 !important; }
+#cart-drawer .theme-drawer__badge { background: #92e631; color: #071f48; }
 
 /* Sitewide type roles, including custom text blocks and branded sections. */
 :root { --font-handwritten--family: "Story Script", sans-serif; }
