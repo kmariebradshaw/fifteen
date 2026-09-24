@@ -103,7 +103,10 @@
         <p>I'm Christian, a dad and entrepreneur. My son Finn was diagnosed with Type 1 diabetes, and together we've experienced the daily highs and lows that come with it.</p>
         <p>We created Fifteen to make treating lows simpler, faster, and more convenient — because we live the problem.</p>
         <p>We wanted something small enough for real life, easy to use, and built around the 15g rule people with diabetes already know.</p>
-        <div class="f15__signatures"><span>Christian</span><span>Finn</span></div>
+        <div class="f15__signatures">
+          <img class="f15__signature f15__signature--christian" src="{{ 'fifteen-signature-christian-v1.png' | asset_url }}" alt="Christian" width="700" height="261" loading="lazy">
+          <img class="f15__signature f15__signature--finn" src="{{ 'fifteen-signature-finn-v1.png' | asset_url }}" alt="Finn" width="700" height="298" loading="lazy">
+        </div>
         <small>Christian and Finn Arquilla<br>Founders, Fifteen</small>
       </div>
     </div>
@@ -269,6 +272,16 @@
 /* Branded green slash beneath the product section heading. */
 .f15__products-heading-slash{display:block;width:10vw;height:auto;margin:.5vw auto 0;mix-blend-mode:multiply}
 @media(max-width:850px){.f15__products-heading-slash{width:25vw;margin-top:1vw}}
+/* Distinct generated handwriting for the father and son. */
+.f15__signatures{align-items:center;gap:2.5vw;margin:1.2vw 0}
+.f15__signature{display:block;height:auto;object-fit:contain}
+.f15__signature--christian{width:12vw}
+.f15__signature--finn{width:7vw}
+@media(max-width:850px){
+ .f15__signatures{gap:6vw;margin:4vw 0}
+ .f15__signature--christian{width:32vw}
+ .f15__signature--finn{width:19vw}
+}
 {% endstylesheet %}
 
 {% schema %}
