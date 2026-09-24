@@ -1,7 +1,7 @@
 <div class="fifteen-product-highlights" {{ block.shopify_attributes }}>
-  <div><img src="{{ 'fifteen-icon-target.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_1 | escape }}</span></div>
-  <div><img src="{{ 'fifteen-icon-backpack.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_2 | escape }}</span></div>
-  <div><img src="{{ 'fifteen-icon-heart.svg' | asset_url }}" width="32" height="32" alt="" loading="lazy"><span>{{ block.settings.label_3 | escape }}</span></div>
+  <div><span class="fifteen-product-icon" style="--benefit-icon: url('{{ 'fifteen-icon-target.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ block.settings.label_1 | escape }}</span></div>
+  <div><span class="fifteen-product-icon" style="--benefit-icon: url('{{ 'fifteen-icon-backpack.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ block.settings.label_2 | escape }}</span></div>
+  <div><span class="fifteen-product-icon" style="--benefit-icon: url('{{ 'fifteen-icon-heart.svg' | asset_url }}');" aria-hidden="true"></span><span>{{ block.settings.label_3 | escape }}</span></div>
 </div>
 
 {% schema %}
