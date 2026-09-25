@@ -107,6 +107,7 @@
         <p>We wanted something small enough for real life, easy to use, and built around the 15g rule people with diabetes already know.</p>
         <div class="f15__signatures">
           <img class="f15__signature f15__signature--christian" src="{{ 'fifteen-signature-christian-v1.png' | asset_url }}" alt="Christian" width="700" height="261" loading="lazy">
+          <span class="f15__signature-plus" aria-hidden="true">+</span>
           <img class="f15__signature f15__signature--finn" src="{{ 'fifteen-signature-finn-v1.png' | asset_url }}" alt="Finn" width="700" height="298" loading="lazy">
         </div>
         <small>Christian and Finn Arquilla<br>Founders, Fifteen</small>
@@ -285,10 +286,12 @@
 /* Distinct generated handwriting for the father and son. */
 .f15__signatures{align-items:center;gap:2.5vw;margin:1.2vw 0}
 .f15__signature{display:block;height:auto;object-fit:contain}
+.f15__signature-plus{flex:none;font-size:2.5vw;line-height:1;color:#000}
 .f15__signature--christian{width:12vw}
 .f15__signature--finn{width:7vw}
 @media(max-width:850px){
  .f15__signatures{gap:6vw;margin:4vw 0}
+ .f15__signature-plus{font-size:6vw}
  .f15__signature--christian{width:32vw}
  .f15__signature--finn{width:19vw}
 }
