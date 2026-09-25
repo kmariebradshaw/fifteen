@@ -13,8 +13,8 @@
         <p class="f15__lead">15g of fast-acting carbohydrates in a small, convenient powder.</p>
 
         <div class="f15__benefits" aria-label="Product benefits">
-          <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2 5 17h8l-2 13 16-19h-9l3-9Z"/></svg><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
-          <div><svg class="f15__benefit-icon f15__benefit-icon--tongue" viewBox="9 6 33 38" aria-hidden="true" focusable="false"><image href="{{ 'fifteen-benefit-dissolve.png' | asset_url }}" width="40" height="58"/></svg><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
+          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-arrows-transparent.png' | asset_url }}" width="1431" height="1099" alt=""><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
+          <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-tongue-transparent.png' | asset_url }}" width="1434" height="1097" alt=""><span>DISSOLVES<br>ON YOUR TONGUE<br>IN SECONDS</span></div>
           <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 2 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16"/></svg><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
         </div>
 
@@ -231,7 +231,7 @@
 .f15 .f15__button,
 .f15 .f15__community-head > a,
 .f15 .f15__flavor-pills button {font-weight:700}
-.f15__benefit-icon--tongue{mix-blend-mode:multiply}
+.f15__hero img.f15__benefit-icon{object-fit:contain}
 
 /* Keep the composition right-aligned, with breathing room for the tilted flavor note. */
 .f15__hero-static{position:relative;display:block;width:calc(100% + 5vw);min-width:0;padding:3vw 0}
