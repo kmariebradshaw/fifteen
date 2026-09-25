@@ -11,7 +11,6 @@
         <p class="f15__eyebrow">FOR LIFE'S LOWS</p>
         <h1><span class="f15__headline-line">WHEN LOW</span> <span class="f15__headline-line">HITS, REACH</span> <span class="f15__headline-line">FOR <span class="f15__headline-accent">FIFTEEN.</span></span></h1>
         <p class="f15__lead">15g of fast-acting carbohydrates in a small, convenient powder.</p>
-        <p class="f15__quick-message"><strong>Dissolves in seconds.</strong><span>Not chalky. Just great taste.</span></p>
 
         <div class="f15__benefits" aria-label="Product benefits">
           <div><img class="f15__benefit-icon" src="{{ 'fifteen-benefit-arrows-transparent.png' | asset_url }}" width="1431" height="1099" alt=""><span>RAISES<br>BLOOD SUGAR<br>FAST</span></div>
@@ -31,6 +30,10 @@
         </figure>
       </div>
     </div>
+  </div>
+
+  <div class="f15__benefit-banner">
+    <p><strong>Dissolves in seconds.</strong><span>Not chalky. Just great taste.</span></p>
   </div>
 
   <section class="f15__real-life f15__wrap">
@@ -191,14 +194,15 @@
   font-style: normal;
 }
 
-/* Short, prominent product messages above the benefit row. */
-.f15__quick-message{display:flex;flex-direction:column;align-items:flex-start;gap:.45vw;margin:0 0 1.5vw;color:#000}
-.f15__quick-message strong{display:inline-block;padding:.2vw .45vw;background:var(--lime);font:800 1.65vw/1.2 var(--font-heading--family);letter-spacing:-.02em;text-transform:uppercase}
-.f15__quick-message>span{font:700 1.3vw/1.35 var(--font-body--family)}
+/* Quick product messages in a slim banner below the hero. */
+.f15__benefit-banner{background:var(--lime);color:#000;padding:1.15vw 5vw}
+.f15__benefit-banner p{display:flex;align-items:center;justify-content:center;gap:3vw;margin:0;font:700 1.45vw/1.3 var(--font-body--family)}
+.f15__benefit-banner strong{font-family:var(--font-heading--family);font-weight:800;text-transform:uppercase}
+.f15__benefit-banner span{border-left:.1vw solid currentColor;padding-left:3vw}
 @media(max-width:850px){
- .f15__quick-message{gap:1.2vw;margin-bottom:4vw}
- .f15__quick-message strong{padding:.6vw 1.2vw;font-size:4.6vw}
- .f15__quick-message>span{font-size:3.6vw}
+ .f15__benefit-banner{padding:3.5vw 5vw}
+ .f15__benefit-banner p{flex-direction:column;gap:1vw;font-size:3.8vw;text-align:center}
+ .f15__benefit-banner span{border:0;padding:0}
 }
 
 /* Hero benefit artwork and angled signature. */
