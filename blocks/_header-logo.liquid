@@ -57,6 +57,17 @@
     {% endif %}
     data-testid="header-logo"
   >
+    {% if settings.logo.src contains 'ChatGPT_Image_Sep_24_2026_10_53_30_AM' %}
+      <img
+        src="{{ 'fifteen-logo-up-arrow.png' | asset_url }}"
+        class="header-logo__image"
+        width="2169"
+        height="725"
+        alt="Fifteen. Fast carbs. Real life."
+        style="{{ logo_style }}"
+        loading="eager"
+      >
+    {% else %}
     {% render 'image',
       image: settings.logo,
       class: 'header-logo__image',
@@ -65,6 +76,7 @@
       text_fallback: shop.name,
       style: logo_style
     %}
+    {% endif %}
   </span>
 
   {% if use_inverse_logo %}
