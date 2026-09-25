@@ -9,12 +9,12 @@ The palette comes from the five benefit icons. Shared tokens and page treatments
 | Green | #48a26b | Everyday use, portability |
 | Gold | #e4ac25 | Delight, small highlights |
 | Purple | #78469c | Community and secondary accents |
-| Navy | #071f48 | Body text and dark panels |
+| Black | #000000 | Body text and dark panels |
 | Beige | #fffdf9 | Warm page base |
 | Sky | #92d7ef | Blue gradient start |
 
 ## Usage
-- Keep navy body text on light card fills. Gold is for icons, borders, and accents rather than small text on white.
+- Keep black body text on light card fills. Gold is for icons, borders, and accents rather than small text on white.
 - Pair each colored card border with its matching tint.
 - Preserve the blue-to-white gradient: #92d7ef → #d9f1fa → #ffffff.
 - Use the existing heading and body fonts, curved underlines, rounded cards, and pill buttons.

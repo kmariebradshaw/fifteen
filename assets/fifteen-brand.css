@@ -5,7 +5,7 @@
   --brand-green: #48a26b;
   --brand-gold: #e4ac25;
   --brand-purple: #78469c;
-  --brand-navy: #071f48;
+  --brand-navy: #000000;
   --brand-cream: #fffdf9;
   --brand-pink-tint: #fbd5e2;
   --brand-blue-tint: #cceef8;
@@ -81,7 +81,7 @@
 .fifteen-home .fifteen-home__life-image { background: var(--brand-gold-tint); }
 .fifteen-home .fifteen-home__story-copy .fifteen-home__story-eyebrow { color: var(--brand-purple); }
 
-/* Footer value icons and signup label use the updated brand navy. */
+/* Footer value icons and signup label use the updated brand black. */
 .fifteen-footer .fifteen-footer__value-icon,
 .fifteen-footer .fifteen-footer__email-row button {
   color: var(--brand-navy);
@@ -121,13 +121,13 @@
 .fifteen-selling-plans { margin: 0 0 24px; padding: 0; border: 0; color: var(--brand-navy); min-width: 0; }
 .fifteen-selling-plans legend { font-weight: 750; margin-bottom: 12px; }
 .fifteen-selling-plans__heading { margin: 18px 0 10px; font-weight: 750; color: var(--brand-purple); }
-.fifteen-selling-plans__option { display: flex; align-items: flex-start; gap: 12px; padding: 16px; margin-block: 8px; border: 1px solid #071f4826; border-radius: 14px; cursor: pointer; background: #fff; }
+.fifteen-selling-plans__option { display: flex; align-items: flex-start; gap: 12px; padding: 16px; margin-block: 8px; border: 1px solid #00000026; border-radius: 14px; cursor: pointer; background: #fff; }
 .fifteen-selling-plans__option:has(input:checked) { border-color: var(--brand-pink); background: #fdf0f5; }
 .fifteen-selling-plans__option:focus-within { outline: 2px solid var(--brand-navy); outline-offset: 3px; }
 .fifteen-selling-plans__option input { appearance: auto; flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--brand-pink); }
 .fifteen-selling-plans__option > span { display: grid; gap: 5px; font-size: .9rem; overflow-wrap: anywhere; }
 .fifteen-selling-plans__terms, .fifteen-selling-plans__note { font-size: .78rem; line-height: 1.5; }
-.fifteen-selling-plans__note { margin: 12px 0 0; color: #344661; }
+.fifteen-selling-plans__note { margin: 12px 0 0; color: #000000; }
 
 /* Purchase options already display prices; avoid a duplicate heading price. */
 .fifteen-product-main .product-details:has(.fifteen-selling-plans) product-price {
@@ -193,45 +193,45 @@
   }
 }
 
-/* Collection merchandising: clinical paper, navy type and lime accents. */
+/* Collection merchandising: clinical paper, black type and lime accents. */
 .fifteen-collection-grid { color: var(--brand-navy); --color-background: #ffffff; background: #ffffff !important; }
 .shopify-section:has(.fifteen-collection-grid) > .section-background { --color-background: #ffffff; background-color: #ffffff !important; }
-.fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #071f4826; padding-bottom: 18px; margin-bottom: 24px; }
+.fifteen-collection-grid .facets--horizontal { border-bottom: 1px solid #00000026; padding-bottom: 18px; margin-bottom: 24px; }
 .fifteen-collection-grid .product-card { color: var(--brand-navy); }
-.fifteen-collection-grid .product-card__content { background: #fff; border: 1px solid #071f4826; border-radius: 0; box-shadow: none; overflow: hidden; }
+.fifteen-collection-grid .product-card__content { background: #fff; border: 1px solid #00000026; border-radius: 0; box-shadow: none; overflow: hidden; }
 .fifteen-collection-grid .product-card [ref="productTitleLink"] p { font-family: var(--font-heading--family); font-weight: 750; letter-spacing: -.025em; }
 .fifteen-collection-grid .product-card product-price { font-family: var(--font-body--family); font-size: .95rem; }
 .fifteen-collection-grid .card-gallery { border-radius: 0; border-bottom: 3px solid #92e631; }
-.fifteen-collection-grid .quick-add { --quick-add-background: #92e631; --quick-add-foreground: #071f48; }
+.fifteen-collection-grid .quick-add { --quick-add-background: #92e631; --quick-add-foreground: #000000; }
 .fifteen-collection-grid .quick-add .quick-add__button {
   --button-background-color: #92e631 !important;
   --button-border-color: #92e631 !important;
-  --button-color: #071f48 !important;
-  --quick-add-foreground: #071f48;
+  --button-color: #000000 !important;
+  --quick-add-foreground: #000000;
   background: #92e631 !important;
   border-color: #92e631 !important;
-  color: #071f48 !important;
+  color: #000000 !important;
   border-radius: 0;
 }
-.fifteen-collection-grid .product-card:focus-within { outline: 2px solid #071f48; outline-offset: 3px; }
+.fifteen-collection-grid .product-card:focus-within { outline: 2px solid #000000; outline-offset: 3px; }
 
-/* Cart drawer accents follow the lime and navy palette. */
+/* Cart drawer accents follow the lime and black palette. */
 #cart-drawer { --brand-pink: #92e631; --brand-pink-tint: #eefbdd; }
 #cart-drawer .button,
 #cart-drawer .cart__checkout-button {
   --button-background-color: #92e631 !important;
   --button-border-color: #92e631 !important;
-  --button-color: #071f48 !important;
+  --button-color: #000000 !important;
   --button-hover-background-color: #92e631;
-  --button-hover-border-color: #071f48;
-  --button-hover-color: #071f48;
+  --button-hover-border-color: #000000;
+  --button-hover-color: #000000;
   background: #92e631 !important;
   border-color: #92e631 !important;
-  color: #071f48 !important;
+  color: #000000 !important;
 }
 #cart-drawer .button:hover,
-#cart-drawer .button:focus-visible { color: #071f48 !important; }
-#cart-drawer .theme-drawer__badge { background: #92e631; color: #071f48; }
+#cart-drawer .button:focus-visible { color: #000000 !important; }
+#cart-drawer .theme-drawer__badge { background: #92e631; color: #000000; }
 
 /* Sitewide type roles, including custom text blocks and branded sections. */
 :root { --font-handwritten--family: "Story Script", sans-serif; }
@@ -269,20 +269,20 @@ h1, h2, h3, h4, h5, h6,
   .fifteen-collection-hero .fifteen-collection-hero__description { margin-top: 20px; }
 }
 
-/* Why 15 and About Us: the current white, navy and lime identity. */
+/* Why 15 and About Us: the current white, black and lime identity. */
 .fifteen-about.fifteen-about,
 .fifteen-why.fifteen-why {
-  background: #fff; color: #071f48; font-family: var(--font-body--family);
+  background: #fff; color: #000000; font-family: var(--font-body--family);
 }
 .fifteen-about h1, .fifteen-about h2,
 .fifteen-why h1, .fifteen-why h2 {
-  color: #071f48; font-family: var(--font-heading--family);
+  color: #000000; font-family: var(--font-heading--family);
   font-weight: 800; text-transform: uppercase; text-wrap: balance;
 }
 .fifteen-about .fifteen-about__eyebrow,
 .fifteen-why .fifteen-why__eyebrow {
   display: inline-block; padding: 6px 10px; background: #92e631;
-  color: #071f48; font-family: var(--font-heading--family);
+  color: #000000; font-family: var(--font-heading--family);
   font-size: .72rem; font-weight: 800; letter-spacing: .1em;
   text-transform: uppercase; margin-bottom: 20px;
 }
@@ -296,15 +296,15 @@ h1, h2, h3, h4, h5, h6,
 .fifteen-why .fifteen-why__formats > .rte { margin-top: 24px; }
 .fifteen-about .rte, .fifteen-why .rte { font-family: var(--font-body--family); line-height: 1.65; }
 .fifteen-about .fifteen-about__photo {
-  padding: 0; border: 1px solid #071f4826; border-top: 4px solid #92e631;
+  padding: 0; border: 1px solid #00000026; border-top: 4px solid #92e631;
   border-radius: 0; background: #fff; transform: none; box-shadow: none;
 }
 .fifteen-about .fifteen-about__photo img { border-radius: 0; }
-.fifteen-about .fifteen-about__photo figcaption { color: #071f48; font-family: var(--font-heading--family); }
-.fifteen-about .fifteen-about__story-wrap { background: #f7f7f2; border-block: 1px solid #071f4826; }
+.fifteen-about .fifteen-about__photo figcaption { color: #000000; font-family: var(--font-heading--family); }
+.fifteen-about .fifteen-about__story-wrap { background: #f7f7f2; border-block: 1px solid #00000026; }
 .fifteen-about .fifteen-about__story { padding-block: clamp(32px,4.5vw,64px); }
 .fifteen-about .fifteen-about__quote {
-  background: #071f48; color: #fff; border: 0; border-left: 4px solid #92e631;
+  background: #000000; color: #fff; border: 0; border-left: 4px solid #92e631;
   border-radius: 0; padding: clamp(24px,3vw,40px);
 }
 .fifteen-about .fifteen-about__heart { width: 32px; color: #92e631; }
@@ -315,17 +315,17 @@ h1, h2, h3, h4, h5, h6,
 .fifteen-why .fifteen-why__life h2::after { display: none; }
 .fifteen-about .fifteen-about__value:nth-child(n),
 .fifteen-why .fifteen-why__benefit:nth-child(n) {
-  background: #fff; color: #071f48; border: 1px solid #071f4826;
+  background: #fff; color: #000000; border: 1px solid #00000026;
   border-top: 4px solid #92e631; border-radius: 0; box-shadow: none;
   padding: clamp(22px,2.5vw,32px);
 }
-.fifteen-about .fifteen-about__value > span { width: 32px; color: #071f48; margin-bottom: 18px; }
+.fifteen-about .fifteen-about__value > span { width: 32px; color: #000000; margin-bottom: 18px; }
 .fifteen-about .fifteen-about__value h3,
-.fifteen-why .fifteen-why__benefit h3 { color: #071f48; font-family: var(--font-heading--family); font-size: 1.25rem; letter-spacing: -.025em; }
+.fifteen-why .fifteen-why__benefit h3 { color: #000000; font-family: var(--font-heading--family); font-size: 1.25rem; letter-spacing: -.025em; }
 .fifteen-about .fifteen-about__value p,
 .fifteen-why .fifteen-why__benefit p { font-size: .95rem; }
 .fifteen-why .fifteen-why__hero-art {
-  background: #071f48; border-radius: 0; border-bottom: 5px solid #92e631;
+  background: #000000; border-radius: 0; border-bottom: 5px solid #92e631;
   min-height: 22rem; padding: 32px; box-shadow: none;
 }
 .fifteen-why .fifteen-why__badge {
@@ -344,24 +344,24 @@ h1, h2, h3, h4, h5, h6,
 .fifteen-why__benefit:has(> img[src*="fifteen-icon-lightning"]) { --why-benefit-icon: url("fifteen-icon-lightning.svg"); }
 .fifteen-why .fifteen-why__benefit:has(> img)::before {
   content: ""; display: block; width: 32px; height: 32px; margin-bottom: 18px;
-  background: #071f48; -webkit-mask: var(--why-benefit-icon) center / contain no-repeat;
+  background: #000000; -webkit-mask: var(--why-benefit-icon) center / contain no-repeat;
   mask: var(--why-benefit-icon) center / contain no-repeat;
 }
-.fifteen-why .fifteen-why__portion-wrap { background: #071f48; color: #fff; border-block: 1px solid #071f48; }
+.fifteen-why .fifteen-why__portion-wrap { background: #000000; color: #fff; border-block: 1px solid #000000; }
 .fifteen-why .fifteen-why__portion h2 { color: #92e631; }
 .fifteen-why .fifteen-why__formats { padding-block: clamp(32px,4.5vw,64px); }
-.fifteen-why .fifteen-why__moments > div:nth-child(n) svg { color: #071f48; width: 32px; height: 32px; }
+.fifteen-why .fifteen-why__moments > div:nth-child(n) svg { color: #000000; width: 32px; height: 32px; }
 .fifteen-why .fifteen-why__moments > div { font-family: var(--font-heading--family); font-size: .75rem; text-transform: uppercase; }
 .fifteen-about .fifteen-about__cta,
-.fifteen-why .fifteen-why__cta { background: #fff; color: #071f48; border-top: 1px solid #071f4826; padding-block: clamp(32px,4.5vw,64px); }
+.fifteen-why .fifteen-why__cta { background: #fff; color: #000000; border-top: 1px solid #00000026; padding-block: clamp(32px,4.5vw,64px); }
 .fifteen-about .fifteen-about__button,
 .fifteen-why .fifteen-why__button {
-  background: #92e631; color: #071f48; border: 1px solid #92e631;
+  background: #92e631; color: #000000; border: 1px solid #92e631;
   border-radius: 0; box-shadow: none; font-family: var(--font-heading--family);
   min-height: 48px; justify-content: center;
 }
 .fifteen-about .fifteen-about__button:focus-visible,
-.fifteen-why .fifteen-why__button:focus-visible { outline-color: #071f48; }
+.fifteen-why .fifteen-why__button:focus-visible { outline-color: #000000; }
 @media (max-width: 749px) {
   .fifteen-about .fifteen-about__photo { transform: none; margin-inline: 0; }
   .fifteen-why .fifteen-why__hero-art { min-height: 16rem; padding: 24px; }
@@ -372,14 +372,14 @@ h1, h2, h3, h4, h5, h6,
 /* Product and lifestyle imagery on Why 15. */
 .fifteen-why .fifteen-why__hero h1 { font-size: clamp(2.1rem,4.2vw,4.2rem); line-height: 1.06; }
 .fifteen-why__product-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; margin-top: 32px; text-align: left; }
-.fifteen-why__product-card { display: flex; flex-direction: column; color: #071f48; background: #fff; border: 1px solid #071f4826; text-decoration: none; min-width: 0; }
+.fifteen-why__product-card { display: flex; flex-direction: column; color: #000000; background: #fff; border: 1px solid #00000026; text-decoration: none; min-width: 0; }
 .fifteen-why__product-card > img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; padding: 16px; }
 .fifteen-why__product-card > span { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding: 18px; border-top: 3px solid #92e631; font: 750 1rem/1.3 var(--font-heading--family); }
-.fifteen-why__product-card:focus-visible { outline: 2px solid #071f48; outline-offset: 4px; }
+.fifteen-why__product-card:focus-visible { outline: 2px solid #000000; outline-offset: 4px; }
 .fifteen-why__lifestyle-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; max-width: 1000px; margin: 28px auto 32px; }
 .fifteen-why__lifestyle-gallery figure { margin: 0; text-align: left; border-bottom: 3px solid #92e631; }
 .fifteen-why__lifestyle-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.fifteen-why__lifestyle-gallery figcaption { color: #071f48; font: 750 .72rem/1.4 var(--font-heading--family); letter-spacing: .1em; padding: 12px 0; }
+.fifteen-why__lifestyle-gallery figcaption { color: #000000; font: 750 .72rem/1.4 var(--font-heading--family); letter-spacing: .1em; padding: 12px 0; }
 @media (max-width: 749px) {
   .fifteen-why .fifteen-why__hero h1 { font-size: clamp(1.85rem,7.5vw,3rem); }
   .fifteen-why__product-gallery { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
