@@ -1,0 +1,107 @@
+<section class="fifteen-contact">
+  <div class="fifteen-contact__layout">
+    <header class="fifteen-contact__intro">
+      <p class="fifteen-contact__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1>{{ page.title | escape }}</h1>
+      <div class="fifteen-contact__copy rte">{{ section.settings.intro }}</div>
+      {% if page.content != blank %}
+        <div class="fifteen-contact__copy rte">{{ page.content }}</div>
+      {% endif %}
+    </header>
+    <div class="fifteen-contact__panel">
+      <h2>{{ section.settings.form_heading | escape }}</h2>
+      {% assign form_id = 'FifteenContact-' | append: section.id %}
+      {% form 'contact', id: form_id, class: 'fifteen-contact__form' %}
+        {% if form.posted_successfully? %}
+          <div class="fifteen-contact__status" role="status" tabindex="-1" autofocus>
+            {{ 'blocks.contact_form.post_success' | t }}
+          </div>
+        {% endif %}
+        {% if form.errors %}
+          <div id="{{ form_id }}-errors" class="fifteen-contact__status fifteen-contact__status--error" role="alert" tabindex="-1" autofocus>
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+        <div class="fifteen-contact__row">
+          <div class="fifteen-contact__field">
+            <label for="{{ form_id }}-name">Name</label>
+            <input id="{{ form_id }}-name" type="text" name="contact[name]" autocomplete="name" value="{{ form.name | default: customer.name | escape }}">
+          </div>
+          <div class="fifteen-contact__field">
+            <label for="{{ form_id }}-email">Email <span aria-hidden="true">*</span></label>
+            <input id="{{ form_id }}-email" type="email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required aria-required="true" value="{{ form.email | default: customer.email | escape }}" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="{{ form_id }}-errors"{% endif %}>
+          </div>
+        </div>
+        <div class="fifteen-contact__field">
+          <label for="{{ form_id }}-phone">Phone <span>(optional)</span></label>
+          <input id="{{ form_id }}-phone" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone | default: customer.phone | escape }}">
+        </div>
+        <div class="fifteen-contact__field">
+          <label for="{{ form_id }}-body">Message <span aria-hidden="true">*</span></label>
+          <textarea id="{{ form_id }}-body" name="contact[body]" rows="6" required aria-required="true">{{ form.body | escape }}</textarea>
+        </div>
+        <button type="submit" class="fifteen-contact__submit">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.fifteen-contact { background: #fff; color: #000; font-family: var(--font-body--family); }
+.fifteen-contact * { box-sizing: border-box; }
+.fifteen-contact__layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 6vw; padding: 5vw; align-items: start; }
+.fifteen-contact__intro { padding-top: 1vw; min-width: 0; }
+.fifteen-contact__eyebrow { display: inline-block; margin: 0 0 1.6vw; padding: .45vw .75vw; background: #92e631; font-family: var(--font-heading--family); font-size: .85vw; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.fifteen-contact h1 { margin: 0; color: #000; font-family: var(--font-heading--family); font-size: 5.5vw; font-weight: 800; line-height: 1; letter-spacing: -.055em; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
+.fifteen-contact__copy { margin-top: 1.8vw; font-size: 1.2vw; line-height: 1.7; overflow-wrap: anywhere; }
+.fifteen-contact__copy p { margin: 0 0 1vw; }
+.fifteen-contact__copy a { color: inherit; text-decoration: underline; }
+.fifteen-contact__panel { min-width: 0; background: #f7f7f2; border-top: .4vw solid #92e631; padding: 2.6vw; }
+.fifteen-contact h2 { margin: 0 0 2vw; font-family: var(--font-heading--family); color: #000; font-size: 2vw; font-weight: 800; line-height: 1.1; letter-spacing: -.035em; text-transform: uppercase; }
+.fifteen-contact__form { display: grid; gap: 1.4vw; }
+.fifteen-contact__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2vw; }
+.fifteen-contact__field { display: grid; gap: .5vw; min-width: 0; }
+.fifteen-contact label { font-family: var(--font-heading--family); font-size: 1vw; font-weight: 700; }
+.fifteen-contact label span { font-weight: 400; }
+.fifteen-contact input, .fifteen-contact textarea { width: 100%; min-width: 0; border: .08vw solid #0006; border-radius: 0; background: #fff; color: #000; padding: 1vw; font: inherit; font-size: 1.15vw; line-height: 1.5; box-shadow: none; }
+.fifteen-contact textarea { resize: vertical; min-height: 11vw; }
+.fifteen-contact input:focus-visible, .fifteen-contact textarea:focus-visible, .fifteen-contact__submit:focus-visible { outline: .18vw solid #000; outline-offset: .25vw; }
+.fifteen-contact__submit, .fifteen-contact__submit:hover { display: flex; align-items: center; justify-content: space-between; gap: 2vw; width: 100%; padding: 1.15vw 1.4vw; margin-top: .3vw; border: 0; border-radius: 0; background: #92e631; color: #000; box-shadow: none; font-family: var(--font-heading--family); font-size: 1vw; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; }
+.fifteen-contact__submit span { font-size: 1.6vw; line-height: 1; }
+.fifteen-contact__status { padding: 1vw; border: .08vw solid #000; font-size: 1.1vw; line-height: 1.6; background: #fff; }
+.fifteen-contact__status--error { border-color: #a11; }
+.fifteen-contact__status a { color: inherit; }
+@media (max-width: 749px) {
+  .fifteen-contact__layout { grid-template-columns: minmax(0, 1fr); gap: 7vw; padding: 9vw 5vw 12vw; }
+  .fifteen-contact__intro { padding-top: 0; }
+  .fifteen-contact__eyebrow { margin-bottom: 5vw; padding: 1.5vw 2.5vw; font-size: 2.8vw; }
+  .fifteen-contact h1 { font-size: 12vw; }
+  .fifteen-contact__copy { margin-top: 5vw; font-size: 4.2vw; }
+  .fifteen-contact__copy p { margin-bottom: 3vw; }
+  .fifteen-contact__panel { padding: 6vw; border-top-width: 1.2vw; }
+  .fifteen-contact h2 { margin-bottom: 6vw; font-size: 6vw; }
+  .fifteen-contact__form { gap: 5vw; }
+  .fifteen-contact__row { grid-template-columns: minmax(0, 1fr); gap: 5vw; }
+  .fifteen-contact__field { gap: 2vw; }
+  .fifteen-contact label { font-size: 3.8vw; }
+  .fifteen-contact input, .fifteen-contact textarea { padding: 3.5vw; border-width: .25vw; font-size: 5vw; }
+  .fifteen-contact textarea { min-height: 35vw; }
+  .fifteen-contact input:focus-visible, .fifteen-contact textarea:focus-visible, .fifteen-contact__submit:focus-visible { outline-width: .6vw; outline-offset: .8vw; }
+  .fifteen-contact__submit, .fifteen-contact__submit:hover { margin-top: 1vw; padding: 4.5vw; font-size: 3.7vw; }
+  .fifteen-contact__submit span { font-size: 6vw; }
+  .fifteen-contact__status { padding: 4vw; border-width: .25vw; font-size: 4vw; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Fifteen Contact",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "LET’S TALK" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Questions about Fifteen or your order? We’re here to help. Send us a message & we’ll be in touch.</p>" },
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Send us a message" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send message" }
+  ],
+  "presets": [{ "name": "Fifteen Contact" }]
+}
+{% endschema %}
