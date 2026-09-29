@@ -14,7 +14,12 @@
       "settings": {
         "hero_product": "rescue-powder",
         "shop_link": "",
-        "product_collection": "all"
+        "product_collection": "all",
+        "community_image_1": "shopify://shop_images/iStock-2276506264.jpg",
+        "community_image_2": "shopify://shop_images/iStock-2286477105.jpg",
+        "community_image_3": "shopify://shop_images/iStock-2207632040.jpg",
+        "community_image_4": "shopify://shop_images/iStock-2269816196.jpg",
+        "community_image_5": "shopify://shop_images/iStock-2172801791.jpg"
       }
     }
   },
