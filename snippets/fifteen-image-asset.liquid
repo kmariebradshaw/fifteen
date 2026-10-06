@@ -11,5 +11,15 @@
       echo 'fifteen-new-bag'
     when '54585826476345'
       echo 'fifteen-new-spheres'
+    else
+      assign source_name = image.src | split: '/' | last | split: '?' | first
+      case source_name
+        when 'ChatGPT_Image_Sep_25_2026_02_04_18_PM.png'
+          echo 'fifteen-new-packets'
+        when 'ChatGPTImageSep24_2026_09_58_20AM.png'
+          echo 'fifteen-new-bag'
+        when 'ChatGPTImageSep24_2026_09_56_46AM.png'
+          echo 'fifteen-new-spheres'
+      endcase
   endcase
 -%}
