@@ -312,6 +312,18 @@
 }
 .f15__community-slash{display:block;width:10vw;height:auto;margin:.5vw auto 0;mix-blend-mode:multiply}
 @media(max-width:850px){.f15__community-slash{width:25vw;margin-top:1vw}}
+/* Mobile: show the product after the introduction, before supporting copy. */
+@media(max-width:850px){
+ .f15 .f15__hero-grid{padding-top:4vw;padding-bottom:5vw;align-items:start}
+ .f15 .f15__hero-copy{display:contents}
+ .f15 .f15__hero-copy>.f15__eyebrow{grid-row:1;margin:0 0 1.5vw}
+ .f15 .f15__hero-copy>h1{grid-row:2;font-size:9.5vw;line-height:9.2vw;letter-spacing:-.4vw}
+ .f15 .f15__hero-copy>.f15__lead{grid-row:3;max-width:90vw;font-size:4vw;line-height:5.2vw;margin:2.5vw 0 3vw}
+ .f15 .f15__hero .f15__hero-static{grid-row:4;width:calc(100% + 10vw);margin:0 -5vw 3vw;padding:2vw 0 6vw}
+ .f15 .f15__hero-copy>.f15__button{grid-row:5;justify-self:center;width:90vw;margin:0}
+ .f15 .f15__hero-copy>.f15__benefits{grid-row:6;justify-content:center;margin:4vw 0 0}
+ .f15 .f15__hero-copy>.f15__hand{grid-row:7;justify-self:center;margin:4vw 0 4vw;font-size:5vw;line-height:6vw}
+}
 {% endstylesheet %}
 
 {% schema %}
