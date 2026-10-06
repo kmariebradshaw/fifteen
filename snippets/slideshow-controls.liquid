@@ -123,10 +123,11 @@
                     assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                   endif
                 %}
-                {% capture thumbnail_markup %}
-                  {% render 'fifteen-image', image: media.preview_image, widths: '144', sizes: '72px', loading: 'lazy', alt: media.alt, style: focal_point_style %}
-                {% endcapture %}
-                {{ thumbnail_markup | strip | escape }}
+                {{
+                  media.preview_image
+                  | image_url: width: 144
+                  | image_tag: loading: 'lazy', alt: media.alt, style: focal_point_style
+                }}
 
                 {% if media.media_type == 'video' or media.media_type == 'external_video' %}
                   <span class="slideshow-controls__thumbnail-badge">

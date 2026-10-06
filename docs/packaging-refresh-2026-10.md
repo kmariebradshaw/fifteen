@@ -13,3 +13,7 @@ Lifestyle replacements match only the four previous configured filenames. Select
 Today's mobile hero spacing and typography are preserved. Existing header logo retains its requested upward arrow.
 
 Validation: parsed all changed Liquid templates; rendered all three mapped image IDs and an unknown-ID fallback; checked git whitespace and image files.
+
+## October 6 correction
+
+Product photo overrides and their theme assets have been removed at the owner’s request. All product galleries, thumbnails, product cards, and cart images now use Shopify product media directly. Manage product photography in Shopify. Homepage hero and lifestyle artwork remain theme assets. Thumbnail image markup renders directly instead of being escaped as text.

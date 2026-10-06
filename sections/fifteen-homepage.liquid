@@ -80,7 +80,7 @@
             <a class="f15__product-visual" href="{{ featured_product.url }}" aria-label="{{ featured_product.title | escape }}">
               {% if featured_product.featured_image != blank %}
                 {% assign product_image_alt = featured_product.featured_image.alt | default: featured_product.title %}
-                {% render 'fifteen-image', image: featured_product.featured_image, loading: 'lazy', widths: '360,600,900,1200', sizes: '(min-width: 851px) 30vw, 92vw', alt: product_image_alt %}
+                {{ featured_product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360,600,900,1200', sizes: '(min-width: 851px) 30vw, 92vw', alt: product_image_alt }}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'f15__product-placeholder' }}
               {% endif %}
