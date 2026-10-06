@@ -1,0 +1,15 @@
+{%- comment -%}
+  Replace only the retired catalog images. New uploads in Shopify automatically
+  use their own imagery. Keep these IDs scoped to the supplied October packaging.
+{%- endcomment -%}
+{%- liquid
+  assign source_id = image.id | append: ''
+  case source_id
+    when '54591260524857'
+      echo 'fifteen-new-packets'
+    when '54585830342969'
+      echo 'fifteen-new-bag'
+    when '54585826476345'
+      echo 'fifteen-new-spheres'
+  endcase
+-%}

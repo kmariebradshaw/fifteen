@@ -24,7 +24,7 @@
 
       <div class="f15__hero-static">
         <figure class="f15__hero-art">
-          <img src="{{ 'fifteen-hero-static.webp' | asset_url }}" width="1497" height="1051" loading="eager" fetchpriority="high" alt="Five Fifteen Rescue Powder flavors: Green Apple, Cherry, Grape, Watermelon and Blue Raspberry, with a spoonful of pink powder.">
+          <img src="{{ 'fifteen-new-hero-1500.webp' | asset_url }}" width="1496" height="1051" loading="eager" fetchpriority="high" alt="Five Fifteen Rescue Powder flavors: Green Apple, Cherry, Grape, Watermelon and Blue Raspberry, with a spoonful of pink powder.">
           <p class="f15__hero-static-note">Same<br>15g.<br>Five<br>Great<br>Flavors.<img class="f15__hero-note-swoosh" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></p>
           <figcaption class="f15__hero-scoop-label">Full scoop = 15g carbs<small>(for size reference)</small></figcaption>
         </figure>
@@ -47,7 +47,13 @@
         {% assign key = 'life_image_' | append: forloop.index %}
         <article class="f15__life-card">
           <div class="f15__media-placeholder">
-            {% if section.settings[key] != blank %}
+            {% assign retired_life_names = 'Green_Fifteen_sachet_on_notebook-2.png|Cherry_rescue_packet_in_the_console-1.png|Gym_bag_with_green_apple_sachet.png|cbf0ccb7-b879-4c40-aec8-378a77d60670.png' | split: '|' %}
+            {% assign old_life_name = retired_life_names[forloop.index0] %}
+            {% assign current_life_src = section.settings[key].src | append: '' %}
+            {% if old_life_name != blank and current_life_src contains old_life_name %}
+              {% assign updated_life_asset = 'fifteen-new-life-' | append: life_assets[forloop.index0] | append: '.webp' %}
+              <img src="{{ updated_life_asset | asset_url }}" alt="{{ label | escape }}" width="1000" height="667" loading="lazy" decoding="async">
+            {% elsif section.settings[key] != blank %}
               {{ section.settings[key] | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '360,640,1000', sizes: '(min-width: 990px) 18vw, 46vw', alt: label }}
             {% else %}
               {% assign life_asset = 'fifteen-life-' | append: life_assets[forloop.index0] | append: '-v1.webp' %}
@@ -74,7 +80,7 @@
             <a class="f15__product-visual" href="{{ featured_product.url }}" aria-label="{{ featured_product.title | escape }}">
               {% if featured_product.featured_image != blank %}
                 {% assign product_image_alt = featured_product.featured_image.alt | default: featured_product.title %}
-                {{ featured_product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360,600,900,1200', sizes: '(min-width: 851px) 30vw, 92vw', alt: product_image_alt }}
+                {% render 'fifteen-image', image: featured_product.featured_image, loading: 'lazy', widths: '360,600,900,1200', sizes: '(min-width: 851px) 30vw, 92vw', alt: product_image_alt %}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'f15__product-placeholder' }}
               {% endif %}

@@ -93,18 +93,7 @@
             assign ref_image_to_transition = 'imagesToTransition[]'
           endif
         %}
-        {{
-          featured_image
-          | image_url: width: image_width
-          | image_tag:
-            loading: 'lazy',
-            class: 'resource-card__image',
-            widths: widths,
-            sizes: image_sizes,
-            ref: ref_image_to_transition,
-            data-media-id: featured_image.id,
-            style: primary_focal_point_style
-        }}
+        {% render 'fifteen-image', image: featured_image, loading: 'lazy', class: 'resource-card__image', widths: widths, sizes: image_sizes, image_ref: ref_image_to_transition, media_id: featured_image.id, style: primary_focal_point_style %}
         {%- if image_hover and resource.media.size > 1 -%}
           {% liquid
             assign secondary_focal_point_style = ''

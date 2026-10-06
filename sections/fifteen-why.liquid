@@ -46,7 +46,7 @@
         {% for format_product in formats_collection.products limit: 3 %}
           <a class="fifteen-why__product-card" href="{{ format_product.url }}">
             {% if format_product.featured_image != blank %}
-              {{ format_product.featured_image | image_url: width: 900 | image_tag: widths: '240, 360, 540, 720, 900', sizes: '(min-width: 750px) 28vw, 80vw', loading: 'lazy', alt: format_product.title }}
+              {% render 'fifteen-image', image: format_product.featured_image, widths: '240, 360, 540, 720, 900', sizes: '(min-width: 750px) 28vw, 80vw', loading: 'lazy', alt: format_product.title %}
             {% endif %}
             <span>{{ format_product.title | escape }} <span aria-hidden="true">→</span></span>
           </a>
