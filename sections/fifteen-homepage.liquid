@@ -19,7 +19,7 @@
         </div>
 
         <a class="f15__button f15__button--lime" href="{{ hero_shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
-        <p class="f15__hand">Designed by a diabetic for diabetics.<img class="f15__hand-underline" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></p>
+        <p class="f15__hand">Designed by a <span class="f15__hand-emphasis">diabetic for diabetics.<img class="f15__hand-underline" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></span></p>
       </div>
 
       <div class="f15__hero-static">
@@ -331,7 +331,9 @@
  /* Blend the asset's white canvas into paper without a second image download. */
  .f15 .f15__hero .f15__hero-art>img{mix-blend-mode:multiply}
  .f15 .f15__hero-copy>.f15__hand{transform:none;text-align:center}
- .f15 .f15__hero .f15__hand-underline{left:50%;right:auto;bottom:-2.5vw;width:40vw;height:auto;transform:translateX(-50%)}
+ .f15 .f15__hero .f15__hand-emphasis{position:relative;display:inline-block}
+ .f15 .f15__hero .f15__hand-underline{left:0;right:auto;top:100%;bottom:auto;width:100%;height:auto;transform:rotate(5deg);transform-origin:center}
+ .f15 .f15__hero-copy>.f15__hand{margin-bottom:8vw}
 }
 {% endstylesheet %}
 
