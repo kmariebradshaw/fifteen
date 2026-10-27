@@ -8,6 +8,15 @@
  * ------------------------------------------------------------
  */
 {
+  "fifteen": {
+    "launch": {
+      "success": "You're on the list! We'll email you when Fifteen is ready. If you receive a confirmation email, please confirm your signup.",
+      "email_label": "Email address",
+      "email_placeholder": "Enter your email",
+      "consent": "Sign up for Fifteen launch news and product updates. Unsubscribe anytime.",
+      "product_link": "Get notified about {{ product }}"
+    }
+  },
   "accessibility": {
     "account": "Account",
     "active_filters": "Active filters:",

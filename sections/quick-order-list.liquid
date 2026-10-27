@@ -1,5 +1,11 @@
 
 
+{% if settings.fifteen_coming_soon %}
+  <div class="fifteen-launch-page">
+    {% assign signup_id = 'quick-order-' | append: section.id %}
+    {% render 'fifteen-launch-signup', signup_id: signup_id, product: product %}
+  </div>
+{% else %}
 {% liquid
   assign items_in_cart = cart | line_items_for: product
   assign quick_order_form_id = 'QuickOrder-ProductForm-' | append: product.id | append: '-' | append: section.id
@@ -472,6 +478,8 @@
     </div>
   </quick-order-list-component>
 </div>
+
+{% endif %}
 
 {% stylesheet %}
   .quick-order-list {

@@ -1,0 +1,105 @@
+{% doc %}
+  Renders the Fifteen launch notification signup.
+  @param {string} signup_id - Unique identifier for this form instance.
+  @param {product} [product] - Product the visitor is interested in.
+{% enddoc %}
+
+{% liquid
+  assign form_id = 'FifteenLaunchForm-' | append: signup_id
+  assign signup_tags = 'newsletter,fifteen-launch-list'
+  if product != blank
+    assign signup_tags = signup_tags | append: ',launch-' | append: product.handle
+  endif
+%}
+
+<div class="fifteen-launch" aria-labelledby="{{ form_id }}-heading">
+  <h2 class="fifteen-launch__heading" id="{{ form_id }}-heading">{{ settings.fifteen_launch_heading | escape }}</h2>
+  <p class="fifteen-launch__message">{{ settings.fifteen_launch_message | escape }}</p>
+  {% form 'customer', id: form_id, class: 'fifteen-launch__form' %}
+    <input type="hidden" name="contact[tags]" value="{{ signup_tags | escape }}">
+    {% if form.posted_successfully? %}
+      <p class="fifteen-launch__success" role="status" tabindex="-1">{{ 'fifteen.launch.success' | t }}</p>
+    {% else %}
+      <label class="fifteen-launch__label" for="{{ form_id }}-email">{{ 'fifteen.launch.email_label' | t }}</label>
+      <div class="fifteen-launch__row">
+        <input
+          id="{{ form_id }}-email"
+          type="email"
+          name="contact[email]"
+          value="{{ form.email | escape }}"
+          placeholder="{{ 'fifteen.launch.email_placeholder' | t }}"
+          autocomplete="email"
+          autocapitalize="off"
+          autocorrect="off"
+          required
+          aria-describedby="{{ form_id }}-consent{% if form.errors %} {{ form_id }}-error{% endif %}"
+          {% if form.errors %}aria-invalid="true"{% endif %}
+        >
+        <button type="submit">{{ settings.fifteen_launch_button | escape }}</button>
+      </div>
+      {% if form.errors %}
+        <div class="fifteen-launch__error" id="{{ form_id }}-error" role="alert">{{ form.errors | default_errors }}</div>
+      {% endif %}
+      <p class="fifteen-launch__consent" id="{{ form_id }}-consent">{{ 'fifteen.launch.consent' | t }}</p>
+    {% endif %}
+  {% endform %}
+</div>
+
+{% stylesheet %}
+  .fifteen-launch {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(20px, 2vw, 30px);
+    border: 1px solid #dfe5d8;
+    border-radius: 16px;
+    background: #fffdf9;
+    color: #000;
+    font-family: var(--font-body--family);
+    text-align: left;
+  }
+  .fifteen-launch .fifteen-launch__heading {
+    margin: 0 0 10px;
+    color: #000;
+    font: 700 clamp(24px, 2.2vw, 34px)/1.15 var(--font-heading--family);
+    letter-spacing: -.03em;
+    text-transform: none;
+  }
+  .fifteen-launch__message { margin: 0 0 20px; font-size: 15px; line-height: 1.6; }
+  .fifteen-launch__label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
+  .fifteen-launch__row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .fifteen-launch__row input {
+    flex: 1 1 180px;
+    min-width: 0;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 15px;
+    border: 1px solid #777;
+    border-radius: 8px;
+    background: #fff;
+    color: #000;
+    font: inherit;
+    font-size: 16px;
+  }
+  .fifteen-launch__row input::placeholder { color: #666; opacity: 1; }
+  .fifteen-launch__row button {
+    flex: 1 0 auto;
+    min-height: 50px;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background: #000;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .fifteen-launch__row button:hover { background: #303030; }
+  .fifteen-launch input:focus-visible, .fifteen-launch button:focus-visible { outline: 3px solid #1597bd; outline-offset: 3px; }
+  .fifteen-launch__consent { margin: 12px 0 0; color: #555; font-size: 12px; line-height: 1.5; }
+  .fifteen-launch__success { margin: 0; padding: 14px; background: #d5eddb; border-radius: 8px; font-size: 15px; line-height: 1.5; }
+  .fifteen-launch__error { margin-top: 12px; color: #a11818; font-size: 14px; }
+  .fifteen-launch__error a { color: inherit; }
+  .fifteen-launch-page { max-width: 660px; margin: 40px auto; padding: 0 20px; }
+  .fifteen-launch-block { width: 100%; min-width: 0; }
+{% endstylesheet %}

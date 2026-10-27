@@ -1,5 +1,11 @@
 
 
+{% if settings.fifteen_coming_soon %}
+  <div class="fifteen-launch-page">
+    {% assign signup_id = 'cart-' | append: section.id %}
+    {% render 'fifteen-launch-signup', signup_id: signup_id %}
+  </div>
+{% else %}
 {% liquid
   assign custom_color = false
   if section.settings.background_color != blank or section.settings.text_color != blank
@@ -62,6 +68,8 @@
   </div>
 {% endcapture %}
 {% render 'cart-items-component', children: cart_items_children, section_id: section.id %}
+
+{% endif %}
 
 {% stylesheet %}
   .cart-page {

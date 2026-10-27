@@ -6,6 +6,7 @@
   @param {object} [block] - The block object
 {%- enddoc -%}
 
+{% unless settings.fifteen_coming_soon %}
 {% liquid
   assign product_form_id = 'QuickAdd-ProductForm-' | append: product.id | append: '-' | append: block.id
   assign add_to_cart_text = 'actions.add' | t
@@ -143,6 +144,8 @@
     </button>
   {% endif %}
 </quick-add-component>
+
+{% endunless %}
 
 {% render 'add-to-cart-button-styles' %}
 {% render 'checkbox-styles' %}

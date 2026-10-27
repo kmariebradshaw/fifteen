@@ -9,6 +9,10 @@
  */
 {
   "current": {
+    "fifteen_coming_soon": true,
+    "fifteen_launch_heading": "Coming soon",
+    "fifteen_launch_message": "Fifteen is almost ready. Sign up and we’ll let you know when our products are available.",
+    "fifteen_launch_button": "Notify me",
     "logo": "shopify://shop_images/ChatGPT_Image_Sep_24_2026_10_53_30_AM.png",
     "logo_height": 61,
     "logo_height_mobile": 61,

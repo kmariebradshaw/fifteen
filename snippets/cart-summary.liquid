@@ -5,6 +5,10 @@
   @param {string} [section_id] - The section ID for cart discount component.
 {%- enddoc -%}
 
+{% if settings.fifteen_coming_soon %}
+  {% assign signup_id = 'cart-summary-' | append: section_id %}
+  {% render 'fifteen-launch-signup', signup_id: signup_id %}
+{% else %}
 {% render 'text-component-shimmer-styles' %}
 {% render 'cart-typography-styles' %}
 
@@ -284,6 +288,8 @@
     </div>
   {% endif %}
 </div>
+
+{% endif %}
 
 {% stylesheet %}
   .cart-actions {

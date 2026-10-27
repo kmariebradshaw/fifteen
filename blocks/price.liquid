@@ -75,7 +75,7 @@
     </div>
   {% endif %}
 
-  {%- if selected_variant != blank and block_settings.show_installments -%}
+  {%- if selected_variant != blank and block_settings.show_installments and settings.fifteen_coming_soon != true -%}
     <div class="installments">
       {%- assign product_form_installment_id = 'product-form-installment-' | append: block.id -%}
       {%- form 'product', product_resource, id: product_form_installment_id, class: 'payment-terms' -%}

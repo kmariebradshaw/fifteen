@@ -28,7 +28,7 @@
 {% render 'deferred-media-product-model-styles' %}
 {% render 'deferred-media-video-styles' %}
 
-{% if section.settings.enable_sticky_add_to_cart %}
+{% if section.settings.enable_sticky_add_to_cart and settings.fifteen_coming_soon != true %}
   {% render 'fly-to-cart-styles' %}
 
   {% liquid

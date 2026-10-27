@@ -8,6 +8,36 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Fifteen launch",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "fifteen_coming_soon",
+        "label": "Enable coming soon mode",
+        "default": true,
+        "info": "Replaces purchase controls with an email signup. Turn off when products are ready to sell. This theme setting does not disable direct checkout links or other sales channels."
+      },
+      {
+        "type": "text",
+        "id": "fifteen_launch_heading",
+        "label": "Heading",
+        "default": "Coming soon"
+      },
+      {
+        "type": "textarea",
+        "id": "fifteen_launch_message",
+        "label": "Message",
+        "default": "Fifteen is almost ready. Sign up and we’ll let you know when our products are available."
+      },
+      {
+        "type": "text",
+        "id": "fifteen_launch_button",
+        "label": "Signup button",
+        "default": "Notify me"
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

@@ -36,6 +36,12 @@
   endif
 %}
 
+{% if settings.fifteen_coming_soon %}
+  <div class="fifteen-launch-block" {{ block.shopify_attributes }}>
+    {% assign signup_id = section.id | append: '-' | append: block.id %}
+    {% render 'fifteen-launch-signup', signup_id: signup_id, product: product %}
+  </div>
+{% else %}
 <span
   class="buy-buttons-block buy-buttons-block--{{ block.id }}"
   {% if block_settings.text_color != blank %}
@@ -380,6 +386,8 @@
       </dialog>
     </theme-drawer>
   {% endif %}
+{% endif %}
+
 {% endif %}
 
 {% render 'buy-buttons-styles' %}

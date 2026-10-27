@@ -8,7 +8,7 @@
   <div class="f15__hero">
     <div class="f15__wrap f15__hero-grid">
       <div class="f15__hero-copy">
-        <p class="f15__eyebrow">FOR LIFE'S LOWS</p>
+        <p class="f15__eyebrow">{% if settings.fifteen_coming_soon %}{{ settings.fifteen_launch_heading | escape }}{% else %}FOR LIFE'S LOWS{% endif %}</p>
         <h1><span class="f15__headline-desktop"><span class="f15__headline-line">WHEN LOW</span> <span class="f15__headline-line">HITS, REACH</span> <span class="f15__headline-line">FOR <span class="f15__headline-accent">FIFTEEN.</span></span></span><span class="f15__headline-mobile">WHEN LOW HITS,<br>REACH FOR <span class="f15__headline-accent">FIFTEEN.</span></span></h1>
         <p class="f15__lead">15g of fast-acting carbohydrates in a small, convenient powder.</p>
 
@@ -18,7 +18,7 @@
           <div><svg class="f15__benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 2 12 6v16l-12 6-12-6V8Z"/><path d="m4 8 12 6 12-6M16 14v16"/></svg><span>SMALL.<br>PORTABLE.<br>ANYWHERE.</span></div>
         </div>
 
-        <a class="f15__button f15__button--lime" href="{{ hero_shop_url }}">SHOP RESCUE POWDER <span>→</span></a>
+        <a class="f15__button f15__button--lime" href="{{ hero_shop_url }}">{% if settings.fifteen_coming_soon %}{{ settings.fifteen_launch_button | escape }}{% else %}SHOP RESCUE POWDER{% endif %} <span>→</span></a>
         <p class="f15__hand">Designed by a <span class="f15__hand-emphasis">diabetic for diabetics.<img class="f15__hand-underline" src="{{ 'fifteen-hand-underline-transparent.png' | asset_url }}" alt="" width="198" height="39"></span></p>
       </div>
 
@@ -90,7 +90,7 @@
               {% if featured_product.description != blank %}
                 <div class="f15__product-description rte">{{ featured_product.description }}</div>
               {% endif %}
-              <a class="f15__button f15__button--navy" href="{{ featured_product.url }}" aria-label="Shop {{ featured_product.title | escape }}">Shop Now <span aria-hidden="true">→</span></a>
+              <a class="f15__button f15__button--navy" href="{{ featured_product.url }}" aria-label="{% if settings.fifteen_coming_soon %}{{ 'fifteen.launch.product_link' | t: product: featured_product.title | escape }}{% else %}Shop {{ featured_product.title | escape }}{% endif %}">{% if settings.fifteen_coming_soon %}{{ settings.fifteen_launch_button | escape }}{% else %}Shop Now{% endif %} <span aria-hidden="true">→</span></a>
             </div>
           </article>
         {% endfor %}
